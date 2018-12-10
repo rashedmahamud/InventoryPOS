@@ -1,0 +1,2 @@
+﻿body.receipt .sheet { width: 58mm; height: 1000mm } /* change height as you like */
+@media print { body.receipt { width: 58mm } } /* this line is needed for fixing Chrome's bu

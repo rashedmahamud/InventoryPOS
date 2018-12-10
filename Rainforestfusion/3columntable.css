@@ -1,0 +1,34 @@
+﻿/* DivTable.com */
+.divTable{
+	display: table;
+	width: 100%;
+    margin-left:0px;
+
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+    vertical-align:top;
+	border: 0px solid #999999;
+	display: table-cell;
+    /*text-align: center;*/
+    text-align: left;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}

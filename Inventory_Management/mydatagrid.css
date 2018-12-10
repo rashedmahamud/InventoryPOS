@@ -1,0 +1,33 @@
+﻿.Grid {background-color: #fff; margin: 5px 0 10px 0; border-collapse:collapse; font-family:Calibri; color: #474747; width:100%}
+
+.Grid td {
+
+      padding: 4px;
+
+      border: none; }
+
+.Grid th  {
+
+      padding : 10px 10px;
+
+      color: #fff;
+
+      background: #363670 url(Images/grid-header.png) repeat-x top;
+
+      /*border-left: solid 1px #525252;*/
+
+      font-size: 0.9em; }
+
+.Grid .alt {
+
+      background: #fcfcfc url(Images/grid-alt.png) repeat-x top; }
+
+.Grid .pgr {background: #363670 url(Images/grid-pgr.png) repeat-x top; }
+
+.Grid .pgr table { margin: 3px 0; }
+
+.Grid .pgr td { border-width: 0; padding: 0 6px;  font-weight: bold; color: #fff; line-height: 15px; }  
+
+.Grid .pgr a { color: Gray; text-decoration: none; }
+
+.Grid .pgr a:hover { color: #000; text-decoration: none; }

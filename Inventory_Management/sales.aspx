@@ -116,13 +116,13 @@
 </head>
 <body>
    <form id="form1" runat="server">
-       <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
              <ContentTemplate>
-            <%--   
+                  <%--   
                     *************************************************
                     *                    Menu Bar                  *
                     *************************************************        
-            --%>
+                  --%>
                   <div > 
                       <asp:Label ID="l1" Visible="false" runat="server" Text="Label"></asp:Label>
                             <div class="panel panel-primary"  > 
@@ -139,19 +139,18 @@
                                 </header>
                         </div>                 
                 </div>
-
-                 <%--   
+                  <%--   
                     *************************************************
-                    *                    Menu Bar                  *
+                    *           Seleted Item Display                *
                     *************************************************        
-            --%>
+                --%>
                   <div>
                     <asp:Label ID="Label15" Visible="false" runat="server" Text="Label"></asp:Label>
                     <asp:Label ID="Label11" runat="server"  Visible="false" Text=""></asp:Label>
                     <div class="divTable" style="width:100%">
                         <div class="divTableCell" style="width:35%"> 
                              <div>
-                                 <asp:Panel ID="Panel3" runat="server" ScrollBars="Vertical" Height="580px" Width="100%" > 
+                                 <asp:Panel ID="Panel3" runat="server" Height="580px" Width="100%" > 
                                  <div class="panel panel-default">   
                                          <%--
                                               ------------------------------------------
@@ -174,7 +173,7 @@
                                          --%>
                                     <div class="divTable">
                                         <div class="divTableBody" >
-                                            <div class="divTableRow" style="background:#000000;font-size:11px;font-weight:bold;color:white" >
+                                            <div class="divTableRow" style="background:#000000;font-size:14px;font-weight:bold;color:white" >
                                                 <div class="divTableCell" > PRODUCT NAME</div>
                                                 <div class="divTableCell" > QUANTITY </div>
                                                 <div class="divTableCell" >PRICE   </div>
@@ -191,16 +190,20 @@
                                     <asp:DataList ID="dtlistgrid" runat="server" Font-Names="Verdana" Font-Size="Small"  RepeatLayout="Flow"    RepeatDirection="Horizontal" CssClass="row" >
                                         <ItemStyle ForeColor="Black"/>
                                         <ItemTemplate>
-                                            <div class="divTable "  >
+                                            <div class="divTable "  style="margin-left:5px;">
                                                 <div class="divTableBody" >
                                                     <div class="divTableRow" >
-                                                        <div class="divTableCell" > <asp:Label  Visible="false" Font-Size="10px" width="50px" ID="lblid" runat="server" Text='<%# Bind("Code") %>'></asp:Label> </div>
-                                                        <div class="divTableCell" ><asp:Label   ID="lblitemname" Font-Size="10px" width="100px" runat="server" Text='<%# Bind("ItemName") %>' ForeColor="#0084B4"></asp:Label>  </div>
-                                                        <div class="divTableCell" ><asp:Label ForeColor="Black" Font-Size="10px" width="30px"  ToolTip="Item Quantity"    Font-Bold="true" ID="Label16" runat="server" Text='<%# Bind("Qty") %>'></asp:Label> </div>
-                                                        <div class="divTableCell" ><asp:Label ID="LblPrice" Font-Size="10px"  width="30px" runat="server" Text='<%# Eval("Price") %>'></asp:Label>    </div>
-                                                        <div class="divTableCell" ><asp:Label ForeColor="Black" Font-Size="10px" width="30px" ToolTip="Disc"  ID="lblDisc" runat="server" Text='<%# Bind("Disc") %>'></asp:Label></div>
-                                                        <div class="divTableCell" ><asp:Label ID="Label17" Font-Size="10px" width="30px" runat="server"  ForeColor="Black"  Text='<%# Bind("Total") %>' ToolTip="Price"></asp:Label></div>
-                                                        <div class="divTableCell" >  <asp:LinkButton Font-Size="10px"  ID="LinkDele" runat="server" ForeColor="Red"      ToolTip="Remove item" class="fa fa-times" OnClick="btnDeleteitem_Click"   /></div>
+                                                        <div class="divTableCell" ><asp:Label  Visible="false" Font-Size="12px" width="50px" ID="lblid" runat="server" Text='<%# Bind("Code") %>'></asp:Label> </div>
+                                                        <div class="divTableCell" ><asp:Label   ID="lblitemname" Font-Size="12px" width="100px" runat="server" Text='<%# Bind("ItemName") %>' ForeColor="#0084B4"></asp:Label>  </div>
+
+                                                        <div class="divTableCell" ><asp:Label ForeColor="Black" Font-Size="12px" width="30px"  ToolTip="Item Quantity"    Font-Bold="true" ID="Label16" runat="server" Text='<%# Bind("Qty") %>'></asp:Label> </div>
+
+                                                         <div class="divTableCell" ><asp:Label ForeColor="Black" Font-Size="12px" width="30px"  ToolTip="Item Quantity"    Font-Bold="true" ID="Label20" runat="server" Text='<%# Bind("Qty") %>'></asp:Label> </div>
+
+                                                        <div class="divTableCell" ><asp:Label ID="LblPrice" Font-Size="12px"  width="30px" runat="server" Text='<%# Eval("Price") %>'></asp:Label>    </div>
+                                                        <div class="divTableCell" ><asp:Label ForeColor="Black" Font-Size="12px" width="30px" ToolTip="Disc"  ID="lblDisc" runat="server" Text='<%# Bind("Disc") %>' ></asp:Label></div>
+                                                        <div class="divTableCell" ><asp:Label ID="Label17" Font-Size="12px" width="30px" runat="server"  ForeColor="#70b35bf7"  Text='<%# Bind("Total") %>' ToolTip="Price"></asp:Label></div>
+                                                        <div class="divTableCell" ><asp:LinkButton ID="LinkDele" Font-Size="12px" runat="server" ForeColor="Red"      ToolTip="Remove item" class="fa fa-times" OnClick="btnDeleteitem_Click"   /></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -219,40 +222,62 @@
                                        <table style="vertical-align:top;width:100%">
                                              <tr >
                                             <td style="text-align:left">
-                                                    <asp:Label ID="Label12" runat="server" Font-Bold="true" Font-Size="15px" ForeColor="#009933" Text="Total =   "></asp:Label>   <asp:Label ID="lbltotal" runat="server" Font-Bold="true" Font-Size="15px" ForeColor="#009900" Text="0"></asp:Label>
+                                                    <asp:Label ID="Label12" runat="server" Font-Bold="true" Font-Size="22px" ForeColor="#009933" Text="Total =   "></asp:Label>  
+                                                    <asp:Label ID="lbltotal" runat="server" Font-Bold="true" Font-Size="22px" ForeColor="#009900" Text="0"></asp:Label>
                                                     <br />
                                                     <asp:Label ID="Label19" runat="server" Text="Discount"></asp:Label><asp:TextBox ID="TextBox3" AutoPostBack="true" Text="0.00" OnTextChanged="TextBox3_TextChanged" runat="server"></asp:TextBox>
                                                     <br /> 
                                                     <asp:Label ID="Label13" runat="server" Visible="false" Font-Bold="true" Text="Paid by:"></asp:Label>
                                                     <br />
-                                                        <asp:DropDownList ID="DDLPaidBy" Visible="false" runat="server" class="form-control">
-                                                            <asp:ListItem>Cash</asp:ListItem>
-                                                            <asp:ListItem>Cheque</asp:ListItem>
-                                                            <asp:ListItem>Debit Card</asp:ListItem>
-                                                            <asp:ListItem>Credit Card</asp:ListItem>
-                                                            <asp:ListItem>Paypal</asp:ListItem>
-                                                            <asp:ListItem>Payza</asp:ListItem>
-                                                            <asp:ListItem>Skrill</asp:ListItem>
-                                                            <asp:ListItem>Neteller</asp:ListItem>
-                                                            <asp:ListItem>Perfect money</asp:ListItem>
-                                                            <asp:ListItem>Online</asp:ListItem>
-                                                            <asp:ListItem>Others</asp:ListItem>
-                                                        </asp:DropDownList>
-                                                        <asp:Label ID="Label14" runat="server" Font-Bold="true" Text=" Paid:"></asp:Label>
-                                                                    <asp:TextBox ID="txtPaid" runat="server" AutoPostBack="True" Font-Bold="true" Font-Size="20px" class="form-control" ontextchanged="txtPaid_TextChanged" Width="100%" ToolTip="Customer paid Amount"></asp:TextBox>
-                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPaid" ErrorMessage="Enter paid amount" Font-Size="11px" ForeColor="Red" ValidationGroup="vr12"></asp:RequiredFieldValidator>
-                                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPaid" ErrorMessage="Enter a valid number" Font-Size="11px" ForeColor="Red" ValidationExpression="[0-9]*\.?[0-9]*" ValidationGroup="vr12">
-                                                    </asp:RegularExpressionValidator><br />
-                                                        <asp:Label ID="Label3" runat="server" Text="Change" ToolTip="Change to customer"></asp:Label>
-                                                                        <asp:Label ID="lblChange" runat="server" Font-Bold="true" Text="-"></asp:Label><br />
+                                                    <asp:DropDownList ID="DDLPaidBy" Visible="false" runat="server" class="form-control">
+                                                        <asp:ListItem>Cash</asp:ListItem>
+                                                        <asp:ListItem>Cheque</asp:ListItem>
+                                                        <asp:ListItem>Debit Card</asp:ListItem>
+                                                        <asp:ListItem>Credit Card</asp:ListItem>
+                                                        <asp:ListItem>Paypal</asp:ListItem>
+                                                        <asp:ListItem>Payza</asp:ListItem>
+                                                        <asp:ListItem>Skrill</asp:ListItem>
+                                                        <asp:ListItem>Neteller</asp:ListItem>
+                                                        <asp:ListItem>Perfect money</asp:ListItem>
+                                                        <asp:ListItem>Online</asp:ListItem>
+                                                        <asp:ListItem>Others</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                    <%--
+                                                        -------------------------------------------------
+                                                                            Paid (TextBox)
+                                                        -------------------------------------------------
+                                                    --%>
+                                                    <asp:Label ID="Label14" runat="server" Font-Bold="true" Text=" Paid:"></asp:Label>
+                                                    <asp:TextBox ID="txtPaid" runat="server" AutoPostBack="True" Font-Bold="true" Font-Size="20px" class="form-control" ontextchanged="txtPaid_TextChanged" Width="100%" ToolTip="Customer paid Amount"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPaid" ErrorMessage="Enter paid amount" Font-Size="11px" ForeColor="Red" ValidationGroup="vr12"></asp:RequiredFieldValidator>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPaid" ErrorMessage="Enter a valid number" Font-Size="11px" ForeColor="Red" ValidationExpression="[0-9]*\.?[0-9]*" ValidationGroup="vr12"> </asp:RegularExpressionValidator><br />
+                                                    
+                                                    <%--
+                                                        -------------------------------------------------
+                                                                            Change (Label)
+                                                        -------------------------------------------------
+                                                    --%>
+                                                    <asp:Label ID="Label3" runat="server" Text="Change" ToolTip="Change to customer"></asp:Label>
+                                                    <asp:Label ID="lblChange" runat="server" Font-Bold="true" Text="-"></asp:Label>
+                                                     
+                                                    <br />
+                                                      <%--
+                                                        -------------------------------------------------
+                                                                            Due (Label)
+                                                        -------------------------------------------------
+                                                    --%>
                                                     <asp:Label ID="Label4" runat="server" Text="Due" ToolTip="Receive from customer"></asp:Label>
-                                                                        <asp:Label ID="lblDue" runat="server" Font-Bold="true" Text="-"></asp:Label>
-                                                        <br />
+                                                    <asp:Label ID="lblDue" runat="server" Font-Bold="true" Text="-"></asp:Label>
+                                                    <br />
                                                   
                                                     </td>
 
                                             <td  style="text-align:right;vertical-align:top">
-                                          
+                                                                    <%--
+                                                                      -------------------------------------------------
+                                                                            SubTotal Calculation || GST || Total Item
+                                                                      -------------------------------------------------
+                                                                    --%>
                                                             Subtotal =
                                                                         <asp:Label ID="lblsubTotal" runat="server" Font-Bold="true" Text="0"></asp:Label>
                                                                         <br />
@@ -264,8 +289,11 @@
                                                                         <asp:Label ID="Label7" runat="server" Font-Size="11px" Text="Total Items"> </asp:Label>
                                                                         <asp:Label ID="lblTotalQty" runat="server" Font-Size="11px" Text="0"></asp:Label>
                                                                         <br />
-                                            
-                                           
+                                                                     <%--
+                                                                      ------------------------------------------
+                                                                            Customer Search on Mobile number 
+                                                                      ------------------------------------------
+                                                                    --%>
                                                                 <table style="vertical-align:top;width:100%;">
                                                                         <tr >
                                                                             <td style="text-align:left">
@@ -293,13 +321,13 @@
                                        <table  style="vertical-align:top;width:100%">
                                                 <tr>
                                                       <td> 
-                                                       <asp:Button ID="Button13" runat="server"  Width="100%" Height="50px" BackColor="#ee6123" ForeColor="White" OnClick="bntPay_click" Text="Pay" ValidationGroup="vr12" />
+                                                       <asp:Button ID="Button13" runat="server"  Width="100%" Height="50px" BackColor="#3d9b2d" ForeColor="White" OnClick="bntPay_click" Text="Pay" ValidationGroup="vr12" />
                                                       </td>
                                                      <td>
                                                         <asp:Button ID="btnsuspen" runat="server" BackColor="#ff0000" ForeColor="White"  Width="100%" Height="50px" onclick="btnsuspen_Click" Text="Clear" />
                                                      </td>
                                                      <td>  
-                                                        <asp:Button ID="Button12" runat="server"  Width="100%" Height="50px" BackColor="#005387" ForeColor="White" Text="Back"  />
+                                                        <asp:Button ID="Button12" runat="server"  Width="100%" Height="50px" BackColor="#aababd" ForeColor="White" Text="Back"  />
                                                         <br />
                                                     </td>
                                                </tr>
@@ -309,9 +337,9 @@
                         </div>
 
 
-                              <%--   
+              <%--   
                     *************************************************
-                    *             Middel Div    *
+                    *             Middel Div                        *
                     *************************************************        
             --%>
 
@@ -398,11 +426,11 @@
                                             </td>
                                         </tr>
                                               
-                                        <tr>
+                                      <%--  <tr>
                                             <td style="vertical-align:middle">
                                                 <img src="logo.jpeg"  style="width:100%;height:20%"/>
                                             </td>
-                                        </tr>
+                                        </tr>--%>
 
                            </table>
 
@@ -483,10 +511,16 @@
                         </div>
                     </div>
                 </div>
+
+                  <%--   
+                    *************************************************
+                    *           Payment panel Popup               *
+                    *************************************************        
+                 --%>
              <%--<<<<<<<<<<<<<<<<<<<<< --------------- payment panel Popup -------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--%>
                <asp:Button ID="btnShowPopup" runat="server" style="display:none" />      
                 <atk:ModalPopupExtender ID="ModalPopupPayment" runat="server" TargetControlID="Button10" 
-                PopupControlID="pnlpopupPayment"  CancelControlID="btnClosePayment" BackgroundCssClass="modalBackground">
+                  PopupControlID   ="pnlpopupPayment"  CancelControlID="btnClosePayment" BackgroundCssClass="modalBackground">
                 </atk:ModalPopupExtender>
                <asp:Panel ID="pnlpopupPayment"  class="panel panel-primary" runat="server" BackColor="White" style="display:none;text-align:left"   DefaultButton="bntPay" > 
                     <asp:Label ID="Label2" runat="server" Font-Size="19px" Text="Mobile Number"></asp:Label>    <hr />

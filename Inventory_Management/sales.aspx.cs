@@ -10,17 +10,15 @@ using System.Configuration;
 
 public partial class sales : System.Web.UI.Page
 {
-    string ConnectionString = ConfigurationManager.ConnectionStrings["PointofSaleConstr"].ConnectionString;
-    DataTable tableSR = new DataTable();
-    string Qty1;
-   string  member;
-    string compnayphone;
-   string amount;
+        string ConnectionString = ConfigurationManager.ConnectionStrings["PointofSaleConstr"].ConnectionString;
+        DataTable tableSR = new DataTable();
+        string Qty1;
+        string  member;
+        string compnayphone;
+        string amount;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
-
-
         if (!IsPostBack)
         {
             if (Request.Cookies["InventMgtCookies"]["ShopID"].ToString() != null)
@@ -658,11 +656,6 @@ public partial class sales : System.Web.UI.Page
     //Insert One Row sales payment info every one trXID
     protected void SaveSalePaymentInfo()
     {
-      
-
-
-
-          
 
             //SqlConnection cn = new SqlConnection(ConnectionString);
             //SqlCommand cmd = new SqlCommand("insert into   tbl_SalesPayment([SalesQty],[Subtotal],[Vat],[totalpayable] ,[payType] , [paidAmount] ,[changeAmount] ,[dueAmount],[note] ,[ShopId] ,[CustID] ,[CustName] , [CustContact] ,[ServedBy],trxtype) values 	(@SalesQty, @Subtotal ,@Vat ,@totalpayable ,@payType ,@paidAmount ,@changeAmount ,@dueAmount,@note, @ShopId ,@CustID ,@CustName ,@CustContact,@ServedBy , 'POS') ", cn);
@@ -716,7 +709,7 @@ public partial class sales : System.Web.UI.Page
         Session["CustName"] = Button9.Text;
         Session["CustID"] = lblCustID.Text;
         Session["Contact"] = TextBox2.Text;
-        Session["TotalQty"] = lbltotal.Text;
+        Session["TotalQty"] = lblTotalQty.Text;
         Session["InvoiceNo"] = Session["InvoiceNoOutPut"].ToString();
         Session["servedby"] = Request.Cookies["InventMgtCookies"]["UserID"].ToString();
         Session["ShopID"] = Request.Cookies["InventMgtCookies"]["ShopID"].ToString();
@@ -1279,22 +1272,12 @@ public partial class sales : System.Web.UI.Page
 
         if (rd4.HasRows)
         {
-
-
-
             while (rd4.Read())
             {
-
-
-
                 TextBox2.Text = (rd4["CustPhone"].ToString());
                 Button9.Text = (rd4["CustName"].ToString());
 
                 lblCustID.Text = rd4["CustID"].ToString();
-
-
-
-
             }
         }
         else

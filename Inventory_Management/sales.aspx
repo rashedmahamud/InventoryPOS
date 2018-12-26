@@ -196,28 +196,22 @@
                                                     <div class="divTableRow">
                                                         <div class="divTableCell" ><asp:Label  Visible="false" Font-Size="12px" width="50px" ID="lblid" runat="server" Text='<%# Bind("Code") %>'></asp:Label> </div>
                                                         <div class="divTableCell" ><asp:Label   ID="lblitemname" Font-Size="12px" width="100px" runat="server" Text='<%# Bind("ItemName") %>' ForeColor="#0084B4"></asp:Label>  </div>
-                                                                <%--
-                                                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                                                                    Anesthesi==>> Area Start
-                                                                >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                                                                 --%>
-
-                                                                             <%--<div class="divTableCell" ><asp:Label ForeColor="Black" Font-Size="12px" width="30px"  ToolTip="Item Quantity"    Font-Bold="true" ID="Label16" runat="server" Text='<%# Bind("Qty") %>'></asp:Label> </div>--%>
+                                                              
+                                                          <%-- <<<<<<<<<<<<<<<<<<<<<<<<<<< Anesthesi==>> Area Start <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  --%>
+                                                                                   
+                                                               
+                                                                      <%--<div class="divTableCell" ><asp:Label ForeColor="Black" Font-Size="12px" width="30px"  ToolTip="Item Quantity"    Font-Bold="true" ID="Label16" runat="server" Text='<%# Bind("Qty") %>'></asp:Label> </div>--%>
                                                                                
                                                                       <%--  Bind()  Code, ItemName, Qty, Price, Disc, Total,--%>
                                                          
                                                                  <%--
-                                                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                                                                                    Anesthesi==>> Area Ends
-                                                                >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                                                                --%>
+                                                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Anesthesi==>> Area Ends >>>>>>>>>>>>>>>>>>>>>>>>>>> --%>
 
 
-                                                                <%--
-                                                                ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                                                                                    Operrational ==>> Area Starts
-                                                                ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                                                                --%>
+
+
+
+                                                        <%-- ++++++++++++++++++++++ Operrational ==>> Area Starts +++++++++++++++++++++ --%>
                                                                 
                                                             <%--<asp:TextBox ID="txtPaid" runat="server" AutoPostBack="True" Font-Bold="true" Font-Size="20px" class="form-control" ontextchanged="txtPaid_TextChanged" Width="100%" ToolTip="Customer paid Amount"></asp:TextBox>--%>
                                                             <%--<asp:TextBox  ID="txtQty" AutoPostBack="True" ForeColor="Black" Font-Size="12px" width="30px" Font-Bold="true"  OnTextChanged="txtQty_TextChanged" runat="server" Text='<%# Bind("Qty") %>'></asp:TextBox>--%> 
@@ -225,12 +219,8 @@
                                                              <asp:TextBox ID="txtQty" runat="server" Height="23px" Width="49px" AutoPostBack="true" Font-Bold="true"  Text='<%# Bind("Qty") %>'>'></asp:TextBox>
                                                            
                                                            
-                                                                <%--
-                                                                +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                                                                                    Operrational ==>> Area Ends 
-                                                                ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                                                             
-                                                                --%>
+                                                         <%-- ++++++++++++++++++++++  Operrational ==>> Area Ends +++++++++++++++++++++ --%>
+                                                                
 
 
 

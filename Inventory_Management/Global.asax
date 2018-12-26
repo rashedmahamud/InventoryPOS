@@ -23,6 +23,7 @@
     void Session_Start(object sender, EventArgs e)
     {
         Response.Redirect("~/Login.aspx");
+      
     }
 
     void Session_End(object sender, EventArgs e) 

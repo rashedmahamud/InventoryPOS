@@ -10,12 +10,12 @@ using System.Configuration;
 
 public partial class sales : System.Web.UI.Page
 {
-        string ConnectionString = ConfigurationManager.ConnectionStrings["PointofSaleConstr"].ConnectionString;
-        DataTable tableSR = new DataTable();
-        string Qty1;
-        string  member;
-        string compnayphone;
-        string amount;
+    string ConnectionString = ConfigurationManager.ConnectionStrings["PointofSaleConstr"].ConnectionString;
+    DataTable tableSR = new DataTable();
+    string Qty1;
+    string member;
+    string compnayphone;
+    string amount;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -54,7 +54,7 @@ public partial class sales : System.Web.UI.Page
                         lblVat.Text = Math.Round(tex, 2).ToString();
                         lbltotal.Text = (Convert.ToDouble(lblsubTotal.Text) + Convert.ToDouble(lblVat.Text)).ToString();
                         lblTotalQty.Text = qty2.ToString();
-                       
+
                     }
 
                 }
@@ -156,7 +156,7 @@ public partial class sales : System.Web.UI.Page
 
     //Click add to cart menu
 
-   protected void  ImageButton1_Click(object sender, EventArgs e)
+    protected void ImageButton1_Click(object sender, EventArgs e)
     {
         ImageButton btn = (ImageButton)sender;
         DataListItem item = (DataListItem)btn.NamingContainer;
@@ -174,9 +174,9 @@ public partial class sales : System.Web.UI.Page
 
         // Bind()  Code, ItemName, Qty, Price, Disc, Total, 
 
-         
 
-         // Takes all text 
+
+        // Takes all text 
         string ID = lblId.Text;
         string Code = LblCode.Text;
         string ItemName = LblItemName.Text;
@@ -185,11 +185,11 @@ public partial class sales : System.Web.UI.Page
         string Price = LblPrice.Text;
         string Disc = LblDisc.Text;
         // string Total = LblTotal.Text; 
-        
-        
+
+
         decimal Total = Math.Round((Convert.ToDecimal(Price) - (Convert.ToDecimal(Price) * Convert.ToDecimal(Disc) / 100)) * Convert.ToDecimal(Qty), 2);
-       
-             
+
+
         //Check Item Quantity less than 1 
         if (Convert.ToDecimal(Qty) <= 0)
         {
@@ -223,7 +223,7 @@ public partial class sales : System.Web.UI.Page
                 Session["valuesr"] = tableSR;
             }
 
-            
+
             string str = Code;
             DataRow[] result = tableSR.Select("Code='" + str + "'");
             if (result.Length > 0)
@@ -324,7 +324,7 @@ public partial class sales : System.Web.UI.Page
             else
             {
 
-             
+
 
                 //Add item from item list 
                 //  table = (DataTable)Session["valuesr"];
@@ -337,40 +337,40 @@ public partial class sales : System.Web.UI.Page
                 //tableSR.Columns.Add("image", typeof(string));
                 Session["valuesr"] = tableSR;
             }
-        
+
             string str = Code;
             DataRow[] result = tableSR.Select("Code='" + str + "'");
             if (result.Length > 0)
             {
-               
-               Qty1 = (from DataRow dr1 in tableSR.Rows where (string)dr1["Code"] == Code select (string)dr1["Qty"]).FirstOrDefault();
-               Qty = (Convert.ToInt16(Qty1) + Convert.ToInt16( Qty)).ToString();
-            //decimal   Total1 = (from DataRow dr1 in tableSR.Rows where (string)dr1["Code"] == Code select (decimal)dr1["Total"]).FirstOrDefault();
-                         decimal   Price1 = Convert.ToDecimal( (from DataRow dr1 in tableSR.Rows where (string)dr1["Code"] == Code select (string)dr1["Price"]).FirstOrDefault());
 
-                         Total = Convert.ToDecimal( Qty) * Price1;
-               foreach (DataRow dr1 in tableSR.Select())
-    {
-        if (dr1["Code"].ToString() == str) 
-     {
-      dr1.Delete(); 
-     }
-        
-   }
+                Qty1 = (from DataRow dr1 in tableSR.Rows where (string)dr1["Code"] == Code select (string)dr1["Qty"]).FirstOrDefault();
+                Qty = (Convert.ToInt16(Qty1) + Convert.ToInt16(Qty)).ToString();
+                //decimal   Total1 = (from DataRow dr1 in tableSR.Rows where (string)dr1["Code"] == Code select (decimal)dr1["Total"]).FirstOrDefault();
+                decimal Price1 = Convert.ToDecimal((from DataRow dr1 in tableSR.Rows where (string)dr1["Code"] == Code select (string)dr1["Price"]).FirstOrDefault());
+
+                Total = Convert.ToDecimal(Qty) * Price1;
+                foreach (DataRow dr1 in tableSR.Select())
+                {
+                    if (dr1["Code"].ToString() == str)
+                    {
+                        dr1.Delete();
+                    }
+
+                }
                 tableSR.Rows.Add(Code, ItemName, Qty, Price, Disc, Total);
-            
-                
+
+
             }
             else
             {
-               
-                tableSR.Rows.Add(Code, ItemName, Qty, Price, Disc, Total);
-               
-            }
-        
 
-           
- 
+                tableSR.Rows.Add(Code, ItemName, Qty, Price, Disc, Total);
+
+            }
+
+
+
+
             Session.Add("valuesr", tableSR);
             Qty1 = "";
             dtlistgrid.DataSource = tableSR;
@@ -498,7 +498,7 @@ public partial class sales : System.Web.UI.Page
                 tableSR.Columns.Add("image", typeof(string));
                 Session["valuesr"] = tableSR;
             }
-            tableSR.Rows.Add(Code, ItemName, "1", Price,  Total, image);
+            tableSR.Rows.Add(Code, ItemName, "1", Price, Total, image);
             Session.Add("valuesr", tableSR);
 
             dtlistgrid.DataSource = tableSR;
@@ -543,7 +543,7 @@ public partial class sales : System.Web.UI.Page
     }
 
 
-   
+
     protected void btnDeleteitem_Click(object sender, EventArgs e)
     {
         try
@@ -589,9 +589,9 @@ public partial class sales : System.Web.UI.Page
 
         }
         catch
-        { 
+        {
 
-}
+        }
 
 
     }
@@ -606,7 +606,7 @@ public partial class sales : System.Web.UI.Page
             {
                 lblChange.Text = Math.Round((Convert.ToDouble(txtPaid.Text) - Convert.ToDouble(lbltotal.Text)), 2).ToString();
                 lblDue.Text = "0";
-                
+
             }
             else
             {
@@ -626,7 +626,7 @@ public partial class sales : System.Web.UI.Page
 
     //protected void txtQty_TextChanged(object sender, EventArgs e)
     //{
-        
+
     //        TextBox btn = (TextBox)sender;
     //        DataListItem item = (DataListItem)btn.NamingContainer;
     //        Label lblId = (Label)item.FindControl("LblID");
@@ -744,7 +744,7 @@ public partial class sales : System.Web.UI.Page
     //            lbltotal.Text = (Convert.ToDouble(lblsubTotal.Text) + Convert.ToDouble(lblVat.Text)).ToString();
     //            lblTotalQty.Text = qty2.ToString();
     //        }
-        
+
 
     //}
 
@@ -774,7 +774,7 @@ public partial class sales : System.Web.UI.Page
                 cmd.Parameters.AddWithValue("@Price", Price);
                 cmd.Parameters.AddWithValue("@Disc", Disc);
                 cmd.Parameters.AddWithValue("@Total", Total);
-            
+
                 cmd.Parameters.Add("@InvoiceNoOutPut", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.AddWithValue("@ShopId", Session["ShopID"].ToString());
                 cmd.ExecuteNonQuery();
@@ -794,32 +794,32 @@ public partial class sales : System.Web.UI.Page
     protected void SaveSalePaymentInfo()
     {
 
-            //SqlConnection cn = new SqlConnection(ConnectionString);
-            //SqlCommand cmd = new SqlCommand("insert into   tbl_SalesPayment([SalesQty],[Subtotal],[Vat],[totalpayable] ,[payType] , [paidAmount] ,[changeAmount] ,[dueAmount],[note] ,[ShopId] ,[CustID] ,[CustName] , [CustContact] ,[ServedBy],trxtype) values 	(@SalesQty, @Subtotal ,@Vat ,@totalpayable ,@payType ,@paidAmount ,@changeAmount ,@dueAmount,@note, @ShopId ,@CustID ,@CustName ,@CustContact,@ServedBy , 'POS') ", cn);
-            //cmd.CommandType = CommandType.Text;
-            //cn.Open();
+        //SqlConnection cn = new SqlConnection(ConnectionString);
+        //SqlCommand cmd = new SqlCommand("insert into   tbl_SalesPayment([SalesQty],[Subtotal],[Vat],[totalpayable] ,[payType] , [paidAmount] ,[changeAmount] ,[dueAmount],[note] ,[ShopId] ,[CustID] ,[CustName] , [CustContact] ,[ServedBy],trxtype) values 	(@SalesQty, @Subtotal ,@Vat ,@totalpayable ,@payType ,@paidAmount ,@changeAmount ,@dueAmount,@note, @ShopId ,@CustID ,@CustName ,@CustContact,@ServedBy , 'POS') ", cn);
+        //cmd.CommandType = CommandType.Text;
+        //cn.Open();
 
-             SqlConnection cn = new SqlConnection(ConnectionString);
-            SqlCommand cmd = new SqlCommand("SP_POS_Insert_SRsalesPayment", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cn.Open();
-            cmd.Parameters.AddWithValue("@SalesQty", lbltotal.Text);
-            cmd.Parameters.AddWithValue("@Subtotal", lblsubTotal.Text);
-            cmd.Parameters.AddWithValue("@Vat", lblVat.Text);
-            cmd.Parameters.AddWithValue("@totalpayable", lbltotal.Text);
-            cmd.Parameters.AddWithValue("@payType", DDLPaidBy.Text);
-            cmd.Parameters.AddWithValue("@paidAmount", txtPaid.Text);
-            cmd.Parameters.AddWithValue("@changeAmount", lblChange.Text);
-            cmd.Parameters.AddWithValue("@dueAmount", lblDue.Text);
-            cmd.Parameters.AddWithValue("@note", txtNote.Text);
-            cmd.Parameters.AddWithValue("@ShopId", Label11.Text);
-            cmd.Parameters.AddWithValue("@CustID", lblCustID.Text);
-            cmd.Parameters.AddWithValue("@CustName", Button9.Text);
-            cmd.Parameters.AddWithValue("@CustContact", TextBox2.Text);
-            cmd.Parameters.AddWithValue("@ServedBy", Request.Cookies["InventMgtCookies"]["UserID"].ToString());
-           
-            cmd.ExecuteNonQuery();
-            cn.Close();
+        SqlConnection cn = new SqlConnection(ConnectionString);
+        SqlCommand cmd = new SqlCommand("SP_POS_Insert_SRsalesPayment", cn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cn.Open();
+        cmd.Parameters.AddWithValue("@SalesQty", lbltotal.Text);
+        cmd.Parameters.AddWithValue("@Subtotal", lblsubTotal.Text);
+        cmd.Parameters.AddWithValue("@Vat", lblVat.Text);
+        cmd.Parameters.AddWithValue("@totalpayable", lbltotal.Text);
+        cmd.Parameters.AddWithValue("@payType", DDLPaidBy.Text);
+        cmd.Parameters.AddWithValue("@paidAmount", txtPaid.Text);
+        cmd.Parameters.AddWithValue("@changeAmount", lblChange.Text);
+        cmd.Parameters.AddWithValue("@dueAmount", lblDue.Text);
+        cmd.Parameters.AddWithValue("@note", txtNote.Text);
+        cmd.Parameters.AddWithValue("@ShopId", Label11.Text);
+        cmd.Parameters.AddWithValue("@CustID", lblCustID.Text);
+        cmd.Parameters.AddWithValue("@CustName", Button9.Text);
+        cmd.Parameters.AddWithValue("@CustContact", TextBox2.Text);
+        cmd.Parameters.AddWithValue("@ServedBy", Request.Cookies["InventMgtCookies"]["UserID"].ToString());
+
+        cmd.ExecuteNonQuery();
+        cn.Close();
         //}
         //catch
         //{
@@ -832,7 +832,7 @@ public partial class sales : System.Web.UI.Page
     {
         SaveSalePaymentInfo();
         SaveSaleItem();
-       
+
 
         Session["totalPayable"] = lbltotal.Text;
         Session["vat"] = lblVat.Text;
@@ -879,7 +879,7 @@ public partial class sales : System.Web.UI.Page
         //string popupScript = "<script language=javascript> window.open('New.aspx') </script>";
         //ClientScript.RegisterStartupScript(this.GetType(), "callpopup", popupScript);
         Response.Redirect("POS_printPage.aspx");
-       
+
     }
 
     //Get customer information from customer table 
@@ -961,18 +961,18 @@ public partial class sales : System.Web.UI.Page
     {
         Response.Redirect("~/Accounts/Default.aspx");
     }
-    
-     protected void Button8_Click(object sender, EventArgs e)
+
+    protected void Button8_Click(object sender, EventArgs e)
     {
-       
+
         this.ModalPopupPayment.Hide();
     }
     protected void Button10_Click(object sender, EventArgs e)
     {
 
-       this.ModalPopupPayment.Show();
+        this.ModalPopupPayment.Show();
 
-      
+
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
@@ -1000,7 +1000,7 @@ public partial class sales : System.Web.UI.Page
         }
 
         //this.ModalPopupPayment.Show();
-    
+
     }
     protected void Button17_Click(object sender, EventArgs e)
     {
@@ -1019,7 +1019,7 @@ public partial class sales : System.Web.UI.Page
         }
 
         //this.ModalPopupPayment.Show();
-      
+
     }
     protected void Button18_Click(object sender, EventArgs e)
     {
@@ -1038,7 +1038,7 @@ public partial class sales : System.Web.UI.Page
         }
 
         //this.ModalPopupPayment.Show();
-    
+
     }
     protected void Button19_Click(object sender, EventArgs e)
     {
@@ -1076,7 +1076,7 @@ public partial class sales : System.Web.UI.Page
         }
 
         //this.ModalPopupPayment.Show();
-     
+
     }
     protected void Button21_Click(object sender, EventArgs e)
     {
@@ -1095,7 +1095,7 @@ public partial class sales : System.Web.UI.Page
         }
 
         //this.ModalPopupPayment.Show();
-   
+
     }
     protected void Button22_Click(object sender, EventArgs e)
     {
@@ -1113,7 +1113,7 @@ public partial class sales : System.Web.UI.Page
             lblDue.Text = Math.Round((Convert.ToDouble(lbltotal.Text) - Convert.ToDouble(txtPaid.Text)), 2).ToString();
         }
 
-     
+
     }
     protected void Button23_Click(object sender, EventArgs e)
     {
@@ -1132,7 +1132,7 @@ public partial class sales : System.Web.UI.Page
         }
 
         //this.ModalPopupPayment.Show();
-     
+
     }
 
     protected void Button24_Click(object sender, EventArgs e)
@@ -1152,28 +1152,28 @@ public partial class sales : System.Web.UI.Page
         }
 
         //this.ModalPopupPayment.Show();
-  
+
     }
     protected void Button25_Click(object sender, EventArgs e)
     {
-      if (txtPaid.Text !="")
-      { 
-        txtPaid.Text = txtPaid.Text + ".";
-        double changeAmt = Convert.ToDouble(txtPaid.Text) - Convert.ToDouble(lbltotal.Text);
-        lblChange.Text = changeAmt.ToString();
-        if (Convert.ToDouble(lbltotal.Text) < Convert.ToDouble(txtPaid.Text))
+        if (txtPaid.Text != "")
         {
-            lblChange.Text = Math.Round((Convert.ToDouble(txtPaid.Text) - Convert.ToDouble(lbltotal.Text)), 2).ToString();
-            lblDue.Text = "0";
-        }
-        else
-        {
-            lblChange.Text = "0";
-            lblDue.Text = Math.Round((Convert.ToDouble(lbltotal.Text) - Convert.ToDouble(txtPaid.Text)), 2).ToString();
-        }
+            txtPaid.Text = txtPaid.Text + ".";
+            double changeAmt = Convert.ToDouble(txtPaid.Text) - Convert.ToDouble(lbltotal.Text);
+            lblChange.Text = changeAmt.ToString();
+            if (Convert.ToDouble(lbltotal.Text) < Convert.ToDouble(txtPaid.Text))
+            {
+                lblChange.Text = Math.Round((Convert.ToDouble(txtPaid.Text) - Convert.ToDouble(lbltotal.Text)), 2).ToString();
+                lblDue.Text = "0";
+            }
+            else
+            {
+                lblChange.Text = "0";
+                lblDue.Text = Math.Round((Convert.ToDouble(lbltotal.Text) - Convert.ToDouble(txtPaid.Text)), 2).ToString();
+            }
 
-      }  //this.ModalPopupPayment.Show();
-    
+        }  //this.ModalPopupPayment.Show();
+
     }
     protected void Button26_Click(object sender, EventArgs e)
     {
@@ -1192,7 +1192,7 @@ public partial class sales : System.Web.UI.Page
         }
 
         //this.ModalPopupPayment.Show();
- 
+
     }
     protected void Button31_Click(object sender, EventArgs e)
     {
@@ -1260,7 +1260,7 @@ public partial class sales : System.Web.UI.Page
     protected void Button34_Click(object sender, EventArgs e)
     {
         txtPaid.Text = "";
-        
+
         txtPaid.Text = txtPaid.Text + "50";
         double changeAmt = Convert.ToDouble(txtPaid.Text) - Convert.ToDouble(lbltotal.Text);
         lblChange.Text = changeAmt.ToString();
@@ -1303,7 +1303,7 @@ public partial class sales : System.Web.UI.Page
     protected void Button30_Click(object sender, EventArgs e)
     {
         txtPaid.Text = "";
-       
+
         //this.ModalPopupPayment.Show();
 
     }
@@ -1393,7 +1393,7 @@ public partial class sales : System.Web.UI.Page
     }
     protected void TextBox2_TextChanged(object sender, EventArgs e)
     {
-        
+
     }
     protected void Button15_Click(object sender, EventArgs e)
     {
@@ -1427,7 +1427,7 @@ public partial class sales : System.Web.UI.Page
     }
     protected void TextBox3_TextChanged(object sender, EventArgs e)
     {
-        lbltotal.Text = Convert.ToString(  Convert.ToDouble(lbltotal.Text) - Convert.ToDouble(TextBox3.Text));
+        lbltotal.Text = Convert.ToString(Convert.ToDouble(lbltotal.Text) - Convert.ToDouble(TextBox3.Text));
     }
 
 

@@ -50,15 +50,12 @@
     }
     .roundedcorners:hover
     {
-
     -webkit-border-radius: 10px;
     -khtml-border-radius: 10px;	
     -moz-border-radius: 10px;
     border-radius: 10px;
     border:outset;
     background-color:ButtonShadow; 
-
-
     }
     .modalPopup .header
     {
@@ -225,7 +222,7 @@
                                                             <%--<asp:TextBox ID="txtPaid" runat="server" AutoPostBack="True" Font-Bold="true" Font-Size="20px" class="form-control" ontextchanged="txtPaid_TextChanged" Width="100%" ToolTip="Customer paid Amount"></asp:TextBox>--%>
                                                             <%--<asp:TextBox  ID="txtQty" AutoPostBack="True" ForeColor="Black" Font-Size="12px" width="30px" Font-Bold="true"  OnTextChanged="txtQty_TextChanged" runat="server" Text='<%# Bind("Qty") %>'></asp:TextBox>--%> 
                                                             <%--<asp:TextBox ID="txt_Qty" runat="server" AutoPostBack="True" Font-Bold="true" Font-Size="12px" class="form-control" ontextchanged="txtQty_TextChanged" Width="30px" ToolTip="Item Quantity"></asp:TextBox>--%>
-                                                             <asp:TextBox ID="txtQty" runat="server" Height="23px" Width="49px" AutoPostBack="true" Font-Bold="true" OnTextChanged="txtQty_TextChanged" Text='<%# Bind("Qty") %>'>'></asp:TextBox>
+                                                             <asp:TextBox ID="txtQty" runat="server" Height="23px" Width="49px" AutoPostBack="true" Font-Bold="true"  Text='<%# Bind("Qty") %>'>'></asp:TextBox>
                                                            
                                                            
                                                                 <%--
@@ -449,8 +446,6 @@
                                         <td>
                                             <asp:Button ID="Button14" runat="server" class="btn btn-danger" Text="" Width-="97%" />
                                         </td>
-
-
                                              
                                     </tr>--%>
                                         <tr >

@@ -1,0 +1,21 @@
+﻿.header-shadow{
+    background-image: url('../pointofsale.png');
+    background-repeat: repeat-y; /* for vertical repeat */
+    background-repeat: repeat-x; /* for horizontal repeat */
+    height:100%;
+    width :100%;
+      /*-webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;*/
+      background-repeat: no-repeat;
+    background-position: 1.5em 3em;
+    background-attachment: fixed;
+    /*opacity: 0.1;*/
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+z-index: 1000000;
+opacity: 0.0;
+}

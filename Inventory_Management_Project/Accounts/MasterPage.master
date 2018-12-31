@@ -1,0 +1,386 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="Accounts_MasterPage" Codebehind="MasterPage.master.cs" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Accounts </title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+        <link href="../assets/css/style.css" rel="stylesheet" type="text/css" /> 
+    <link href="../assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> 
+<link href="../assets/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+      <link href="3columntable.css" rel="stylesheet" />
+<link href="../assets/css/components-md.css" rel="stylesheet" type="text/css"   id="style_components" />
+<link href="../assets/css/plugins-md.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/css/layout.css" rel="stylesheet" type="text/css"/>
+<link href="../assets/css/themes/light.css" rel="stylesheet" type="text/css" id="style_color" />
+<link href="../assets/css/custom.css" rel="stylesheet" type="text/css"/>
+<!-- END THEME STYLES -->
+
+</head>
+<body class="page-md page-header-fixed page-sidebar-closed-hide-logo">
+    <form id="form1" runat="server">
+        <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
+
+	<div class="page-header-inner" style="background-color:lavender">
+
+		<div class="page-logo">
+            <img src="../logo.png" style="width:100px;height:50px"  />
+			<a href="../Accounts/Default.aspx">
+			<h1> CMSNPOS </h1>
+			</a>
+			<div class="menu-toggler sidebar-toggler">
+		
+			</div>
+		</div>
+	
+		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+		</a>
+	
+	
+	
+		<div class="page-top">
+		
+			<div class="top-menu">
+				<ul class="nav navbar-nav pull-right">
+					<li class="separator hide">
+					</li>
+		
+					<li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<i class="icon-bell"></i>
+						<span class="badge badge-success">
+                                <asp:Label ID="lblnoticount" runat="server" Text="Label"></asp:Label>
+						  </span>
+						</a>
+						<ul class="dropdown-menu">
+						
+						
+						</ul>
+					</li>
+					<!-- END NOTIFICATION DROPDOWN -->
+					<li class="separator hide">
+					</li>
+ 
+					<li class="separator hide">
+					</li>
+					
+					<li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<i class="icon-calendar"></i>
+						<span class="badge badge-primary">
+						1 </span>
+						</a>
+					
+					</li>
+					
+					<li class="dropdown dropdown-user dropdown-dark">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<span class="username username-hide-on-mobile">
+                             <asp:Label ID="lblusername" runat="server" Text="-"></asp:Label>
+						</span>
+						<!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
+                         <asp:Image ID="ImgUser"  class="img-circle" runat="server" AlternateText="img"   ImageUrl="~/User_Photo/man.png" />						 
+						</a>
+						<ul class="dropdown-menu dropdown-menu-default"> 			 
+							  	 
+							<li class="divider"></li>
+                                <li> <asp:LinkButton ID="LinkButton1" runat="server"   > <i class="icon-key"></i> Logout </asp:LinkButton> </li>     
+						</ul>
+					</li>
+			
+				</ul>
+			</div>
+		
+		</div>
+		<!-- END PAGE TOP -->
+	</div>
+	<!-- END HEADER INNER -->
+</div>
+        <div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN SIDEBAR -->
+	<div class="page-sidebar-wrapper">
+	
+		<div class="page-sidebar md-shadow-z-2-i  navbar-collapse collapse">
+			
+			<ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+	            <li class="start"><asp:HyperLink ID="HyperLink1" runat="server"   NavigateUrl="~/Accounts/Default.aspx"><i class="icon-home"></i> <span class="title"> Dashboard</span></asp:HyperLink></li>
+                <li>
+					<a href="javascript:;"><i class="icon-user-female"></i><span class="title"> Rainforest Website</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink5" runat="server"   NavigateUrl="~/Accounts/Booked.aspx"><i class="icon-plus"></i>  Booking Details </asp:HyperLink></li>                             
+                      
+                    </ul>
+				</li>
+                
+                
+                  <li>
+					<a href="javascript:;"><i class="icon-user-female"></i><span class="title"> Accounting</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink24" runat="server"   NavigateUrl="~/Accounts/ChartofAccounts.aspx"><i class="icon-plus"></i>  Chart of Accounts </asp:HyperLink></li>                             
+                      
+                    </ul>
+				</li>
+                	<li>
+					<a href="javascript:;"><i class="icon-user-female"></i><span class="title"> Customers</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink29" runat="server"   NavigateUrl="~/Customers/AddCustomer.aspx"><i class="icon-plus"></i>  Add Customer </asp:HyperLink></li>                             
+                        <li>  <asp:HyperLink ID="HyperLink30" runat="server"   NavigateUrl="~/Customers/ManageCustomers.aspx"><i class="icon-list"></i> Manage Customers </asp:HyperLink></li>  		
+                    </ul>
+				</li>
+                <li>
+					<a href="javascript:;"><i class="icon-reload"></i><span class="title">Suppliers</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink31" runat="server"  NavigateUrl="~/Suppliers/AddSupplier.aspx" ><i class="icon-plus"></i> Add Supplier </asp:HyperLink></li>                                  
+                        <li>  <asp:HyperLink ID="HyperLink32" runat="server"  NavigateUrl="~/Suppliers/ManageSuppliers.aspx"><i class="icon-list"></i>  Manage Suppliers </asp:HyperLink></li>   
+    			    </ul>
+				</li>
+                 <li>
+					<a href="javascript:;"><i class="icon-reload"></i><span class="title">Category</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink33" runat="server"  NavigateUrl="~/Accounts/Items/Category.aspx" ><i class="icon-plus"></i> Add Category </asp:HyperLink></li>                                  
+                      <%--  <li>  <asp:HyperLink ID="HyperLink34" runat="server"  NavigateUrl="#"><i class="icon-list"></i>  Manage Category </asp:HyperLink></li>   --%>
+    			    </ul>
+				</li>
+                 <li>
+					<a href="javascript:;"><i class="icon-reload"></i><span class="title">Department</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink35" runat="server"  NavigateUrl="#" ><i class="icon-plus"></i> Add Department </asp:HyperLink></li>                                  
+                        <li>  <asp:HyperLink ID="HyperLink36" runat="server"  NavigateUrl="#"><i class="icon-list"></i>  Manage Department </asp:HyperLink></li>   
+    			    </ul>
+				</li>
+             <%--       <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="View Manage items">
+					<a href="javascript:;"><i class="icon-handbag"></i><span class="title">Manage Order</span><span class="arrow "></span></a>
+					<ul class="sub-menu">
+						    <li>  <asp:HyperLink ID="HyperLink37" runat="server"   NavigateUrl="#"><i class="icon-plus"></i> Order New Products    </asp:HyperLink></li>
+                            <li>  <asp:HyperLink ID="HyperLink38" runat="server"   NavigateUrl="#"><i class="icon-cloud-upload"></i> Recive Product    </asp:HyperLink></li>
+                            <li>  <asp:HyperLink ID="HyperLink39" runat="server"   NavigateUrl="#"><i class="icon-handbag"></i> Claim Product    </asp:HyperLink></li>
+                            <li class="tooltips"   data-placement="right" data-html="true" data-original-title="Items View grid style">
+                              <asp:HyperLink ID="HyperLink40" runat="server"   NavigateUrl="#"><i class="icon-grid"></i>  Order Details </asp:HyperLink></li> 
+					</ul>
+				</li>--%>
+                  <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="View Manage items">
+					<a href="javascript:;"><i class="icon-handbag"></i><span class="title">Manage Damage</span><span class="arrow "></span></a>
+					<ul class="sub-menu">
+						    <li>  <asp:HyperLink ID="HyperLink41" runat="server"   NavigateUrl="#"><i class="icon-plus"></i> Damage Entry    </asp:HyperLink></li>
+                            <li>  <asp:HyperLink ID="HyperLink47" runat="server"   NavigateUrl="#"><i class="icon-cloud-upload"></i> Manage Damage    </asp:HyperLink></li>
+                            
+					</ul>
+				</li>
+           <%--       <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="View Manage items">
+					<a href="javascript:;"><i class="icon-handbag"></i><span class="title">Delivery</span><span class="arrow "></span></a>
+					<ul class="sub-menu">
+						    <li>  <asp:HyperLink ID="HyperLink48" runat="server"   NavigateUrl="#"><i class="icon-plus"></i> New Home Delivery    </asp:HyperLink></li>
+                            <li>  <asp:HyperLink ID="HyperLink49" runat="server"   NavigateUrl="#"><i class="icon-cloud-upload"></i> Delivery List     </asp:HyperLink></li>
+                                                        <li>  <asp:HyperLink ID="HyperLink50" runat="server"   NavigateUrl="#"><i class="icon-cloud-upload"></i> Delivery List     </asp:HyperLink></li>
+
+					</ul>
+				</li>--%>
+                   <li>
+					<a href="javascript:;"><i class="icon-users"></i><span class="title">BarCode</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink57" runat="server"   NavigateUrl="~/Barcode/Default.aspx"><i class="icon-plus"></i> Barcode </asp:HyperLink></li>                             
+<%--                        <li>  <asp:HyperLink ID="HyperLink58" runat="server"   NavigateUrl="~/Users/ManageUsers.aspx"><i class="icon-grid"></i>  Manage Employees </asp:HyperLink></li>  --%>
+				    </ul>
+				</li>
+                 <li>
+					<a href="javascript:;"><i class="icon-users"></i><span class="title">Employees</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink51" runat="server"   NavigateUrl="~/Users/Adduser.aspx"><i class="icon-plus"></i> Add Employee </asp:HyperLink></li>                             
+                        <li>  <asp:HyperLink ID="HyperLink52" runat="server"   NavigateUrl="~/Users/ManageUsers.aspx"><i class="icon-grid"></i>  Manage Employees </asp:HyperLink></li>  
+                                                <li>  <asp:HyperLink ID="HyperLink34" runat="server"   NavigateUrl="~/Users/EmployeesProfile.aspx"><i class="icon-grid"></i>   Employees Profile </asp:HyperLink></li>  
+                                                                        <li>  <asp:HyperLink ID="HyperLink37" runat="server"   NavigateUrl="~/Users/User_privilege.aspx"><i class="icon-grid"></i>   Employees Access Right </asp:HyperLink></li>  
+
+				    </ul>
+				</li>
+				<li>
+					<a href="javascript:;"><i class="icon-basket-loaded"></i><span class="title">Manage Purchases</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+						<li>  <asp:HyperLink ID="HyperLink53" runat="server"   NavigateUrl="~/Purchase_module/NewPurchase.aspx"><i class="icon-plus"></i> Add New Purchases  </asp:HyperLink></li>
+                        <li> <asp:HyperLink  ID="HyperLink54"  NavigateUrl="~/Purchase_module/Purchase_history.aspx" runat="server"><i class="icon-list"></i>  Purchases History   </asp:HyperLink></li>
+				    </ul>
+				</li>
+				<li>
+					<a href="javascript:;"><i class="icon-present"></i><span class="title">Manage Orders</span><span class="arrow "></span></a>
+					<ul class="sub-menu">		
+                        <li>  <asp:HyperLink ID="HyperLink55" runat="server"   NavigateUrl="~/Order_module/NewOrder.aspx"><i class="icon-plus"></i><span class="badge badge-info">invoice</span> Add New Order </asp:HyperLink></li>
+                        <li> <asp:HyperLink  ID="HyperLink56"  NavigateUrl="~/Order_module/Order_history.aspx" runat="server"><i class="icon-list"></i>  Manage Orders</asp:HyperLink></li>                    
+					</ul>
+				</li> 
+                	<li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="View Manage items">
+					<a href="javascript:;"><i class="icon-handbag"></i><span class="title">Products</span><span class="arrow "></span></a>
+					<ul class="sub-menu">
+						    <li>  <asp:HyperLink ID="HyperLink21" runat="server"   NavigateUrl="~/Accounts/Items/AddItem.aspx"><i class="icon-plus"></i> Add New Product    </asp:HyperLink></li>
+                            <li>  <asp:HyperLink ID="HyperLink23" runat="server"   NavigateUrl="~/Accounts/Items/UploadItems.aspx"><i class="icon-cloud-upload"></i> Bulk Upload    </asp:HyperLink></li>
+                            <li>  <asp:HyperLink ID="HyperLink22" runat="server"   NavigateUrl="~/Accounts/Items/ManageItems.aspx"><i class="icon-handbag"></i> Manage Products    </asp:HyperLink></li>
+                            <li class="tooltips"   data-placement="right" data-html="true" data-original-title="Items View grid style">
+                              <asp:HyperLink ID="HyperLink27" runat="server"   NavigateUrl="~/Accounts/Items/ItemList.aspx"><i class="icon-grid"></i>  Products List </asp:HyperLink></li> 
+											    <li>  <asp:HyperLink ID="HyperLink28" runat="server"   NavigateUrl="~/Accounts/Items/SpecialItem.aspx"><i class="icon-plus"></i> Special Product    </asp:HyperLink></li>
+
+                    
+                    </ul>
+				</li>
+                  <li>
+					<a href="javascript:;"><i class="icon-user-female"></i><span class="title"> Sales</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink10" runat="server"   NavigateUrl="~/Accounts/Sales/CreateInvoice.aspx"><i class="icon-plus"></i>   Invoice </asp:HyperLink></li>                             
+                                              <li>  <asp:HyperLink ID="HyperLink11" runat="server"   NavigateUrl="~/Accounts/Sales/Quote.aspx"><i class="icon-plus"></i>  Quotation </asp:HyperLink></li>                             
+                 
+                          <li>  <asp:HyperLink ID="HyperLink12" runat="server"   NavigateUrl="~/Accounts/Sales/DueInvoice.aspx"><i class="icon-plus"></i>  Manage Invoice </asp:HyperLink></li>                             
+                       <li>  <asp:HyperLink ID="HyperLink13" runat="server"   NavigateUrl="~/Accounts/Sales/CreateInvoice.aspx"><i class="icon-plus"></i>  Manage Quotation </asp:HyperLink></li>                             
+                                           
+                                                                       <li>  <asp:HyperLink ID="HyperLink18" runat="server"   NavigateUrl="~/Accounts/Sales/ReturnSales_POS.aspx"><i class="icon-plus"></i>   Sales Return </asp:HyperLink></li>                             
+
+                            <li>  <asp:HyperLink ID="HyperLink14" runat="server"   NavigateUrl="~/Accounts/Sales/SalesReport.aspx"><i class="icon-plus"></i>   Sales Report </asp:HyperLink></li>                             
+                                               <li>  <asp:HyperLink ID="HyperLink15" runat="server"   NavigateUrl="~/Accounts/Sales/ItemwiseSalesReport.aspx"><i class="icon-plus"></i>  Item Wise Sales Report </asp:HyperLink></li>                             
+                                               <li>  <asp:HyperLink ID="HyperLink16" runat="server"   NavigateUrl="~/Accounts/Sales/detailssales.aspx"><i class="icon-plus"></i>  Profit/Loss </asp:HyperLink></li>                             
+                                                 <li>  <asp:HyperLink ID="HyperLink17" runat="server"   NavigateUrl="~/Accounts/Sales/Returnhistory.aspx"><i class="icon-plus"></i>  Return Report </asp:HyperLink></li>                             
+
+                    </ul>
+				</li>
+                 <li>
+					<a href="javascript:;"><i class="icon-reload"></i><span class="title">Damage Entry</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink19" runat="server"  NavigateUrl="~/Accounts/Sales/DamageEntry.aspx" ><i class="icon-plus"></i> ADD Damage  </asp:HyperLink></li>                                  
+                        <li>  <asp:HyperLink ID="HyperLink20" runat="server"  NavigateUrl="~/Accounts/Sales/DamageReport.aspx"><i class="icon-list"></i> Damage Report </asp:HyperLink></li>   
+    			        </ul>
+				</li>
+
+                	<li>
+					<a href="javascript:;"><i class="icon-user-female"></i><span class="title"> Income</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink42" runat="server"   NavigateUrl="~/Accounts/Income.aspx"><i class="icon-plus"></i>   Income Entry </asp:HyperLink></li>                             
+                      	                        <li>  <asp:HyperLink ID="HyperLink44" runat="server"   NavigateUrl="~/Accounts/AddIncomeCategory.aspx"><i class="icon-plus"></i>  Add Income Category </asp:HyperLink></li>                             
+	
+                    </ul>
+				</li>
+                		<li>
+					<a href="javascript:;"><i class="icon-user-female"></i><span class="title"> Expense</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink25" runat="server"   NavigateUrl="~/Accounts/Expenses.aspx"><i class="icon-plus"></i>   Expense </asp:HyperLink></li>                             
+                        <li>  <asp:HyperLink ID="HyperLink26" runat="server"   NavigateUrl="~/Accounts/AddExpencesCategory.aspx"><i class="icon-list"></i> Add Expense Category </asp:HyperLink></li>  		
+                    </ul>
+				</li>
+  			<%--	<li>
+					<a href="javascript:;"><i class="icon-user-female"></i><span class="title"> Employee</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink5" runat="server"   NavigateUrl="#"><i class="icon-plus"></i>  Add Employee </asp:HyperLink></li> 
+                         <li>  <asp:HyperLink ID="HyperLink43" runat="server"   NavigateUrl="#"><i class="icon-plus"></i>  Employee Profile </asp:HyperLink></li>                            
+                        <li>  <asp:HyperLink ID="HyperLink6" runat="server"   NavigateUrl="#"><i class="icon-list"></i> Leave Management </asp:HyperLink></li>  		
+                    </ul>
+				</li>--%>
+                <li>
+					<a href="javascript:;"><i class="icon-user-female"></i><span class="title"> Banking</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                     <li>  <asp:HyperLink ID="HyperLink7" runat="server"   NavigateUrl="AddnewBank.aspx"><i class="icon-plus"></i>  Add New Bank Account</asp:HyperLink></li>                            
+
+                        <li>  <asp:HyperLink ID="HyperLink2" runat="server"   NavigateUrl="~\Accounts\BankDeposit.aspx"><i class="icon-plus"></i>  Deposit </asp:HyperLink></li> 
+                         <li>  <asp:HyperLink ID="HyperLink3" runat="server"   NavigateUrl="~\Accounts\BankWithdraw.aspx"><i class="icon-plus"></i>  Withdrow </asp:HyperLink></li>                            
+                    </ul>
+				</li>
+                <li>
+					<a href="javascript:;"><i class="icon-reload"></i><span class="title">Reports</span><span class="arrow "></span></a>                    
+					<ul class="sub-menu">
+                        <li>  <asp:HyperLink ID="HyperLink8" runat="server"  NavigateUrl="#" ><i class="icon-plus"></i> Income Report </asp:HyperLink></li>                                  
+                        <li>  <asp:HyperLink ID="HyperLink9" runat="server"  NavigateUrl="#"><i class="icon-list"></i> Expenses Report </asp:HyperLink></li>   
+    			        <li>  <asp:HyperLink ID="HyperLink45" runat="server"  NavigateUrl="#"><i class="icon-list"></i> Profit/Loss report </asp:HyperLink></li>   
+                        <li>  <asp:HyperLink ID="HyperLink46" runat="server"  NavigateUrl="#"><i class="icon-list"></i> Goods and Service TAX report </asp:HyperLink></li>   
+                            <li>  <asp:HyperLink ID="HyperLink4" runat="server"  NavigateUrl="#"><i class="icon-list"></i> Banking Report </asp:HyperLink></li> 
+                          </ul>
+				</li>
+              
+               
+               
+				
+               
+                 
+                 
+				
+				
+						 
+				
+			</ul>
+			<!-- END SIDEBAR MENU -->
+		</div>
+	</div>
+	<!-- END SIDEBAR -->
+	<!-- BEGIN CONTENT -->
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> 
+    <div class="page-content-wrapper">
+		<div class="page-content">			 
+			<!-- BEGIN PAGE CONTENT-->			 
+				<div class="col-md-12">
+					   		<asp:UpdateProgress ID="UpdateProgress1" runat="server">
+				                <ProgressTemplate> 
+				                        <div style="position: relative; top: 30%; text-align: center;" >
+					                        <asp:Image  ID="Image1" runat="server" style="vertical-align: middle" alt="Loading..."  ImageUrl="~/assets/img/input-spinner.gif" />
+				                    </div>                                     
+				                </ProgressTemplate>
+			                </asp:UpdateProgress>	 
+		                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+			                    <ContentTemplate>
+				                        <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server"> </asp:ContentPlaceHolder>                    
+			                    </ContentTemplate>
+		                    </asp:UpdatePanel> 
+				</div>			 
+			<!-- END PAGE CONTENT-->
+		</div>
+	</div>
+
+	<!-- END CONTENT -->
+</div>
+ 
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+	<div class="page-footer-inner">
+		 <%=DateTime.Now.Year%> &copy; Developed by CmsnPos
+	</div>
+	<div class="scroll-to-top">
+		<i class="icon-arrow-up"></i>
+	</div>
+</div>
+<!-- END FOOTER -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="../assets/scripts/respond.min.js"></script>
+<script src="../assets/scripts/excanvas.min.js"></script> 
+<![endif]-->
+<script src="../assets/scripts/jquery.min.js" type="text/javascript"></script>
+<script src="../assets/scripts/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="../assets/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="../assets/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script> 
+<script src="../assets/scripts/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="../assets/scripts/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="../assets/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<script src="../assets/scripts/metronic.js" type="text/javascript"></script>
+<script src="../assets/scripts/layout.js" type="text/javascript"></script>
+ 
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        Metronic.init(); // init metronic core components
+        Layout.init(); // init current layout
+        Demo.init(); // init demo features
+    });
+   </script>
+<!-- END JAVASCRIPTS -->
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

@@ -4306,6 +4306,8 @@ Notes
   background-color: #89c4f4;
   border-color: #3abaed;
   box-shadow: 5px 5px rgba(62, 188, 237, 0.2);
+    height: 172px;
+    width: 1049px;
 }
 .note.note-warning {
   background-color: #ff5722;

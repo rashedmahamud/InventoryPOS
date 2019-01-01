@@ -70,8 +70,8 @@
                          
                          <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
                       </div><br />
-                         <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="310px" Width="487px"></rsweb:ReportViewer>
-                      <asp:Label ID="Label22" runat="server" Text="123456789"></asp:Label>
+                         <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="658px" Width="1041px" DocumentMapWidth="50%" SizeToReportContent="True" ZoomMode="FullPage"></rsweb:ReportViewer>
+                         <asp:Label ID="Label22" runat="server" Text="123456789"></asp:Label>
                    </div>
                   <table>
                                 <tr>

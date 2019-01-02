@@ -6,25 +6,25 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.30045in</Width>
+              <Width>0.62188in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.79347in</Width>
+              <Width>1.1149in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.79347in</Width>
+              <Width>1.1149in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.79347in</Width>
+              <Width>1.1149in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.79347in</Width>
+              <Width>1.1149in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.79347in</Width>
+              <Width>1.1149in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.79347in</Width>
+              <Width>1.1149in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -568,10 +568,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>CreateInvoice</DataSetName>
-        <Top>1.86806in</Top>
-        <Left>0.40779in</Left>
-        <Height>0.43751in</Height>
-        <Width>5.06125in</Width>
+        <Top>2.0543in</Top>
+        <Left>0.32446in</Left>
+        <Height>0.4375in</Height>
+        <Width>7.31128in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -593,8 +593,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.03347in</Top>
-        <Left>4.13571in</Left>
+        <Top>0.45014in</Top>
+        <Left>6.52083in</Left>
         <Height>0.25in</Height>
         <Width>1.33333in</Width>
         <ZIndex>1</ZIndex>
@@ -622,22 +622,20 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
         <Top>0.03347in</Top>
-        <Left>2.82321in</Left>
         <Height>0.375in</Height>
-        <Width>1.1875in</Width>
+        <Width>7.89613in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <BottomBorder>
-            <Style>Double</Style>
-          </BottomBorder>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -651,7 +649,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Parameters!CustomerID.Value</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -659,7 +657,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox13</rd:DefaultName>
-        <Top>0.59597in</Top>
+        <Top>0.97097in</Top>
         <Left>1.53279in</Left>
         <Height>0.25in</Height>
         <Width>2.33333in</Width>
@@ -681,7 +679,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Parameters!CustomerName.Value</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -689,8 +687,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox13</rd:DefaultName>
-        <Top>0.84597in</Top>
-        <Left>1.53279in</Left>
+        <Top>1.16541in</Top>
+        <Left>1.50501in</Left>
         <Height>0.25in</Height>
         <Width>2.33333in</Width>
         <ZIndex>4</ZIndex>
@@ -711,7 +709,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Parameters!CustomerMobileNumber.Value</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -719,7 +717,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox13</rd:DefaultName>
-        <Top>1.12375in</Top>
+        <Top>1.41541in</Top>
         <Left>1.53279in</Left>
         <Height>0.25in</Height>
         <Width>2.33333in</Width>
@@ -741,7 +739,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Parameters!BillTO.Value</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -749,10 +747,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox16</rd:DefaultName>
-        <Top>1.35986in</Top>
+        <Top>1.59944in</Top>
         <Left>1.53279in</Left>
         <Height>0.25in</Height>
-        <Width>2.33333in</Width>
+        <Width>2.75824in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -779,7 +777,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox13</rd:DefaultName>
-        <Top>0.59597in</Top>
+        <Top>0.97097in</Top>
         <Left>0.32446in</Left>
         <Height>0.25in</Height>
         <Width>1.20833in</Width>
@@ -809,8 +807,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox13</rd:DefaultName>
-        <Top>0.84597in</Top>
-        <Left>0.32446in</Left>
+        <Top>1.16541in</Top>
+        <Left>0.29668in</Left>
         <Height>0.25in</Height>
         <Width>1.20833in</Width>
         <ZIndex>8</ZIndex>
@@ -839,7 +837,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox13</rd:DefaultName>
-        <Top>1.10986in</Top>
+        <Top>1.40152in</Top>
         <Left>0.32446in</Left>
         <Height>0.25in</Height>
         <Width>1.20833in</Width>
@@ -869,7 +867,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox16</rd:DefaultName>
-        <Top>1.35986in</Top>
+        <Top>1.59944in</Top>
         <Left>0.32446in</Left>
         <Height>0.25in</Height>
         <Width>1.20833in</Width>
@@ -899,7 +897,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox26</rd:DefaultName>
-        <Top>0.29042in</Top>
+        <Top>0.78in</Top>
         <Left>0.32446in</Left>
         <Height>0.25in</Height>
         <Width>2.16667in</Width>
@@ -929,7 +927,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox27</rd:DefaultName>
-        <Top>2.47792in</Top>
+        <Top>2.72792in</Top>
         <Left>0.34501in</Left>
         <Height>0.25in</Height>
         <Width>1.29166in</Width>
@@ -962,7 +960,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox17</rd:DefaultName>
-        <Top>2.7557in</Top>
+        <Top>3.0057in</Top>
         <Left>0.34501in</Left>
         <Height>0.25in</Height>
         <Width>1.595in</Width>
@@ -992,7 +990,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox18</rd:DefaultName>
-        <Top>3.01959in</Top>
+        <Top>3.26959in</Top>
         <Left>0.34501in</Left>
         <Height>0.25in</Height>
         <Width>1.595in</Width>
@@ -1022,7 +1020,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>3.26959in</Top>
+        <Top>3.51959in</Top>
         <Left>0.34501in</Left>
         <Height>0.25in</Height>
         <Width>1.595in</Width>
@@ -1052,7 +1050,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox17</rd:DefaultName>
-        <Top>2.74181in</Top>
+        <Top>2.99181in</Top>
         <Left>1.94001in</Left>
         <Height>0.25in</Height>
         <Width>1.595in</Width>
@@ -1082,7 +1080,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox18</rd:DefaultName>
-        <Top>3.01959in</Top>
+        <Top>3.26959in</Top>
         <Left>1.94001in</Left>
         <Height>0.25in</Height>
         <Width>1.595in</Width>
@@ -1112,7 +1110,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>3.26959in</Top>
+        <Top>3.51959in</Top>
         <Left>1.94001in</Left>
         <Height>0.25in</Height>
         <Width>1.595in</Width>
@@ -1127,20 +1125,269 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="Textbox4">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!CompanyFooterMassage.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>4.03472in</Top>
+        <Left>0.94634in</Left>
+        <Height>0.25in</Height>
+        <Width>6.09532in</Width>
+        <ZIndex>19</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox31">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>SubTotal</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox17</rd:DefaultName>
+        <Top>2.72792in</Top>
+        <Left>4.44573in</Left>
+        <Height>0.25in</Height>
+        <Width>1.595in</Width>
+        <ZIndex>20</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox36">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!SubTotal.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox17</rd:DefaultName>
+        <Top>2.72792in</Top>
+        <Left>6.04073in</Left>
+        <Height>0.25in</Height>
+        <Width>1.595in</Width>
+        <ZIndex>21</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox32">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>= "VAT("+ Parameters!VAT_Percent.Value+" %)"</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox17</rd:DefaultName>
+        <Top>2.97792in</Top>
+        <Left>4.44573in</Left>
+        <Height>0.25in</Height>
+        <Width>1.595in</Width>
+        <ZIndex>22</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox39">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!VAT_Calculation_on_Item.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox17</rd:DefaultName>
+        <Top>2.97792in</Top>
+        <Left>6.04073in</Left>
+        <Height>0.25in</Height>
+        <Width>1.595in</Width>
+        <ZIndex>23</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>4.81597in</Height>
+    <Height>4.35416in</Height>
     <Style>
       <Border>
         <Style>None</Style>
       </Border>
     </Style>
   </Body>
-  <Width>5.98958in</Width>
+  <Width>8.11458in</Width>
   <Page>
     <PageHeader>
-      <Height>0.70014in</Height>
+      <Height>1.00222in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox12">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Parameters!CompanyName.Value</Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox12</rd:DefaultName>
+          <Height>0.25in</Height>
+          <Width>7.89613in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox17">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Parameters!ComapanyAddress.Value</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox17</rd:DefaultName>
+          <Top>0.26389in</Top>
+          <Height>0.25in</Height>
+          <Width>7.89613in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox18">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Parameters!CompanyWebsite.Value +" | "+"Phone:"+ Parameters!CompanyMobileNumber.Value</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox18</rd:DefaultName>
+          <Top>0.52778in</Top>
+          <Left>0.04196in</Left>
+          <Height>0.25in</Height>
+          <Width>7.85416in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
       <Style>
         <Border>
           <Style>None</Style>
@@ -1148,11 +1395,11 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>1.54167in</Height>
+      <Height>0.625in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox4">
+        <Textbox Name="Textbox8">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
@@ -1166,11 +1413,11 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <rd:DefaultName>Textbox4</rd:DefaultName>
-          <Top>0.0925in</Top>
-          <Left>3.63417in</Left>
+          <rd:DefaultName>Textbox8</rd:DefaultName>
+          <Top>0.19097in</Top>
+          <Left>6.58238in</Left>
           <Height>0.25in</Height>
-          <Width>1.69792in</Width>
+          <Width>1.31374in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1188,10 +1435,9 @@
         </Border>
       </Style>
     </PageFooter>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>11.69in</PageHeight>
+    <PageWidth>8.27in</PageWidth>
+    <TopMargin>0.25in</TopMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -1258,6 +1504,66 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="AccountNumber">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyName">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ComapanyAddress">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyWebsite">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyFooterMassage">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyMobileNumber">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CustomerID">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CustomerName">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CustomerMobileNumber">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="BillTO">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SubTotal">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="VAT_Calculation_on_Item">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="VAT_Percent">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>

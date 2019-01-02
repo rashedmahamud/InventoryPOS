@@ -70,7 +70,7 @@
                          
                          <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
                       </div><br />
-                         <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="658px" Width="1041px" DocumentMapWidth="50%" SizeToReportContent="True" ZoomMode="FullPage"></rsweb:ReportViewer>
+                        
                          <asp:Label ID="Label22" runat="server" Text="123456789"></asp:Label>
                    </div>
                   <table>
@@ -81,24 +81,25 @@
                                              <div  style="width:100% ;margin-left:0px; background-color:#f0f5f5;color:black" class=" GridviewDiv note note-info note-shadow">
                                                    <table>
                                                         <tr>
-                                                            <td style="vertical-align:top;width:33%;text-align:left;margin-left:0px">
+                                                            <td style="vertical-align:top;width:37%;text-align:left;margin-left:0px">
                                                                     <asp:Label ID="Label13" runat="server" Font-Size="XX-Large" Font-Bold="true" Text="Label"></asp:Label><br />
-                                                                    <asp:Label ID="Label14" runat="server" Font-Size="10px" Font-Bold="true"  Text="Label"></asp:Label><br />
+                                                                    <asp:Label ID="Label14" runat="server" Font-Size="16px" Font-Bold="true"  Text="Label"></asp:Label><br />
                                                                     <asp:Label ID="Label15" runat="server" Text="Label"></asp:Label><br />
                                                                     <asp:Label ID="Label16" runat="server" Text="Label"></asp:Label><br />
                                                             </td>
-                                                            <td style="vertical-align:middle;text-align:left;width:33%">
+                                                            <td style="vertical-align:middle;text-align:left;width:14%">
                                                                 <br />
                                                                 <br />
                                                                 <br />
                                                                 <br />
                                                                 <br />
                                                                 <br />
+                                                                &nbsp;
                                                                 <asp:Label ID="Label6"  runat="server" Text=" Invoice " Font-Size="50px"></asp:Label>
 
                                                             </td>
                                                             <td style="vertical-align:top;text-align:right;width:33%">
-                                                                <img src="../img/logo.png" style="width:150px ; height:70px ;"  />  
+                                                                <img src="~/img/logo.png" style="width:150px ; height:70px ;"  />  
     	                                                        <asp:Label ID="Label10" runat="server" Visible="false" Text="Label"></asp:Label>
                                                             </td>
                                                         </tr>
@@ -106,28 +107,30 @@
                                              </div>
                                              <div class="GridviewDiv" style="width:100%">
     	                       
-                                                <table style="width:100%">
+                                                <table style="width:125%">
                                                 <tr>
-                                                    <td style="width:33%;vertical-align:top"  >
+                                                    <td style="width:45%;vertical-align:top"  >
                                                         <b style="font-size:x-large"> Invoice TO: </b><br />
-                                                            <asp:TextBox ID="TextBox1" Height="12px" BorderStyle="None" BackColor="#f0f5f5" class="effect-4 input-effect" runat="server" type="text" Font-Size="10px" Width="150px" AutoPostBack="true" placeholder="Customer ID" OnTextChanged="TextBox1_TextChanged" > </asp:TextBox><br />
-                                                            <asp:TextBox  Height="12px" ID="TextBox2" BackColor="#f0f5f5"  class="effect-4 input-effect" Font-Size="10px" runat="server" type="text" Width="150px" placeholder="Customer Name "> </asp:TextBox><br />
-                                                            <asp:TextBox  Height="12px" ID="TextBox3" BackColor="#f0f5f5"  class="effect-4 input-effect" Font-Size="10px" runat="server" type="text" Width="150px" placeholder="Mobile Number"> </asp:TextBox><br />
-                                                            <asp:TextBox  ID="TextBox4"   BackColor="#f0f5f5"  class="effect-4 input-effect"  runat="server" type="text" Width="150px" Font-Size="10px" Height="12px" placeholder="Bill To"  > </asp:TextBox><br />
-                                                            <asp:TextBox  ID="TextBox13"  class="effect-4 input-effect" Visible="false"  Height="12px" BackColor="#f0f5f5"  runat="server" type="text" Width="150px" Font-Size="10px"  placeholder="Ship To"  > </asp:TextBox>
+                                                            <%--<asp:TextBox ID="TextBox1" Height="19px" BorderStyle="None" BackColor="#f0f5f5" class="effect-4 input-effect" runat="server" type="text" Font-Size="12px" Width="150px" AutoPostBack="true" placeholder="Customer ID" OnTextChanged="TextBox1_TextChanged" > </asp:TextBox>--%><br />
+                                                            
+                                                            <asp:TextBox  Height="19px" ID="TextBox1" BackColor="#f0f5f5"  class="effect-4 input-effect" Font-Size="12px" runat="server" type="text" Width="150px" OnTextChanged="TextBox1_TextChanged" placeholder="CustomerID "> </asp:TextBox><br />
+                                                            <asp:TextBox  Height="19px" ID="TextBox2" BackColor="#f0f5f5"  class="effect-4 input-effect" Font-Size="12px" runat="server" type="text" Width="150px" placeholder="Customer Name "> </asp:TextBox><br />
+                                                            <asp:TextBox  Height="19px" ID="TextBox3" BackColor="#f0f5f5"  class="effect-4 input-effect" Font-Size="12px" runat="server" type="text" Width="150px" placeholder="Mobile Number"> </asp:TextBox><br />
+                                                            <asp:TextBox  ID="TextBox4"   BackColor="#f0f5f5"  class="effect-4 input-effect"  runat="server" type="text" Width="150px" Font-Size="12px" Height="19px" placeholder="Bill To"  > </asp:TextBox><br />
+                                                            <asp:TextBox  ID="TextBox13"  class="effect-4 input-effect" Visible="false"  Height="19px" BackColor="#f0f5f5"  runat="server" type="text" Width="150px" Font-Size="12px"  placeholder="Ship To"  > </asp:TextBox>
                                                     </td>
                                                     <td>
 
                       
                                                     </td>
-    	                                            <td style="width:40% ;vertical-align:top;margin-left:50%"><b>Invoice #</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:TextBox ID="TextBox14" Font-Size="10px" runat="server" Height="16px" class="effect-1 input-effect"  BackColor="#f0f5f5" placeholder="Invoice Number" type="text" Width="120px"> </asp:TextBox>
+    	                                            <td style="width:38% ;vertical-align:top;margin-left:50%">
+                                                        <b>Invoice Number:</b><asp:TextBox ID="TextBox14" Font-Size="12px" runat="server" Height="19px" class="effect-1 input-effect"  BackColor="#f0f5f5" placeholder="Invoice Number" type="text" Width="120px"> </asp:TextBox>
                                                         <br />
-                                                        <b>Invoice Date : &nbsp;&nbsp;</b><asp:TextBox ID="TextBox15" Font-Size="10px" runat="server" BackColor="#f0f5f5" Height="16px"  class="effect-1 input-effect"  Enabled="false" placeholder="Invoice Date" type="text" Width="120px"> </asp:TextBox>
+                                                        <b>Invoice Date : &nbsp;&nbsp;&nbsp;</b><asp:TextBox ID="TextBox15" Font-Size="12px" runat="server" BackColor="#f0f5f5" Height="19px"  class="effect-1 input-effect"  Enabled="false" placeholder="Invoice Date" type="text" Width="120px"> </asp:TextBox>
                                                         <br />
-                                                        <b>Payment Term :</b><asp:TextBox ID="TextBox5" runat="server" Font-Size="10px" class="effect-1 input-effect" Height="16px" BackColor="#f0f5f5" placeholder="Payment Term" type="text" Width="120px" ></asp:TextBox>
+                                                        <b>Payment Term :&nbsp;</b><asp:TextBox ID="TextBox5" runat="server" Font-Size="12px" class="effect-1 input-effect" Height="19px" BackColor="#f0f5f5" placeholder="Payment Term" type="text" Width="120px" ></asp:TextBox>
                                                         <br />
-                                                        <b>Payment Date :</b>
-                                                        <asp:TextBox ID="TextBox6" runat="server" class="effect-1 input-effect" Font-Size="10px" BackColor="#f0f5f5" Height="16px" placeholder="Payment Date" type="text" Width="120px" ></asp:TextBox>
+                                                        <b>Payment Date :&nbsp;&nbsp;</b><asp:TextBox ID="TextBox6" runat="server" class="effect-1 input-effect" Font-Size="12px" BackColor="#f0f5f5" Height="19px" placeholder="Payment Date" type="text" Width="120px" ></asp:TextBox>
                                                         <br />
                                                         <br />
                                                         <div>
@@ -138,12 +141,12 @@
                                                 </tr>
     	                                        </table>
                                                  <hr style="border:solid;height:1px" ></hr>
-        
-                                              <div class="GridviewDiv" >
+                                                   <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="50px" Width="100%" DocumentMapWidth="50%" SizeToReportContent="True" ZoomMode="PageWidth"></rsweb:ReportViewer>
+                                            <%--  <div class="GridviewDiv" >
          
-                                               </div>
+                                               </div>--%>
                                               <div  style="width:100%">
-                                                    <div style="margin-left:60%">
+                                                    <div style="margin-left:40%">
                                                          <asp:Label ID="Label2"   runat="server" Font-Size="20px" ForeColor="Black"  Font-Bold="true" Text="  TOTAL  "></asp:Label>
                                                          <asp:Label ID="Label3"  Font-Size="20px"  ForeColor="Green" Font-Bold="true" runat="server" Text=" 0.00  "></asp:Label>
                                                     </div>
@@ -154,13 +157,13 @@
 
                                                     <asp:GridView runat="server" ID="gvDetails"   GridLines="none" ShowFooter="false" AllowPaging="true" PageSize="10" AutoGenerateColumns="false" Width="100%" ShowHeaderWhenEmpty="true" OnRowDeleting="gvDetails_RowDeleting">
                                                         <HeaderStyle CssClass="headerstyle"  />
-                                                        <Columns>
+                                                        <Columns >
                                                             <asp:BoundField DataField="rowid" HeaderText="S/N" ReadOnly="true" Visible="false"/>
 
                                                             <asp:TemplateField HeaderText="Item Code">
                                                                 <ItemTemplate>
                                                                     <%--    <asp:ListBox ID="ListBox1"  OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:ListBox>--%>
-                                                                    <asp:TextBox ID="ItemCode" runat="server"   AutoPostBack="true" OnTextChanged="ItemCode_TextChanged1" class="effect-4 input-effect" />
+                                                                    <asp:TextBox ID="ItemCode" runat="server"  margin-right ="-100px" AutoPostBack="true" OnTextChanged="ItemCode_TextChanged1" class="effect-4 input-effect" />
                                                                 </ItemTemplate> 
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Item">
@@ -196,13 +199,14 @@
 
                                              <%--  </asp:Panel>--%>
                                              <div style="width:100%" >
-                                                    <div style="margin-left:60%" >
+                                                    <div style="margin-left:82%" >
                                                     <table>
                                                         <tr>
                                                             <td>
                                                                 <table>
                                                                     <tr>
-                                                                        <td><b>Sub Total &nbsp; &nbsp;</b>
+                                                                        <td>
+                                                                            <b>Sub Total &nbsp; &nbsp;</b>
                                                                             <br />
                                                                             <b>VAT(<asp:Label ID="Label1" runat="server" Text=""></asp:Label>%) </b>
                                                                             <br />
@@ -210,7 +214,10 @@
                                                                             <br />
                                                                             <b>Paid </b>
                                                                             <br />
-                                                                            <b>Due </b></td>
+                                                                            <b>Due </b>
+                                                                            <br />
+                                                                            <b>Total Qty </b>
+                                                                        </td>
                                                                         <td>
                                                                             <asp:Label ID="Label4" runat="server" Text="0.00"></asp:Label>
                                                                             <br />
@@ -218,9 +225,11 @@
                                                                             <br />
                                                                             <asp:Label ID="Label7" runat="server" Text="0.0"></asp:Label>
                                                                             <br />
-                                                                            <asp:TextBox ID="TextBox16" runat="server" BackColor="#f0f5f5" AutoPostBack="true" OnTextChanged="TextBox16_TextChanged" BorderStyle="None" Width="43px"></asp:TextBox>
+                                                                            <asp:TextBox ID="TextBox16" runat="server" BackColor="#f0f5f5" AutoPostBack="true" OnTextChanged="TextBox16_TextChanged"  Width="43px"></asp:TextBox>
                                                                             <br />
                                                                             <asp:Label ID="Label9" runat="server" Text="0.00"></asp:Label>
+                                                                            <br />
+                                                                            <asp:Label ID="Label11" runat="server" Text="0"></asp:Label>
                                                                             <br />
                                                                         </td>
                                                                     </tr>
@@ -231,10 +240,10 @@
                                                         </tr>
 
                                                     </table>
-                                                    <asp:Label ID="Label11" runat="server" Text="Label"></asp:Label>
+                                                    
                                                     </div> 
                                                     <hr style="border:solid;height:1px" ></hr>
-                                                    <div style="margin-left:15%; margin-top: 0px;">
+                                                    <div style="margin-left:0%; margin-top: 0px;">
                                                         <asp:Label ID="Label19" runat="server" Font-Bold="true" Font-Size="Large" Text="Accounts Information"></asp:Label><br />
                                                         <b>Bank Name</b> <asp:Label ID="Label12" runat="server" Text="Label"></asp:Label><br />
                                                         <b>Account Name</b> <asp:Label ID="Label18" runat="server" Text="Label"></asp:Label><br />

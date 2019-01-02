@@ -31,6 +31,16 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             VatRate();
             SystemInfo();
             Bank();
+            ViewState["SubTotal"] = 0;
+            ViewState["VAT_Percent"] = 0;
+            ViewState["VAT_Calculation_on_Item"] = 0;
+            //Session["VAT_10_percent"] = 0;
+            //Session["Paid"] = 0;
+            //Session["Due"] = 0;
+            //Session["TotalQty"] = 0;
+            //Session["VAT_Percent"] = 0;
+
+
             //listbox();
             //Session["InvoiceNo"] = Session["InvoiceNoOutPut"].ToString();
         }
@@ -241,11 +251,12 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
 
         }
     }
+
+  
     public void cal()
     {
         try
         {
-
             double columnTotal = 0; double Qty1 = 0;
             foreach (GridViewRow gvr in gvDetails.Rows)
             {
@@ -261,17 +272,24 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             }
             String TotalString = columnTotal.ToString();
             Label4.Text = TotalString;
-            Label11.Text = Qty1.ToString();
+            ViewState["SubTotal"] = TotalString;
+            
 
+           // Session["Paid"] = TextBox16.Text;
+          //  Session["VAT_Percent"] = Label1.Text;
+            
+            Label11.Text = Qty1.ToString();
+           // Session["TotalQty"] = Qty1.ToString();
             double tex = ((Convert.ToDouble(Label4.Text) * Convert.ToDouble(Label1.Text)) / 100);
             //// lbldisc.Text = pricetotal -
             Label5.Text = Math.Round(tex, 2).ToString();
-            Label5.Text = Math.Round(tex, 2).ToString();
+            // Session["VAT_10_percent"] = Math.Round(tex, 2).ToString();
             Label7.Text = (Convert.ToDouble(Label4.Text) + Convert.ToDouble(Label5.Text)).ToString();
 
             Label3.Text = Label7.Text;
             Label9.Text = (Convert.ToDouble(Label7.Text) - Convert.ToDouble(TextBox16.Text)).ToString();
 
+           // Session["Due"] = (Convert.ToDouble(Label7.Text) - Convert.ToDouble(TextBox16.Text)).ToString();
         }
         catch
         {
@@ -510,12 +528,17 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             }
             String TotalString = columnTotal.ToString();
             Label4.Text = TotalString;
+            ViewState["SubTotal"] = TotalString;
+            ViewState["VAT_Percent"] = Label1.ToString();
+           
+            
             Label11.Text = Qty1.ToString();
 
             double tex = ((Convert.ToDouble(Label4.Text) * Convert.ToDouble(Label1.Text)) / 100);
+            //ViewState["VAT_Calculation_on_Item"] = tex.ToString();
             //// lbldisc.Text = pricetotal -
             Label5.Text = Math.Round(tex, 2).ToString();
-            Label5.Text = Math.Round(tex, 2).ToString();
+            ViewState["VAT_Calculation_on_Item"] = Math.Round(tex, 2).ToString();
             Label7.Text = (Convert.ToDouble(Label4.Text) + Convert.ToDouble(Label5.Text)).ToString();
 
             Label3.Text = Label7.Text;
@@ -730,13 +753,36 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         string accountNumber = null;
         string CompanyName = null;
         string ComapanyAddress = null;
+        string customerMobileNumber = null;
+        string CompanyWebsite = null;
+        string CompanyFooterMassage = null;
         string CustomerID = null;
         string CustomerName = null;
         string CompanyMobileNumber = null;
         string BillTO = null;
-        string customerMobileNumber = null;
-        string CompanyWebsite = null;
-        string CompanyFooterMassage = null;
+        string SubTotal = null;
+        string VAT_Percent = null;
+        string VAT_Calculation_on_Item = null;
+
+        if (ViewState["VAT_Percent"] != null)
+        {
+
+            VAT_Percent = ViewState["VAT_Percent"].ToString();
+        }
+
+        if (ViewState["VAT_Calculation_on_Item"] != null)
+        {
+
+            VAT_Calculation_on_Item = ViewState["VAT_Calculation_on_Item"].ToString();
+        }
+
+        if (ViewState["SubTotal"] != null)
+        {
+
+            SubTotal = ViewState["SubTotal"].ToString();
+        }
+
+
 
         // Get bank Information
         try
@@ -776,7 +822,7 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             SqlConnection cn = new SqlConnection(ConnectionString);
             SqlCommand cmd1 = new SqlCommand();
             cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = " select *from tbl_Customer where CustPhone='" + TextBox1.Text.Trim() + "' ";
+            cmd1.CommandText = " select *from tbl_Customer where CustPhone='" + TextBox3.Text.Trim() + "' ";
             cmd1.Connection = cn;
             cn.Open();
             SqlDataReader rd4 = cmd1.ExecuteReader();
@@ -848,24 +894,36 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
                 InvoiceItemList.Add(createInvoice);
 
             }
+          
+         
+           
+            //string VAT_10_percent= (string)Session["VAT_10_percent"] ;
+            //string Paid =  (string)Session["Paid"]; ;
+            //string Due=  (string)Session["Due"] ;
+            //string TotalQty = (string) Session["TotalQty"];
+           
 
 
             var reportParameters = new ReportParameterCollection
             {
-                //new ReportParameter("CompanyName",CompanyName),
-                //new ReportParameter("ComapanyAddress",ComapanyAddress),
-                //new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
-                //new ReportParameter("CompanyWebsite",CompanyWebsite),
-                //new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
+                new ReportParameter("CompanyName",CompanyName),
+                new ReportParameter("ComapanyAddress",ComapanyAddress),
+                new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
+                new ReportParameter("CompanyWebsite",CompanyWebsite),
+                new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
            
-                //new ReportParameter("CustomerID",CustomerID),
-                //new ReportParameter("CustomerName",CustomerName),
-                //new ReportParameter("CustomerMobileNumber",customerMobileNumber),
-                //new ReportParameter("BillTO",BillTO),
+                new ReportParameter("CustomerID",CustomerID),
+                new ReportParameter("CustomerName",CustomerName),
+                new ReportParameter("CustomerMobileNumber",customerMobileNumber),
+                new ReportParameter("BillTO",BillTO),
 
                 new ReportParameter("BankName",bankName),
                 new ReportParameter("AccountName",accountName),
-                new ReportParameter("AccountNumber",accountNumber)
+                new ReportParameter("AccountNumber",accountNumber),
+                new ReportParameter("SubTotal",SubTotal),
+                new ReportParameter ("VAT_Calculation_on_Item", VAT_Calculation_on_Item),
+                new ReportParameter("VAT_Percent", VAT_Percent)
+
             };
 
          

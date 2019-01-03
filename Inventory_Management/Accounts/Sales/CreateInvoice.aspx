@@ -55,6 +55,9 @@
             {
              color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#abb079;background-color: #f0f5f5;padding:0.5em 0.5em 0.5em 0.5em;text-align:center;
             }
+        .auto-style1 {
+            width: 29%;
+        }
         </style>
  
 
@@ -63,13 +66,15 @@
        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
               <ContentTemplate>
                   <div class="note note-info note-shadow">
-                     <div class="col-lg-7"  style="text-align:left" >  Invoice  </div>  
-                     <div class="col-lg-3"   style="text-align:right" >    
+                     <div class="col-lg-7"  style="text-align:left; top: 0px; left: 0px; width: 189px;" >  Invoice  </div>  
+                     <div class="col-lg-3"   style="text-align:right; top: 0px; left: 1035px; width: 216px;" >    
                        <%--| <input type="button" class="btn btn-success btn-xs" value="Print"  onclick="javascript: printDiv('wrapper')" />--%>   
                          |<%-- <input type="button" class="btn btn-success btn-xs" value="Print"  onclick="PrintInvoice " />--%><asp:Button ID="Button1" runat="server" Text="Print Invoice" class="btn btn-danger" OnClick="Button1_Click"/>
                          
                          <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
                       </div><br />
+                        
+                      
                         
                          <asp:Label ID="Label22" runat="server" Text="123456789"></asp:Label>
                    </div>
@@ -109,7 +114,7 @@
     	                       
                                                 <table style="width:125%">
                                                 <tr>
-                                                    <td style="width:45%;vertical-align:top"  >
+                                                    <td style="vertical-align:top" class="auto-style1"  >
                                                         <b style="font-size:x-large"> Invoice TO: </b><br />
                                                             <%--<asp:TextBox ID="TextBox1" Height="19px" BorderStyle="None" BackColor="#f0f5f5" class="effect-4 input-effect" runat="server" type="text" Font-Size="12px" Width="150px" AutoPostBack="true" placeholder="Customer ID" OnTextChanged="TextBox1_TextChanged" > </asp:TextBox>--%><br />
                                                             
@@ -120,7 +125,12 @@
                                                             <asp:TextBox  ID="TextBox13"  class="effect-4 input-effect" Visible="false"  Height="19px" BackColor="#f0f5f5"  runat="server" type="text" Width="150px" Font-Size="12px"  placeholder="Ship To"  > </asp:TextBox>
                                                     </td>
                                                     <td>
-
+                                                        <b style="font-size:x-large"> Enter Banking Info </b><br />
+                                                         <asp:DropDownList ID="ddlBankName" runat="server" Height="25px" Width="220px" placeholder="Select Bank" DataTextField="Text" DataValueField="Value">
+                                                          </asp:DropDownList>
+                                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                          <asp:DropDownList ID="ddlBankAccountNumber" runat="server" Height="25px" Width="220px" placeholder="Select Account" DataTextField="Text" DataValueField="Value">
+                                                          </asp:DropDownList>
                       
                                                     </td>
     	                                            <td style="width:38% ;vertical-align:top;margin-left:50%">

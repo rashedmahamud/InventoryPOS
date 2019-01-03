@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Accounts/MasterPage.master" AutoEventWireup="true" CodeFile="Quote.aspx.cs" Inherits="Accounts_Quote" %>
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="atk" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="Textboxcss.css" rel="stylesheet" />
@@ -66,7 +67,9 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
                       <div class="note note-info note-shadow">
                  <div class="col-lg-7"  style="text-align:left" >     Quotation </div>  
                   <div class="col-lg-3"   style="text-align:right" >    
-                   | <input type="button" class="btn btn-success btn-xs" value="Print"  onclick="javascript: printDiv('wrapper')" />    </div><br />
+                   | <%--<input type="button" class="btn btn-success btn-xs" value="Print"  onclick="javascript: printDiv('wrapper')" />    --%>
+                      <asp:Button ID="Button1" runat="server" Text="Print Quotation" class="btn btn-danger" OnClick="Button1_Click"/>
+                  </div><br />
                           <asp:Label ID="Label22" runat="server" Text="123456789"></asp:Label>
                           
             </div>
@@ -150,26 +153,15 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
                 </tr>
     	</table>
          <hr style="border:solid;height:1px" ></hr>
+        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="50px" Width="100%" DocumentMapWidth="50%" SizeToReportContent="True" ZoomMode="PageWidth"></rsweb:ReportViewer>
         
-        
        
-       
-    
-       
-         
-      
-            
-        <div class="GridviewDiv" >
-         
-            </div>
              <div  style="width:100%">
                  <div style="margin-left:60%">
-         <asp:Label ID="Label2"   runat="server" Font-Size="20px" ForeColor="Black"  Font-Bold="true" Text="  TOTAL  "></asp:Label>
-                          
-                                  <asp:Label ID="Label3"  Font-Size="20px"  ForeColor="Green" Font-Bold="true" runat="server" Text=" 0.00  "></asp:Label>
-
-           </div>
-        </div>
+                      <asp:Label ID="Label2"   runat="server" Font-Size="20px" ForeColor="Black"  Font-Bold="true" Text="  TOTAL  "></asp:Label>
+                      <asp:Label ID="Label3"  Font-Size="20px"  ForeColor="Green" Font-Bold="true" runat="server" Text=" 0.00  "></asp:Label>
+                 </div>
+            </div>
       </div>
        
    

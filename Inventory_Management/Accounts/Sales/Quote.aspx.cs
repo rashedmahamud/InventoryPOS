@@ -10,6 +10,7 @@ using System.Net;
 using System.IO;
 using System.Data.SqlClient;
 using System.Configuration;
+using Microsoft.Reporting.WebForms;
 
 public partial class Accounts_Quote : System.Web.UI.Page
 {
@@ -767,6 +768,180 @@ public partial class Accounts_Quote : System.Web.UI.Page
             double s;
             s = (Convert.ToDouble(Label7.Text) - Convert.ToDouble(TextBox16.Text));
             Label9.Text = Math.Round(s, 2).ToString();
+        }
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string bankName = null;
+        string accountName = null;
+        string accountNumber = null;
+        string CompanyName = null;
+        string ComapanyAddress = null;
+        string customerMobileNumber = null;
+        string CompanyWebsite = null;
+        string CompanyFooterMassage = null;
+        string CustomerID = null;
+        string CustomerName = null;
+        string CompanyMobileNumber = null;
+        string BillTO = null;
+        string SubTotal = null;
+        string VAT_Percent = null;
+        string VAT_Calculation_on_Item = null;
+        string Total_after_adding_vat = null;
+        string Paid = null;
+        string Due = null;
+        string TotalQty = null;
+        // Get bank Information
+        try
+        {
+            SqlConnection cn = new SqlConnection(ConnectionString);
+            SqlCommand cmd1 = new SqlCommand();
+            cmd1.CommandType = CommandType.Text;
+            cmd1.CommandText = " select *from Bank where Account_Number='" + Label22.Text.Trim() + "' ";
+            cmd1.Connection = cn;
+            cn.Open();
+            SqlDataReader rd4 = cmd1.ExecuteReader();
+
+            if (rd4.HasRows)
+            {
+                while (rd4.Read())
+                {
+                    bankName = (rd4["Bank_Name"].ToString());
+                    accountName = (rd4["Account_Name"].ToString());
+                    accountNumber = (rd4["Account_Number"].ToString());
+                }
+            }
+            else
+            {
+                //Button9.Text = "Guest";
+            }
+        }
+        catch
+        {
+
+        }
+
+
+        // Get Customer Information
+
+        try
+        {
+            SqlConnection cn = new SqlConnection(ConnectionString);
+            SqlCommand cmd1 = new SqlCommand();
+            cmd1.CommandType = CommandType.Text;
+            cmd1.CommandText = " select *from tbl_Customer where CustPhone='" + TextBox3.Text.Trim() + "' ";
+            cmd1.Connection = cn;
+            cn.Open();
+            SqlDataReader rd4 = cmd1.ExecuteReader();
+
+            if (rd4.HasRows)
+            {
+                while (rd4.Read())
+                {
+                    CustomerID = (rd4["CustID"].ToString());
+                    CustomerName = (rd4["CustName"].ToString());
+                    customerMobileNumber = (rd4["CustPhone"].ToString());
+                    BillTO = (rd4["CustAddress"].ToString());
+                }
+            }
+            else
+            {
+                //Button9.Text = "Guest";
+            }
+        }
+        catch { }
+
+        // Company Info
+
+        try
+        {
+            SqlConnection cn = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cn.Open();
+            cmd.CommandText = "Select * from tbl_settings where Location='" + ShopId.ToString() + "'";
+            cmd.Connection = cn;
+            SqlDataReader rd4 = cmd.ExecuteReader();
+
+            if (rd4.HasRows)
+            {
+                while (rd4.Read())
+                {
+                    CompanyName = (rd4["CompanyName"].ToString());
+                    ComapanyAddress = rd4["CompanyAddress"].ToString();
+                    CompanyWebsite = rd4["WebAddress"].ToString();
+                    CompanyMobileNumber = rd4["Phone"].ToString();
+                    CompanyFooterMassage = rd4["Footermsg"].ToString();
+                }
+                cn.Close();
+            }
+        }
+        catch { }
+
+          // Get  All the list of Product
+            List<CreateInvoiceItemList> InvoiceItemList = new List<CreateInvoiceItemList>();
+
+
+            for (int i = 0; i < gvDetails.Rows.Count; i++)
+            {
+                CreateInvoiceItemList createInvoice = new CreateInvoiceItemList();
+                TextBox Code = (TextBox)gvDetails.Rows[i].Cells[1].FindControl("ItemCode");
+                TextBox ItemName = (TextBox)gvDetails.Rows[i].Cells[2].FindControl("txtName");
+                TextBox txtprice = (TextBox)gvDetails.Rows[i].Cells[3].FindControl("txtPrice");
+                TextBox Qty = (TextBox)gvDetails.Rows[i].Cells[4].FindControl("Qty");
+                TextBox Dis = (TextBox)gvDetails.Rows[i].Cells[5].FindControl("Dis");
+                TextBox Total = (TextBox)gvDetails.Rows[i].Cells[6].FindControl("Total");
+
+                createInvoice.ItemCode = Code.Text;
+                createInvoice.Name = ItemName.Text;
+                createInvoice.Quantity = Qty.Text;
+                createInvoice.Price = txtprice.Text;
+                createInvoice.Discount = Dis.Text;
+                createInvoice.Total = Total.Text;
+                InvoiceItemList.Add(createInvoice);
+
+            }
+       
+
+         var reportParameters = new ReportParameterCollection
+            {
+                new ReportParameter("CompanyName",CompanyName),
+                new ReportParameter("ComapanyAddress",ComapanyAddress),
+                new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
+                new ReportParameter("CompanyWebsite",CompanyWebsite),
+                new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
+           
+                new ReportParameter("CustomerID",CustomerID),
+                new ReportParameter("CustomerName",CustomerName),
+                new ReportParameter("CustomerMobileNumber",customerMobileNumber),
+                new ReportParameter("BillTO",BillTO),
+
+                new ReportParameter("BankName",bankName),
+                new ReportParameter("AccountName",accountName),
+                new ReportParameter("AccountNumber",accountNumber)
+
+                //new ReportParameter("SubTotal",SubTotal),
+                //new ReportParameter ("VAT_Calculation_on_Item", VAT_Calculation_on_Item),
+                //new ReportParameter("VAT_Percent", VAT_Percent),
+                //new ReportParameter("Paid",Paid),
+                //new ReportParameter("Due",Due),
+                //new ReportParameter("TotalQty",TotalQty),
+                //new ReportParameter("Total_after_adding_vat",Total_after_adding_vat)
+              
+            };
+
+         
+            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RDLCReports/Invoice.rdlc");
+
+            ReportDataSource datasource = new ReportDataSource("CreateInvoice", InvoiceItemList);
+            ReportViewer1.LocalReport.DataSources.Clear();
+
+            ReportViewer1.LocalReport.EnableExternalImages = true;
+            ReportViewer1.ExportContentDisposition = ContentDisposition.AlwaysInline;
+
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            ReportViewer1.LocalReport.SetParameters(reportParameters);
         }
     }
 }

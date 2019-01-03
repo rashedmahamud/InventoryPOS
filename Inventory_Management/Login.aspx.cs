@@ -11,12 +11,16 @@ using System.Configuration;
 public partial class Login : System.Web.UI.Page
 {
     string ConnectionString = ConfigurationManager.ConnectionStrings["PointofSaleConstr"].ConnectionString;
+
+    string ss = null; 
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             lblLogMsg.Visible = false;
-
+           
+            ss = (string)Session["StoreId"];
             //this default login uid/pass  please remove this code 
             txtuser.Text = "admin";
             txtpass.Text = "admin";
@@ -25,6 +29,8 @@ public partial class Login : System.Web.UI.Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
+        Session["StoreId"] = TextBox1.Text;
+        ss = (string)Session["StoreId"];
         string UserID = txtuser.Text.Trim();
         string pass = txtpass.Text.Trim();
         string ShopID = TextBox1.Text.Trim();

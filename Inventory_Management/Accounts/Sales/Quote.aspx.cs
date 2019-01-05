@@ -35,13 +35,6 @@ public partial class Accounts_Quote : System.Web.UI.Page
         }
     }
 
-
-
-
-
-
-
-
     public void SystemInfo()
     {
         try
@@ -114,7 +107,6 @@ public partial class Accounts_Quote : System.Web.UI.Page
         {
         }
     }
-
     protected void BindGridview()
     {
         try
@@ -292,7 +284,6 @@ public partial class Accounts_Quote : System.Web.UI.Page
 
         }
     }
-
     public void searchitem(GridViewRow row)
     {
         try
@@ -337,7 +328,6 @@ public partial class Accounts_Quote : System.Web.UI.Page
         }
 
     }
-
     protected void gvDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         try
@@ -480,7 +470,6 @@ public partial class Accounts_Quote : System.Web.UI.Page
         }
     }
 
-
     public void Bank()
     {
 
@@ -530,7 +519,7 @@ public partial class Accounts_Quote : System.Web.UI.Page
     {
 
         //try
-        //{ 
+        //{
         TextBox Price = (TextBox)row.FindControl("txtPrice");
         TextBox Qty = (TextBox)row.FindControl("Qty");
         TextBox Dis = (TextBox)row.FindControl("Dis");
@@ -580,8 +569,6 @@ public partial class Accounts_Quote : System.Web.UI.Page
 
         //}
     }
-
-
 
     protected void TextBox1_TextChanged(object sender, EventArgs e)
     {
@@ -901,7 +888,7 @@ public partial class Accounts_Quote : System.Web.UI.Page
                 InvoiceItemList.Add(createInvoice);
 
             }
-       
+
 
          var reportParameters = new ReportParameterCollection
             {
@@ -910,7 +897,7 @@ public partial class Accounts_Quote : System.Web.UI.Page
                 new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
                 new ReportParameter("CompanyWebsite",CompanyWebsite),
                 new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
-           
+
                 new ReportParameter("CustomerID",CustomerID),
                 new ReportParameter("CustomerName",CustomerName),
                 new ReportParameter("CustomerMobileNumber",customerMobileNumber),
@@ -927,10 +914,10 @@ public partial class Accounts_Quote : System.Web.UI.Page
                 //new ReportParameter("Due",Due),
                 //new ReportParameter("TotalQty",TotalQty),
                 //new ReportParameter("Total_after_adding_vat",Total_after_adding_vat)
-              
+
             };
 
-         
+
             ReportViewer1.ProcessingMode = ProcessingMode.Local;
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RDLCReports/Invoice.rdlc");
 
@@ -943,5 +930,5 @@ public partial class Accounts_Quote : System.Web.UI.Page
             ReportViewer1.LocalReport.DataSources.Add(datasource);
             ReportViewer1.LocalReport.SetParameters(reportParameters);
         }
-    }
-}
+  }
+

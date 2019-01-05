@@ -12,16 +12,14 @@ public partial class Login : System.Web.UI.Page
 {
     string ConnectionString = ConfigurationManager.ConnectionStrings["PointofSaleConstr"].ConnectionString;
 
-    string ss = null; 
-    
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             lblLogMsg.Visible = false;
-           
-            ss = (string)Session["StoreId"];
-            //this default login uid/pass  please remove this code 
+            //this default login uid/pass  please remove this code
             txtuser.Text = "admin";
             txtpass.Text = "admin";
         }
@@ -29,8 +27,7 @@ public partial class Login : System.Web.UI.Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        Session["StoreId"] = TextBox1.Text;
-        ss = (string)Session["StoreId"];
+
         string UserID = txtuser.Text.Trim();
         string pass = txtpass.Text.Trim();
         string ShopID = TextBox1.Text.Trim();
@@ -43,7 +40,7 @@ public partial class Login : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@LOGINID", UserID);
         cmd.Parameters.AddWithValue("@PASSWORD", pass);
         cmd.Parameters.AddWithValue("@ShopID", ShopID);
-   
+
         con.Open();
 
         SqlDataReader rd = cmd.ExecuteReader();
@@ -52,7 +49,7 @@ public partial class Login : System.Web.UI.Page
             rd.Read();
             lblLogMsg.Text = "Login successful.";
 
-               // //Session to Master Page                
+               // //Session to Master Page
                //Session["UserID"] = UserID;
             //Session["ShopID"] = rd["ShopID"].ToString();
 
@@ -62,6 +59,7 @@ public partial class Login : System.Web.UI.Page
                Response.Cookies["InventMgtCookies"].Expires = DateTime.Now.AddDays(9965);
                Session["ShopID"] = TextBox1.Text;
                Session["ShopID1"] = TextBox1.Text;
+               Session["ShopID"] = TextBox1.Text;
 
                 hitcounter();
                 Response.Redirect("sales.aspx", false);
@@ -84,16 +82,16 @@ public partial class Login : System.Web.UI.Page
     public void hitcounter()
     {
         try
-        {          
+        {
             string ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-           
+
             SqlConnection cn = new SqlConnection(ConnectionString);
-           
+
             SqlCommand cmd = new SqlCommand("SP_POS_Insert_HitCounter", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@userID", txtuser.Text);
             cmd.Parameters.AddWithValue("@IPaddress", ip);
-             
+
             cn.Open();
             cmd.ExecuteNonQuery();
             cn.Close();
@@ -102,5 +100,5 @@ public partial class Login : System.Web.UI.Page
         {
         }
     }
-    
+
 }

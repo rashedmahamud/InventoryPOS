@@ -92,8 +92,6 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         ddlBankName.DataSource = users;
         ddlBankName.DataBind();
     }
-
-
     protected void ddlBankName_SelectedIndexChanged(object sender, EventArgs e)
     {
         string ss = (string)Session["ShopID"];
@@ -566,8 +564,6 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         }
         catch {}
     }
-
-
     public void Bank()
     {
         string BankAccountNumber=null;
@@ -667,8 +663,6 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
 
         //}
     }
-
-
 
     protected void TextBox1_TextChanged(object sender, EventArgs e)
     {
@@ -953,7 +947,6 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         }
     }
 
-
     //Insert One Row sales payment info every one trXID
     protected void SaveSalePaymentInfo()
     {
@@ -989,14 +982,11 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         }
     }
 
-
     protected void ItemCode_TextChanged1(object sender, EventArgs e)
     {
         GridViewRow row = (sender as TextBox).NamingContainer as GridViewRow;
         searchitem(row);
     }
-
-
 
     public void listbox()
     {

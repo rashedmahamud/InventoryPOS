@@ -82,10 +82,10 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
                 <div class="note note-info note-shadow">
                      <div class="col-lg-7"  style="text-align:left; top: 0px; left: 0px; width: 189px;"> Quotation </div>
                       <div class="col-lg-3"   style="text-align:right" >
-                       | <%--<input type="button" class="btn btn-success btn-xs" value="Print"  onclick="javascript: printDiv('wrapper')" />    --%>
-                          <asp:Button ID="Button1" runat="server" Text="Print Quotation" class="btn btn-danger" OnClick="Button1_Click"/>
+                       <%--<input type="button" class="btn btn-success btn-xs" value="Print"  onclick="javascript: printDiv('wrapper')" />    --%>
+                      <%--    <asp:Button ID="Button1" runat="server" Text="Print Quotation" class="btn btn-danger" OnClick="Button1_Click"/>--%>
                       </div><br />
-                      <asp:Label ID="Label22" runat="server" Text="123456789"></asp:Label>
+                     <%-- <asp:Label ID="Label22" runat="server" Text="123456789"></asp:Label>--%>
 
                 </div>
                 <table>
@@ -97,12 +97,10 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
                                 <table>
                                     <tr>
                                         <td style="vertical-align:top;text-align:left;margin-left:0px" class="auto-style4">
-
                                            <asp:Label ID="Label13" runat="server" Font-Size="XX-Large" Font-Bold="true" Text="Label"></asp:Label><br />
                                            <asp:Label ID="Label14" runat="server" Font-Size="10px" Font-Bold="true"  Text="Label"></asp:Label><br />
                                            <asp:Label ID="Label15" runat="server" Text="Label"></asp:Label><br />
                                            <asp:Label ID="Label16" runat="server" Text="Label"></asp:Label><br />
-
                                         </td>
                                         <td style="vertical-align:middle;text-align:left;" class="auto-style2">
                                             <br />
@@ -140,23 +138,28 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
                                         </td>
 
                                         <td>
-
+                                                <b style="font-size:x-large"> Enter Banking Info </b><br />
+                                                <asp:DropDownList ID="ddlBankName" runat="server" Height="25px" Width="220px" placeholder="Select Bank" DataTextField="Text" DataValueField="Value" AutoPostBack="True" OnSelectedIndexChanged="ddlBankName_SelectedIndexChanged">
+                                                </asp:DropDownList>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:DropDownList ID="ddlBankAccountNumber" runat="server" Height="25px" Width="220px" placeholder="Select Account" DataTextField="Text" DataValueField="Value">
+                                                </asp:DropDownList>
                                         </td>
 
     	                                <td style="width:20% ;vertical-align:top;margin-left:50%"><b>Quotation #</b>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="TextBox14" Font-Size="12px" runat="server" Height="19px" class="effect-1 input-effect"  BackColor="#f0f5f5" placeholder="Invoice Number" type="text" Width="120px"> </asp:TextBox>
-                                        <br />
-                                        <b>Quotation Date:&nbsp;</b><asp:TextBox ID="TextBox15" Font-Size="12px" runat="server" BackColor="#f0f5f5" Height="19px"  class="effect-1 input-effect"  Enabled="false" placeholder="Invoice Date" type="text" Width="120px"> </asp:TextBox>
-                                        <br />
-                                        <b>Payment Term:&nbsp;&nbsp;</b><asp:TextBox ID="TextBox5" runat="server" Font-Size="12px" class="effect-1 input-effect" Height="19px" BackColor="#f0f5f5" placeholder="Payment Term" type="text" Width="120px" ></asp:TextBox>
-                                        <br />
-                                        <b>Payment Date:&nbsp;&nbsp;&nbsp;</b><asp:TextBox ID="TextBox6" runat="server" class="effect-1 input-effect" Font-Size="12px" BackColor="#f0f5f5" Height="19px" placeholder="Payment Date" type="text" Width="120px" ></asp:TextBox>
-                                         <br />
-                                         <br />
-                                         <div>
-                                            <asp:Button ID="btnAdd" runat="server" class="btn btn-info" OnClick="btnAdd_Click" Text="Add Line" />
-                                            <asp:LinkButton ID="LinkButton1" runat="server" class="btn btn-info" OnClick="LinkButton1_Click ">Create Invoice</asp:LinkButton>
-                                        </div>
-                                   </td>
+                                            <br />
+                                            <b>Quotation Date:&nbsp;</b><asp:TextBox ID="TextBox15" Font-Size="12px" runat="server" BackColor="#f0f5f5" Height="19px"  class="effect-1 input-effect"  Enabled="false" placeholder="Invoice Date" type="text" Width="120px"> </asp:TextBox>
+                                            <br />
+                                            <b>Payment Term:&nbsp;&nbsp;</b><asp:TextBox ID="TextBox5" runat="server" Font-Size="12px" class="effect-1 input-effect" Height="19px" BackColor="#f0f5f5" placeholder="Payment Term" type="text" Width="120px" ></asp:TextBox>
+                                            <br />
+                                            <b>Payment Date:&nbsp;&nbsp;&nbsp;</b><asp:TextBox ID="TextBox6" runat="server" class="effect-1 input-effect" Font-Size="12px" BackColor="#f0f5f5" Height="19px" placeholder="Payment Date" type="text" Width="120px" ></asp:TextBox>
+                                            <br />
+                                            <br />
+                                            <div>
+                                                <asp:Button ID="btnAdd" runat="server" class="btn btn-info" OnClick="btnAdd_Click" Text="Add Line" />
+                                                <asp:LinkButton ID="LinkButton1" runat="server" class="btn btn-info" OnClick="LinkButton1_Click ">Create Invoice</asp:LinkButton>
+                                            </div>
+                                      </td>
                                     </tr>
     	                          </table>
                                   <hr style="border:solid;height:1px" ></hr>
@@ -244,7 +247,7 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
                                                                  <br />
                                                                  <asp:Label ID="Label7" runat="server" Text="0.0"></asp:Label>
                                                                  <br />
-                                                                 <asp:TextBox ID="TextBox16" runat="server" BackColor="#f0f5f5" AutoPostBack="true" OnTextChanged="TextBox16_TextChanged" BorderStyle="None" Width="43px"></asp:TextBox>
+                                                                 <asp:TextBox ID="TextBox16" runat="server" BackColor="#f0f5f5" AutoPostBack="true" OnTextChanged="TextBox16_TextChanged"  Width="43px"></asp:TextBox>
                                                                  <br />
                                                                  <asp:Label ID="Label9" runat="server" Text="0.00"></asp:Label>
                                                                  <br />

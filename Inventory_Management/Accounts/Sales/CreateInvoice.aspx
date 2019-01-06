@@ -73,7 +73,7 @@
 
 
 
-                         <asp:Label ID="Label22" runat="server" Text="123456789"></asp:Label>
+                       <%--  <asp:Label ID="Label22" runat="server" Text="123456789"></asp:Label>--%>
                    </div>
                   <table>
                                 <tr>

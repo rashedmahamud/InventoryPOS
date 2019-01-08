@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Accounts/MasterPage.master" AutoEventWireup="true" CodeFile="DueInvoice.aspx.cs" Inherits="Accounts_DueInvoice" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="atk" %>
-<%@ Register assembly="Microsoft.ReportViewer.WebForms" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+<%--<%@ Register assembly="Microsoft.ReportViewer.WebForms" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>--%>
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      <link href="Textboxcss.css" rel="stylesheet" />
     <link href="../2column.css" rel="stylesheet" />
@@ -81,7 +82,7 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
                                     Receiveable
                             </div>
                            <div class="col-md-4  pull-right"   style="text-align:left;top: 0px; width: 166px; height: 31px;" >
-                                <asp:Button ID="Button3" runat="server" Text="Print Due Invoice" class="btn btn-danger btn-xs" OnClick="Button3_Click"/>
+                                <asp:Button ID="Button3" runat="server" Text="Print Sales Report" class="btn btn-danger btn-xs" OnClick="Button3_Click"/>
                            </div>
                         </div>
                          <br />

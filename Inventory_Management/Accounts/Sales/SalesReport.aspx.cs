@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
+using Microsoft.Reporting.WebForms;
 
 public partial class Sales_SalesReport : System.Web.UI.Page
 {
@@ -62,10 +63,10 @@ public partial class Sales_SalesReport : System.Web.UI.Page
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            
-            totalpayable += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "Total"));           
+
+            totalpayable += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "Total"));
             totalDue += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "Due"));
-           
+
 
             e.Row.Cells[0].Width = 10;
             e.Row.Cells[5].HorizontalAlign = HorizontalAlign.Right;
@@ -80,10 +81,10 @@ public partial class Sales_SalesReport : System.Web.UI.Page
              e.Row.Cells[6].Font.Size = 9;
             e.Row.Cells[4].Font.Size = 11;
             e.Row.Cells[5].Font.Size = 11;
-  
 
 
-            // Total Pay calculation 
+
+            // Total Pay calculation
             e.Row.Cells[5].Text = totalpayable.ToString("");
             string tpay = totalpayable.ToString("c");
             int tpaycut = tpay.IndexOf('$');
@@ -93,7 +94,7 @@ public partial class Sales_SalesReport : System.Web.UI.Page
             e.Row.Cells[5].Font.Bold = true;
 
 
-            // Total Due calculation 
+            // Total Due calculation
             e.Row.Cells[6].Text = totalDue.ToString();
             string tDue = totalDue.ToString();
            // int tDuecut = tpay.IndexOf('$');
@@ -102,7 +103,7 @@ public partial class Sales_SalesReport : System.Web.UI.Page
             e.Row.Cells[6].Text = tDue;
 
             e.Row.Cells[6].Font.Bold = true;
- 
+
 
 
             e.Row.Cells[4].Font.Bold = true;
@@ -111,7 +112,7 @@ public partial class Sales_SalesReport : System.Web.UI.Page
             e.Row.Cells[4].HorizontalAlign = e.Row.Cells[5].HorizontalAlign = HorizontalAlign.Right;
             e.Row.Cells[5].HorizontalAlign = e.Row.Cells[5].HorizontalAlign = HorizontalAlign.Right;
             e.Row.Cells[6].HorizontalAlign = e.Row.Cells[6].HorizontalAlign = HorizontalAlign.Right;
-            
+
         }
     }
 
@@ -125,7 +126,7 @@ public partial class Sales_SalesReport : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@Location", Session["ShopID"].ToString());
             cmd.CommandType = CommandType.StoredProcedure;
             cn.Open();
-           
+
             SqlDataReader sdr = cmd.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(sdr);
@@ -135,7 +136,7 @@ public partial class Sales_SalesReport : System.Web.UI.Page
             lblshopAddress.Text = dt.Rows[0].ItemArray[2].ToString();
             lblPhone.Text = dt.Rows[0].ItemArray[3].ToString();
             lblwebAddress.Text = dt.Rows[0].ItemArray[5].ToString();
-          
+
             cn.Close();
         }
         catch
@@ -143,7 +144,7 @@ public partial class Sales_SalesReport : System.Web.UI.Page
         }
     }
 
-      // //////// Search item by ID , Code , 
+      // //////// Search item by ID , Code ,
     protected void txtsearch_TextChanged(object sender, EventArgs e)
     {
         try
@@ -200,13 +201,13 @@ public partial class Sales_SalesReport : System.Web.UI.Page
             lbtotalRow.Text = "No Records Found";
         }
     }
-   
+
     public void report()
     {
 
         try
         {
-        
+
             SqlConnection cn = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand("SP_INV_DataBind_SalesReport_DateToDate", cn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -227,7 +228,7 @@ public partial class Sales_SalesReport : System.Web.UI.Page
             lbtotalRow.Text = "No Records Found";
         }
     }
-    
+
     //AutoComplete  AutoCompleteExtender  ////////////////////////////////////////////   AutoCompleteExtender
     [System.Web.Script.Services.ScriptMethod()]
     [System.Web.Services.WebMethod]
@@ -262,5 +263,91 @@ public partial class Sales_SalesReport : System.Web.UI.Page
            // e.Row.Cells[0].Width = 10;
             e.Row.Cells[1].Width = 10;
         }
+    }
+    //Print Report
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        string InvocieNo = null;
+
+        if (txtsearch.Text != "")
+        {
+            InvocieNo = txtsearch.Text;
+        }
+
+
+        List<SalesReports> SalesList = new List<SalesReports>();
+        try
+        {
+            SqlConnection cn = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand("SP_INV_DataBind_SalesReport_DateToDate", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cn.Open();
+            cmd.Parameters.AddWithValue("@DateFrom",  txtDateFrom.Text);
+            cmd.Parameters.AddWithValue("@DateTo", txtDateTo.Text);
+
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            var dt = new DataTable();
+            dt.Load(rd);
+            List<DataRow> dr = dt.AsEnumerable().ToList();
+
+
+            for (int i = 0; i < dr.Count; i++)
+            {
+                SalesReports list = new SalesReports();
+
+                list.InvoiceNo = dr[i].ItemArray[1].ToString();
+                list.CustomerName = dr[i].ItemArray[2].ToString();
+                list.CustomerId = dr[i].ItemArray[3].ToString();
+                list.PhoneNumber = dr[i].ItemArray[4].ToString();
+                list.Total = Convert.ToDouble( dr[i].ItemArray[5]);
+                list.Due = Convert.ToDouble(dr[i].ItemArray[6]);
+                list.Date = dr[i].ItemArray[7].ToString();
+                list.ServedBy = dr[i].ItemArray[8].ToString();
+                list.ShopId = dr[i].ItemArray[9].ToString();
+
+                SalesList.Add(list);
+            }
+
+
+            cn.Close();
+           // lbtotalRow.Text = "Report From : " + txtDateFrom.Text + " To " + txtDateTo.Text + "<br />";
+            SystemInfo();
+        }
+
+        catch
+        {
+            lbtotalRow.Text = "No Records Found";
+        }
+
+
+        var reportParameters = new ReportParameterCollection
+           {
+               //new ReportParameter("CompanyName",CompanyName),
+               //new ReportParameter("ComapanyAddress",ComapanyAddress),
+               //new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
+               //new ReportParameter("CompanyWebsite",CompanyWebsite),
+               //new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
+
+
+               new ReportParameter("DateFrom",txtDateFrom.Text),
+               new ReportParameter("DateTo",txtDateTo.Text),
+               new ReportParameter("InvocieNo",InvocieNo)
+
+           };
+
+
+        ReportViewer1.ProcessingMode = ProcessingMode.Local;
+        ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RDLCReports/SalesReport.rdlc");
+
+        ReportDataSource datasource = new ReportDataSource("SalesReport", SalesList);
+        ReportViewer1.LocalReport.DataSources.Clear();
+
+        ReportViewer1.LocalReport.EnableExternalImages = true;
+        ReportViewer1.ExportContentDisposition = ContentDisposition.AlwaysInline;
+
+        ReportViewer1.LocalReport.DataSources.Add(datasource);
+        ReportViewer1.LocalReport.SetParameters(reportParameters);
+
     }
 }

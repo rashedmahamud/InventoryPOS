@@ -1235,7 +1235,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Rainforest Fusion</Value>
+                  <Value>=Parameters!CompanyName.Value</Value>
                   <Style>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1268,7 +1268,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>34 Railway Parade,Lakemba</Value>
+                  <Value>=Parameters!ComapanyAddress.Value</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1300,7 +1300,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>www.rainforestfusion.com.au</Value>
+                  <Value>=Parameters!CompanyWebsite.Value+" | Mobile:"+Parameters!CompanyMobileNumber.Value</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1616,6 +1616,31 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="InvocieNo">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyMobileNumber">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyName">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ComapanyAddress">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyWebsite">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyFooterMassage">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>

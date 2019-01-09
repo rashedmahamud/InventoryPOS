@@ -267,6 +267,12 @@ public partial class Sales_SalesReport : System.Web.UI.Page
     //Print Report
     protected void Button3_Click(object sender, EventArgs e)
     {
+        string ss = (string)Session["ShopID"];
+        string CompanyName = null;
+        string ComapanyAddress = null;
+        string CompanyMobileNumber = null;
+        string CompanyWebsite = null;
+        string CompanyFooterMassage = null;
         string InvocieNo = null;
 
         if (txtsearch.Text != "")
@@ -362,13 +368,40 @@ public partial class Sales_SalesReport : System.Web.UI.Page
         }
 
 
+        // Company Info
+
+        try
+        {
+            SqlConnection cn = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cn.Open();
+            cmd.CommandText = "Select * from tbl_settings where Location='" + ss + "'";
+            cmd.Connection = cn;
+            SqlDataReader rd4 = cmd.ExecuteReader();
+
+            if (rd4.HasRows)
+            {
+                while (rd4.Read())
+                {
+                    CompanyName = (rd4["CompanyName"].ToString());
+                    ComapanyAddress = rd4["CompanyAddress"].ToString();
+                    CompanyWebsite = rd4["WebAddress"].ToString();
+                    CompanyMobileNumber = rd4["Phone"].ToString();
+                    CompanyFooterMassage = rd4["Footermsg"].ToString();
+                }
+                cn.Close();
+            }
+        }
+        catch { }
+
         var reportParameters = new ReportParameterCollection
            {
-               //new ReportParameter("CompanyName",CompanyName),
-               //new ReportParameter("ComapanyAddress",ComapanyAddress),
-               //new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
-               //new ReportParameter("CompanyWebsite",CompanyWebsite),
-               //new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
+               new ReportParameter("CompanyName",CompanyName),
+               new ReportParameter("ComapanyAddress",ComapanyAddress),
+               new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
+               new ReportParameter("CompanyWebsite",CompanyWebsite),
+               new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
 
 
                new ReportParameter("DateFrom",txtDateFrom.Text),

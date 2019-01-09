@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
+using Microsoft.Reporting.WebForms;
 
 public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
 {
@@ -65,7 +66,7 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
         }
     }
 
-    // //////// Search item by ID , Code , 
+    // //////// Search item by ID , Code ,
     protected void txtsearch_TextChanged(object sender, EventArgs e)
     {
 
@@ -81,18 +82,55 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
 
     }
 
+    //public void Report_DateToDate_DataBind()
+    //{
+    //    try
+    //    {
+    //        SqlConnection cn = new SqlConnection(ConnectionString);
+    //        SqlCommand cmd = new SqlCommand("select   ItemCode as Bar_Code ,ItemName as Product_Name ,Qty as Quantity ,Price as Retail_Price ,DiscRate as Discount ,total as Total , Profit ,SP_ID as Recipt_Number ,ShopId as Branch_Number 	from   	 where ShopId=@ShopId and ItemCode=@ItemCode and  Logdate >=  @DateFrom     and  Logdate <= @DateTo   ", cn);
+    //        cmd.CommandType = CommandType.Text;
+    //        cn.Open();
+    //        cmd.Parameters.AddWithValue("@ItemCode", TextBox1.Text.ToString());
+    //        cmd.Parameters.AddWithValue("@ShopId", txtsearch.Text.ToString());
+    //        cmd.Parameters.AddWithValue("@DateFrom", txtDateFrom.Text);
+    //        cmd.Parameters.AddWithValue("@DateTo", txtDateFrom.Text);
+
+    //        grdviewSalesReport.DataSource = cmd.ExecuteReader();
+    //        grdviewSalesReport.EmptyDataText = "No Records Found";
+    //        grdviewSalesReport.DataBind();
+    //        cn.Close();
+    //        lbtotalRow.Text = "Report From : " + txtDateFrom.Text + " To " + txtDateTo.Text + "<br />";
+    //        SystemInfo();
+    //    }
+    //    catch
+    //    {
+    //        lbtotalRow.Text = "No Records Found";
+    //    }
+    //}
+
+       // select * from tbl_sales where ItemCode =1 and ShopId=1461 and Logdate>='2018-11-24' and Logdate<='2019/01/01'
     public void Report_DateToDate_DataBind()
     {
+        DateTime DateFrom = DateTime.Parse(txtDateFrom.Text.ToString());
+        string dateFrom = DateFrom.ToString("yyyy/MM/dd");
+
+        DateTime DateTo = DateTime.Parse(txtDateTo.Text.ToString());
+        string dateTo = DateTo.ToString("yyyy/MM/dd");
+
         try
         {
             SqlConnection cn = new SqlConnection(ConnectionString);
-            SqlCommand cmd = new SqlCommand("select   ItemCode as Bar_Code ,ItemName as Product_Name ,Qty as Quantity ,Price as Retail_Price ,DiscRate as Discount ,total as Total , Profit ,SP_ID as Recipt_Number ,ShopId as Branch_Number 	from  tbl_sales	 where ShopId=@ShopId and ItemCode=@ItemCode and  Logdate >=  @DateFrom     and  Logdate <= @DateTo   ", cn);
-            cmd.CommandType = CommandType.Text;
+            SqlCommand cmd = new SqlCommand();
+
             cn.Open();
-            cmd.Parameters.AddWithValue("@ItemCode", TextBox1.Text.ToString());
-            cmd.Parameters.AddWithValue("@ShopId", txtsearch.Text.ToString());
-            cmd.Parameters.AddWithValue("@DateFrom", txtDateFrom.Text);
-            cmd.Parameters.AddWithValue("@DateTo", txtDateFrom.Text);
+            cmd.CommandText = "select ItemCode as Bar_Code ,ItemName as Product_Name ,Qty as Quantity ,Price as Retail_Price ,DiscRate as Discount ,total as Total , Profit ,SP_ID as Recipt_Number ,ShopId as Branch_Number	from tbl_sales  where ShopId='" + txtsearch.Text.ToString() + "' and ItemCode= '" + TextBox1.Text.ToString() + "' and  Logdate >=  '" + dateFrom + "'     and  Logdate <= '" + dateTo + "'  ";
+            cmd.Connection = cn;
+
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            var dt = new DataTable();
+            dt.Load(rd);
+            List<DataRow> dr = dt.AsEnumerable().ToList();
 
             grdviewSalesReport.DataSource = cmd.ExecuteReader();
             grdviewSalesReport.EmptyDataText = "No Records Found";
@@ -106,7 +144,6 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
             lbtotalRow.Text = "No Records Found";
         }
     }
-
 
     protected void grdviewSalesReport_RowDataBound(object sender, GridViewRowEventArgs e)
     {
@@ -133,7 +170,7 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
 
 
 
-            // Total Pay calculation 
+            // Total Pay calculation
             e.Row.Cells[5].Text = totalSales.ToString("");
             string tpay = totalSales.ToString("c");
             int tpaycut = tpay.IndexOf('$');
@@ -143,7 +180,7 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
             e.Row.Cells[5].Font.Bold = true;
             Label1.Text = e.Row.Cells[5].Text;
 
-            // Total Due calculation 
+            // Total Due calculation
             e.Row.Cells[6].Text = totalProfit.ToString();
             string tDue = totalProfit.ToString();
             // int tDuecut = tpay.IndexOf('$');
@@ -165,12 +202,125 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
         }
     }
 
-
-
-
     protected void Button8_Click(object sender, EventArgs e)
     {
         Report_DateToDate_DataBind();
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        DateTime DateFrom = DateTime.Parse(txtDateFrom.Text.ToString());
+        string dateFrom = DateFrom.ToString("yyyy/MM/dd");
+
+        DateTime DateTo = DateTime.Parse(txtDateTo.Text.ToString());
+        string dateTo = DateTo.ToString("yyyy/MM/dd");
+
+        string ss = (string)Session["ShopID"];
+        string CompanyName = null;
+        string ComapanyAddress = null;
+        string CompanyMobileNumber = null;
+        string CompanyWebsite = null;
+        string CompanyFooterMassage = null;
+
+
+        List<ItemWiseSalesReport> ItemWiseSales = new List<ItemWiseSalesReport>();
+
+
+        try
+        {
+            SqlConnection cn = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cn.Open();
+            cmd.CommandText = "select ItemCode as Bar_Code ,ItemName as Product_Name ,Qty as Quantity ,Price as Retail_Price ,DiscRate as Discount ,total as Total , Profit ,SP_ID as Recipt_Number ,ShopId as Branch_Number	from tbl_sales  where ShopId='" + txtsearch.Text.ToString() + "' and ItemCode= '" + TextBox1.Text.ToString() + "' and  Logdate >=  '" + dateFrom + "'     and  Logdate <= '" + dateTo + "'  ";
+            cmd.Connection = cn;
+
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            var dt = new DataTable();
+            dt.Load(rd);
+            List<DataRow> dr = dt.AsEnumerable().ToList();
+
+            for (int i = 0; i < dr.Count; i++)
+            {
+                //SalesReports list = new SalesReports();
+
+                //list.InvoiceNo = dr[i].ItemArray[1].ToString();
+                //list.CustomerName = dr[i].ItemArray[2].ToString();
+                //list.CustomerId = dr[i].ItemArray[3].ToString();
+                //list.PhoneNumber = dr[i].ItemArray[4].ToString();
+                //list.Total = Convert.ToDouble(dr[i].ItemArray[5]);
+                //list.Due = Convert.ToDouble(dr[i].ItemArray[6]);
+                //list.Date = dr[i].ItemArray[7].ToString();
+                //list.ServedBy = dr[i].ItemArray[8].ToString();
+                //list.ShopId = dr[i].ItemArray[9].ToString();
+
+                //SalesList.Add(list);
+            }
+            cn.Close();
+
+        }
+        catch {
+            lbtotalRow.Text = "No Records Found";
+        }
+
+        // Company Info
+
+        try
+        {
+            SqlConnection cn = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cn.Open();
+            cmd.CommandText = "Select * from tbl_settings where Location='" + ss + "'";
+            cmd.Connection = cn;
+            SqlDataReader rd4 = cmd.ExecuteReader();
+
+            if (rd4.HasRows)
+            {
+                while (rd4.Read())
+                {
+                    CompanyName = (rd4["CompanyName"].ToString());
+                    ComapanyAddress = rd4["CompanyAddress"].ToString();
+                    CompanyWebsite = rd4["WebAddress"].ToString();
+                    CompanyMobileNumber = rd4["Phone"].ToString();
+                    CompanyFooterMassage = rd4["Footermsg"].ToString();
+                }
+                cn.Close();
+            }
+        }
+        catch { }
+
+        var reportParameters = new ReportParameterCollection
+           {
+               new ReportParameter("CompanyName",CompanyName),
+               new ReportParameter("ComapanyAddress",ComapanyAddress),
+               new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
+               new ReportParameter("CompanyWebsite",CompanyWebsite),
+               new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
+
+
+               new ReportParameter("DateFrom",txtDateFrom.Text),
+               new ReportParameter("DateTo",txtDateTo.Text),
+               new ReportParameter("ShopId",txtsearch.Text.ToString()),
+               new ReportParameter("ItemCode",TextBox1.Text.ToString())
+
+           };
+
+
+        ReportViewer1.ProcessingMode = ProcessingMode.Local;
+        ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RDLCReports/ItemWiseSalesReport.rdlc");
+
+        ReportDataSource datasource = new ReportDataSource("ItemWiseSales", ItemWiseSales);
+        ReportViewer1.LocalReport.DataSources.Clear();
+
+        ReportViewer1.LocalReport.EnableExternalImages = true;
+        ReportViewer1.ExportContentDisposition = ContentDisposition.AlwaysInline;
+
+        ReportViewer1.LocalReport.DataSources.Add(datasource);
+        ReportViewer1.LocalReport.SetParameters(reportParameters);
+
+
+
     }
 }
 

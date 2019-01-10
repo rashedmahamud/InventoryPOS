@@ -181,10 +181,10 @@ background-color:ButtonShadow;
                         <asp:Button ID="Button1" class="btn btn-success btn-xs" runat="server" Text="Print" OnClick="Button1_Click" />
 
                     </td>
-                    <rsweb:ReportViewer ID="ReportViewer1" runat="server"></rsweb:ReportViewer>
+
                 </tr>
             </table>
-
+                      <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="294px" Width="936px"></rsweb:ReportViewer>
                 </div><br />
                    <atk:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtsearch"
                     MinimumPrefixLength="1" EnableCaching="true"      CompletionSetCount="1" CompletionInterval="100"

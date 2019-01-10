@@ -234,6 +234,8 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
             cmd.CommandText = "select ItemCode as Bar_Code ,ItemName as Product_Name ,Qty as Quantity ,Price as Retail_Price ,DiscRate as Discount ,total as Total , Profit ,SP_ID as Recipt_Number ,ShopId as Branch_Number	from tbl_sales  where ShopId='" + txtsearch.Text.ToString() + "' and ItemCode= '" + TextBox1.Text.ToString() + "' and  Logdate >=  '" + dateFrom + "'     and  Logdate <= '" + dateTo + "'  ";
             cmd.Connection = cn;
 
+
+
             SqlDataReader rd = cmd.ExecuteReader();
 
             var dt = new DataTable();
@@ -242,19 +244,20 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
 
             for (int i = 0; i < dr.Count; i++)
             {
-                //SalesReports list = new SalesReports();
+                ItemWiseSalesReport list = new ItemWiseSalesReport();
 
-                //list.InvoiceNo = dr[i].ItemArray[1].ToString();
-                //list.CustomerName = dr[i].ItemArray[2].ToString();
-                //list.CustomerId = dr[i].ItemArray[3].ToString();
-                //list.PhoneNumber = dr[i].ItemArray[4].ToString();
-                //list.Total = Convert.ToDouble(dr[i].ItemArray[5]);
-                //list.Due = Convert.ToDouble(dr[i].ItemArray[6]);
-                //list.Date = dr[i].ItemArray[7].ToString();
-                //list.ServedBy = dr[i].ItemArray[8].ToString();
-                //list.ShopId = dr[i].ItemArray[9].ToString();
+                list.Bar_Code =     dr[i].ItemArray[0].ToString();
+                list.Product_Name = dr[i].ItemArray[1].ToString();
+                list.Quantity =     Convert.ToDouble(dr[i].ItemArray[2]);
+                list.Retail_Price = dr[i].ItemArray[3].ToString();
+                list.Discount = Convert.ToDouble(dr[i].ItemArray[4]);
+                list.Total = Convert.ToDouble(dr[i].ItemArray[5]);
+                list.Profit = Convert.ToDouble(dr[i].ItemArray[6]);
+                list.Recipt_Number = dr[i].ItemArray[7].ToString();
+                list.Branch_Number = dr[i].ItemArray[8].ToString();
 
-                //SalesList.Add(list);
+
+                ItemWiseSales.Add(list);
             }
             cn.Close();
 
@@ -290,6 +293,13 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
         }
         catch { }
 
+
+
+        string Fromdate = txtDateFrom.Text.ToString();
+        string Todate = txtDateTo.Text.ToString();
+        string ItemCode = TextBox1.Text.ToString();
+        string ShopID = txtsearch.Text.ToString();
+
         var reportParameters = new ReportParameterCollection
            {
                new ReportParameter("CompanyName",CompanyName),
@@ -297,12 +307,10 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
                new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
                new ReportParameter("CompanyWebsite",CompanyWebsite),
                new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
-
-
-               new ReportParameter("DateFrom",txtDateFrom.Text),
-               new ReportParameter("DateTo",txtDateTo.Text),
-               new ReportParameter("ShopId",txtsearch.Text.ToString()),
-               new ReportParameter("ItemCode",TextBox1.Text.ToString())
+               new ReportParameter("DateFrom",Fromdate),
+               new ReportParameter("DateTo", Todate),
+               new ReportParameter("ShopId",ShopID),
+               new ReportParameter("ItemCode",ItemCode)
 
            };
 
@@ -317,7 +325,7 @@ public partial class Sales_ItemwiseSalesReport : System.Web.UI.Page
         ReportViewer1.ExportContentDisposition = ContentDisposition.AlwaysInline;
 
         ReportViewer1.LocalReport.DataSources.Add(datasource);
-        ReportViewer1.LocalReport.SetParameters(reportParameters);
+       ReportViewer1.LocalReport.SetParameters(reportParameters);
 
 
 

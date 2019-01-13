@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 using System.Data;
 
 public partial class ManageCustomers : System.Web.UI.Page
-{    
+{
     string ConnectionString = ConfigurationManager.ConnectionStrings["PointofSaleConstr"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,7 +27,7 @@ public partial class ManageCustomers : System.Web.UI.Page
             //SqlCommand cmd = new SqlCommand("SP_POS_DataBind_Customers", cn);
             //cmd.CommandType = CommandType.StoredProcedure;
             //cn.Open();
-           
+
             //grdVcustomersList.DataSource = cmd.ExecuteReader();
             //grdVcustomersList.EmptyDataText =  "No Records Found";
             //grdVcustomersList.DataBind();
@@ -48,7 +48,7 @@ public partial class ManageCustomers : System.Web.UI.Page
            // lbtotalRow.Text = "Total : " + Convert.ToString(grdVcustomersList.Rows.Count) + " Records found" + "<br />";
             con.Close();
 
-             
+
         }
         catch
         {
@@ -56,7 +56,7 @@ public partial class ManageCustomers : System.Web.UI.Page
         }
     }
 
-    // ///////     Details sales to customer  transactions databind 
+    // ///////     Details sales to customer  transactions databind
     public void DataBindcustomersales(string custid)
     {
         try
@@ -83,12 +83,12 @@ public partial class ManageCustomers : System.Web.UI.Page
     // Details View
     protected void Linkdtview_Click(object sender, EventArgs e)
     {
-        lblmsg.Text = "";       
+        lblmsg.Text = "";
         LinkButton Linkdetails = sender as LinkButton;
         GridViewRow gvrow = (GridViewRow)Linkdetails.NamingContainer;
 
         lblcustid.Text = gvrow.Cells[1].Text;
-        lblcusname.Text = gvrow.Cells[2].Text;        
+        lblcusname.Text = gvrow.Cells[2].Text;
         lblcname.Text = gvrow.Cells[2].Text;
         lblEmail.Text = gvrow.Cells[4].Text;
         lblphone.Text = gvrow.Cells[3].Text;
@@ -145,8 +145,8 @@ public partial class ManageCustomers : System.Web.UI.Page
         {
             SqlConnection cn = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand("SP_POS_Update_Customer", cn);
-            cmd.CommandType = CommandType.StoredProcedure; 
-            
+            cmd.CommandType = CommandType.StoredProcedure;
+
             cmd.Parameters.AddWithValue("@id",lblID.Text );
             cmd.Parameters.AddWithValue("@CustName",        txtCustName.Text);
             cmd.Parameters.AddWithValue("@CustPhone",       txtContact.Text);
@@ -156,7 +156,7 @@ public partial class ManageCustomers : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@DiscountRate",    txtDiscount.Text);
             cmd.Parameters.AddWithValue("@custpaword",      txtCustPassword.Text);
             cmd.Parameters.AddWithValue("@Lastupdateby",    Request.Cookies["InventMgtCookies"]["UserID"].ToString());
-            
+
             cn.Open();
             cmd.ExecuteNonQuery();
             cn.Close();
@@ -177,17 +177,17 @@ public partial class ManageCustomers : System.Web.UI.Page
     }
 
 
-    protected void btnInactive_Click(object sender, EventArgs e) 
+    protected void btnInactive_Click(object sender, EventArgs e)
     {
         try
         {
             SqlConnection cn = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand("SP_POS_Inactive_Customer", cn);
-            
+
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@id", lblInactiveID.Text);
             cmd.Parameters.AddWithValue("@Lastupdateby", Request.Cookies["InventMgtCookies"]["UserID"].ToString());
-            
+
             cn.Open();
             cmd.ExecuteNonQuery();
             cn.Close();
@@ -214,5 +214,46 @@ public partial class ManageCustomers : System.Web.UI.Page
     {
         //txtsearch.Text = string.Empty;
         CustomersListDataBind();
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        List<CustomerList> CustomerList = new List<CustomerList>();
+        try
+        {
+            grdVcustomersList.PageSize = Convert.ToInt32(ddlpagesize.SelectedValue);
+            SqlConnection con = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand("SP_POS_DataBind_Customers", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            var dt = new DataTable();
+            dt.Load(rd);
+            List<DataRow> dr = dt.AsEnumerable().ToList();
+            for (int i = 0; i < dr.Count; i++)
+            {
+                CustomerList list = new CustomerList();
+
+                list.ID = Convert.ToInt16(dr[i].ItemArray[0]);
+                list.Name = dr[i].ItemArray[1].ToString();
+                list.Contact = dr[i].ItemArray[2].ToString();
+                list.Email = dr[i].ItemArray[3].ToString();
+                list.Address = dr[i].ItemArray[4].ToString();
+                list.CustomerType = dr[i].ItemArray[5].ToString();
+                list.DsicountPercent = dr[i].ItemArray[6].ToString();
+                list.CustID = dr[i].ItemArray[7].ToString();
+                list.password = dr[i].ItemArray[8].ToString();
+                list.Status = dr[i].ItemArray[9].ToString();
+
+                CustomerList.Add(list);
+            }
+            con.Close();
+
+
+        }
+        catch
+        {
+            lbtotalRow.Text = "No Records Found";
+        }
     }
 }

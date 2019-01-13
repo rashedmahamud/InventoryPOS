@@ -100,30 +100,26 @@ public partial class Accounts_Sales_Returnhistory : System.Web.UI.Page
     }
     public void ItemsListDataBind()
     {
-        //try
-        //{
-        string RP_ID = txtsearch.Text.Trim();
-        //string ShopID = Response.Cookies["InventMgtCookies"]["ShopID"];
-        string ShopID = Label1.Text.ToString();
-        string Logdate = txtDateFrom.Text.Trim();
-        string strcon = ConfigurationManager.ConnectionStrings["PointofSaleConstr"].ConnectionString;
-        SqlConnection con = new SqlConnection(strcon);
-        SqlCommand cmd = new SqlCommand("SP_Sales_Return", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@RP_ID", RP_ID);
-        cmd.Parameters.AddWithValue("@Logdate", Logdate);
-        cmd.Parameters.AddWithValue("@ShopID", ShopID);
-        con.Open();
+        DateTime DateFrom = DateTime.Parse(txtDateFrom.Text.ToString());
+        string dateFrom = DateFrom.ToString("yyyy/MM/dd");
+
+        DateTime DateTo = DateTime.Parse(txtDateTo.Text.ToString());
+        string dateTo = DateTo.ToString("yyyy/MM/dd");
+
+        string ss = (string)Session["ShopID"];
+
+        SqlConnection cn = new SqlConnection(ConnectionString);
+        SqlCommand cmd = new SqlCommand();
+
+        cn.Open();
+        cmd.CommandText = "select ItemCode as Code,ItemName as Name ,Qty as Quantity,Price,DiscRate as Discount,total as Total, RP_ID as Return_Invoice from tbl_Return where ShopID = '" + ss + "' and Logdate between '" + dateFrom + "' and '" + dateTo + "'";
+        cmd.Connection = cn;
+
         grdviewReturnReport.DataSource = cmd.ExecuteReader();
         grdviewReturnReport.EmptyDataText = "No Records Found";
         grdviewReturnReport.DataBind();
-        con.Close();
-        //  lbtotalRow.Text = "Total : " + Convert.ToString(grdItemList.Rows.Count) + " Records found" + "<br />";
-        //}
-        //catch
-        //{
-        //    //lbtotalRow.Text = "No Records Found";
-        //}
+        cn.Close();
+
     }
     protected void txtDateFrom_TextChanged(object sender, EventArgs e)
     {
@@ -241,7 +237,7 @@ public partial class Accounts_Sales_Returnhistory : System.Web.UI.Page
 
 
         ReportViewer1.ProcessingMode = ProcessingMode.Local;
-        ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RDLCReports/LossProfitReport.rdlc");
+        ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RDLCReports/ReturnHistoryReport.rdlc");
 
         ReportDataSource datasource = new ReportDataSource("ReturnReportsDataset", ReturnReports);
         ReportViewer1.LocalReport.DataSources.Clear();

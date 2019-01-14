@@ -6,37 +6,37 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.47917in</Width>
+              <Width>0.43372in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.48958in</Width>
+              <Width>0.44413in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8125in</Width>
+              <Width>0.76705in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8125in</Width>
+              <Width>0.76705in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8125in</Width>
+              <Width>0.76705in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8125in</Width>
+              <Width>0.76705in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8125in</Width>
+              <Width>0.76705in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8125in</Width>
+              <Width>0.76705in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8125in</Width>
+              <Width>0.76705in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8125in</Width>
+              <Width>0.76705in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8125in</Width>
+              <Width>0.76705in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -903,25 +903,220 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>CustomerListDataset</DataSetName>
-        <Left>0.25in</Left>
+        <Top>0.125in</Top>
+        <Left>0.125in</Left>
         <Height>0.5in</Height>
-        <Width>8.28125in</Width>
+        <Width>7.78125in</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox14">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!CompanyFooterMassage.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox14</rd:DefaultName>
+        <Top>1.69444in</Top>
+        <Left>0.26302in</Left>
+        <Height>0.25in</Height>
+        <Width>7.5925in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>9.05208in</Width>
+  <Width>8.23958in</Width>
   <Page>
     <PageHeader>
-      <Height>1in</Height>
+      <Height>0.875in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox18">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Parameters!CompanyName.Value</Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox18</rd:DefaultName>
+          <Top>0.06438in</Top>
+          <Height>0.28125in</Height>
+          <Width>7.97917in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox20">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Parameters!ComapanyAddress.Value</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox18</rd:DefaultName>
+          <Top>0.26278in</Top>
+          <Height>0.28125in</Height>
+          <Width>7.97917in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox21">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Parameters!CompanyWebsite.Value + " | Mobile:" + Parameters!CompanyMobileNumber.Value</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox20</rd:DefaultName>
+          <Top>0.41507in</Top>
+          <Left>0.00521in</Left>
+          <Height>0.19792in</Height>
+          <Width>7.96354in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox23">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>= "Date: "+CDate(DateTime.Now).ToString("dd-MMM-yyyy")</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox21</rd:DefaultName>
+          <Top>0.55791in</Top>
+          <Left>6.03364in</Left>
+          <Height>0.25in</Height>
+          <Width>1.91947in</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox16">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Active Customer List</Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <TextDecoration>Underline</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox15</rd:DefaultName>
+          <Top>0.5718in</Top>
+          <Height>0.25in</Height>
+          <Width>7.97917in</Width>
+          <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
       <Style>
         <Border>
           <Style>None</Style>
@@ -1076,6 +1271,33 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="CompanyName">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ComapanyAddress">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyMobileNumber">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyWebsite">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyFooterMassage">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>15937a08-4d52-47be-9e65-d70c00496d8f</rd:ReportID>
 </Report>

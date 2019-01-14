@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Accounts/MasterPage.master" AutoEventWireup="true" CodeFile="ManageCustomers.aspx.cs" Inherits="ManageCustomers" %>
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="atk" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="../assets/scripts/jquery.min.js" type="text/javascript"></script>
@@ -46,56 +47,57 @@ $(document).ready(function() {
 </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
-<div class="col-lg-12">
+    <div class="col-lg-12">
         <div class="well well-sm"  >
             <asp:Button ID="btnAdduser"  ValidationGroup="vlg656766" CssClass="btn btn-warning btn-xs" runat="server" Text="Add Customer" PostBackUrl="~/Customers/AddCustomer.aspx" />
-            <asp:Button ID="Button1"  CssClass="btn btn-success btn-xs" runat="server" Text="Print Employee List" OnClick="Button1_Click"/>
+            <asp:Button ID="Button1"  CssClass="btn btn-success btn-xs" runat="server"  Text="Print Employee List" PostBackUrl="~/Customers/PrintCustomerList.aspx" />
         </div>
 
-        <div class="panel panel-info">
-            <div class="panel-heading" ><span  class="fa fa-list"> </span> Customers list </div>
-                <div class="panel-body">
-                    <asp:Label ID="lbtotalRow" runat="server" Text=""></asp:Label>
-                       <asp:DropDownList        ID="ddlpagesize" runat="server"  AutoPostBack="True"
-                                onselectedindexchanged="ddlpagesize_SelectedIndexChanged">
-                                <asp:ListItem Value="5" Selected="True" >5</asp:ListItem>
-                                <asp:ListItem Value="10">10</asp:ListItem>
-                                <asp:ListItem Value="20">20</asp:ListItem>
-                                <asp:ListItem Value="30">30</asp:ListItem>
-                                <asp:ListItem Value="50">50</asp:ListItem>
-                                </asp:DropDownList> records per page
 
-            <div class="input-group"> <span class="input-group-addon">Filter</span>
-                <asp:TextBox ID="txtSearch"  class="form-control" placeholder="Type here..." runat="server"></asp:TextBox>
+        <asp:Panel ID="Panel3" runat="server">
 
-            </div>
-           <%-- class="table table-bordered table-striped table-hover table-heading table-datatable"--%>
-                    <asp:Label ID="lblNoRecords" runat="server" Text=""></asp:Label>
+                    <div class="panel panel-info">
+                          <div class="panel-heading" ><span  class="fa fa-list"> </span> Customers list </div>
+                          <div class="panel-body">
+                                    <asp:Label ID="lbtotalRow" runat="server" Text=""></asp:Label>
+                                       <asp:DropDownList        ID="ddlpagesize" runat="server"  AutoPostBack="True"
+                                                onselectedindexchanged="ddlpagesize_SelectedIndexChanged">
+                                                <asp:ListItem Value="5" Selected="True" >5</asp:ListItem>
+                                                <asp:ListItem Value="10">10</asp:ListItem>
+                                                <asp:ListItem Value="20">20</asp:ListItem>
+                                                <asp:ListItem Value="30">30</asp:ListItem>
+                                                <asp:ListItem Value="50">50</asp:ListItem>
+                                                </asp:DropDownList> records per page
 
+                            <div class="input-group"> <span class="input-group-addon">Filter</span>
+                                <asp:TextBox ID="txtSearch"  class="form-control" placeholder="Type here..." runat="server"></asp:TextBox>
+                            </div>
+                           <%-- class="table table-bordered table-striped table-hover table-heading table-datatable"--%>
+                            <asp:Label ID="lblNoRecords" runat="server" Text=""></asp:Label>
+                            <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Height="360px">
+                                <asp:GridView ID="grdVcustomersList" runat="server" data-search="true" class="table table-striped"
+                                   Font-Size="11px" AllowPaging="True"
+                                    onpageindexchanging="grdVcustomersList_PageIndexChanging"  >
+                                  <Columns>
+                                      <asp:TemplateField HeaderText="Action" >
+                                            <ItemTemplate>
+                                               <asp:LinkButton ID="lnkView" runat="server"  Font-Size="15px"  ForeColor="Red"   ToolTip="View Details" class="fa   fa-bullseye"     OnClick="Linkdtview_Click"   />  |
+                                               <asp:LinkButton ID="btnEdit" runat="server"  Font-Size="15px"  ForeColor="Red"    ToolTip="Edit" class="fa fa-edit "     OnClick="LinkEdit_Click"   />  |
+                                               <asp:LinkButton ID="LinkbanCustomer" runat="server" ForeColor="Red"  Font-Size="15px"   OnClick="LinkbanCustomer_Click"  ToolTip="Ban or Inactive Customer" class="fa fa-ban"  />
+                                            </ItemTemplate>
+                                            <HeaderStyle Width="100" />
+                                      </asp:TemplateField>
 
-            <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Height="360px">
-                <asp:GridView ID="grdVcustomersList" runat="server" data-search="true" class="table table-striped"
-                   Font-Size="11px" AllowPaging="True"
-                    onpageindexchanging="grdVcustomersList_PageIndexChanging"  >
-                  <Columns>
-                      <asp:TemplateField HeaderText="Action" >
-                            <ItemTemplate>
-                               <asp:LinkButton ID="lnkView" runat="server"  Font-Size="15px"  ForeColor="Red"   ToolTip="View Details" class="fa   fa-bullseye"     OnClick="Linkdtview_Click"   />  |
-                                <asp:LinkButton ID="btnEdit" runat="server"  Font-Size="15px"  ForeColor="Red"    ToolTip="Edit" class="fa fa-edit "     OnClick="LinkEdit_Click"   />  |
-                                 <asp:LinkButton ID="LinkbanCustomer" runat="server" ForeColor="Red"  Font-Size="15px"   OnClick="LinkbanCustomer_Click"  ToolTip="Ban or Inactive Customer" class="fa fa-ban"  />
-                            </ItemTemplate>
-                            <HeaderStyle Width="100" />
-                      </asp:TemplateField>
+                                      </Columns>
+                                                    <PagerSettings      FirstPageText="First" LastPageText="Last"
+                                                    Mode="NumericFirstLast" NextPageText="Next" PageButtonCount="10" PreviousPageText="Previous" />
 
-                      </Columns>
-                                    <PagerSettings      FirstPageText="First" LastPageText="Last"
-                                    Mode="NumericFirstLast" NextPageText="Next" PageButtonCount="10" PreviousPageText="Previous" />
-
-                                    <PagerStyle Font-Bold="true" Font-Size="Large"    HorizontalAlign="Center"   />
-                    </asp:GridView>
-                    </asp:Panel>
-                </div>
+                                                    <PagerStyle Font-Bold="true" Font-Size="Large"    HorizontalAlign="Center"   />
+                                    </asp:GridView>
+                                    </asp:Panel>
+                        </div>
          </div>
+        </asp:Panel>
 
 </div>
 

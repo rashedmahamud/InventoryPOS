@@ -1,12 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="../MasterPage/Bootstrap.master" AutoEventWireup="true" CodeFile="TaskList.aspx.cs" Inherits="TaskList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Accounts/MasterPage.master" AutoEventWireup="true" CodeFile="TaskList.aspx.cs" Inherits="TaskList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
- 
+
 
   <div class="col-lg-9">
-  
+
     <div class="panel panel-primary">
                 <header class="panel-heading">
                                 Task List Page <br />
@@ -18,7 +18,7 @@
                 </header>
                 <div class="panel-body">
                     <asp:Button ID="btnAddTask" CssClass="btn btn-success btn-xs" runat="server" Text="Add New Task" ToolTip="Add new task"   PostBackUrl="~/Settings/AddTask.aspx" />
-    
+
                         <asp:GridView ID="grdViewTasklist" class="table table-striped table-hover" Font-Size="11px"  runat="server">
                         </asp:GridView>
                 </div>

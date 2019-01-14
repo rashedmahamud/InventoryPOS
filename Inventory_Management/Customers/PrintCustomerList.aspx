@@ -11,8 +11,8 @@
     </div>
 
        <div class="panel panel-primary" style="text-align:left">
-          <div class="panel-body">
-                 <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="615px" Width="1100px"></rsweb:ReportViewer>
+          <div class="panel-body" style="height:845px">
+                 <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="100%" Width="100%" ZoomMode="PageWidth"></rsweb:ReportViewer>
           </div>
       </div>
 </div>

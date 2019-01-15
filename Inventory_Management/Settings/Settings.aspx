@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
     <asp:Panel ID="Panel1" runat="server" DefaultButton="btnUpdateSettings">
 <div class="col-lg-8 col-lg-offset-2">
     <div class="panel panel-primary" style="text-align:left" >

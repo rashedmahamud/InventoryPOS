@@ -35,9 +35,18 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             SystemInfo();
            // Bank();
             GetddlBankName();
-            ViewState["SubTotal"] = 0;
-            ViewState["VAT_Percent"] = 0;
-            ViewState["VAT_Calculation_on_Item"] = 0;
+            Session["SubTotal"] = 0;
+            Session["VAT_Percent"] = 0;
+            Session["VAT_Calculation_on_Item"] = 0;
+            Session["BankAccountNumber"] = 0;
+            Session["CustomerPhone"]=0;
+            Session["Paid"] = 0;
+            Session["Due"] = 0;
+            Session["TotalQty"] = 0;
+
+
+
+
 
             //ddlBankName.DataSource = GetData();
             ListItem liBankName = new ListItem("Select Bank Name..", "-1");
@@ -370,7 +379,7 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             }
             String TotalString = columnTotal.ToString();
             Label4.Text = TotalString;
-            ViewState["SubTotal"] = TotalString;
+            Session["SubTotal"] = TotalString;
 
 
            // Session["Paid"] = TextBox16.Text;
@@ -632,8 +641,8 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             }
             String TotalString = columnTotal.ToString();
             Label4.Text = TotalString;
-            ViewState["SubTotal"] = TotalString;
-            ViewState["VAT_Percent"] = Label1.Text;
+            Session["SubTotal"] = TotalString;
+            Session["VAT_Percent"] = Label1.Text;
 
 
             Label11.Text = Qty1.ToString();
@@ -642,7 +651,7 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             //ViewState["VAT_Calculation_on_Item"] = tex.ToString();
             //// lbldisc.Text = pricetotal -
             Label5.Text = Math.Round(tex, 2).ToString();
-            ViewState["VAT_Calculation_on_Item"] = Math.Round(tex, 2).ToString();
+            Session["VAT_Calculation_on_Item"] = Math.Round(tex, 2).ToString();
             Label7.Text = (Convert.ToDouble(Label4.Text) + Convert.ToDouble(Label5.Text)).ToString();
 
             Label3.Text = Label7.Text;
@@ -689,6 +698,22 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         }
 
 
+        if (TextBox3.Text != "")
+        {
+            Session["CustomerPhone"] = TextBox3.Text;
+
+        }
+
+        if (ddlBankAccountNumber.SelectedItem.Value == "-1")
+        {
+            Response.Write("Please, select account number");
+        }
+        else
+        {
+            Session["BankAccountNumber"] = ddlBankAccountNumber.SelectedItem.Text;
+        }
+
+
         try
         {
             btnAdd.Visible = false;
@@ -728,24 +753,47 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         string Paid = null;
         string Due = null;
         string TotalQty = null;
+        string Currency = null;
 
-        if (ViewState["VAT_Percent"] != null)
+        if (Session["VAT_Percent"] != null)
         {
 
-            VAT_Percent = ViewState["VAT_Percent"].ToString();
+            VAT_Percent = Session["VAT_Percent"].ToString();
         }
 
-        if (ViewState["VAT_Calculation_on_Item"] != null)
+        if (Session["VAT_Calculation_on_Item"] != null)
         {
 
-            VAT_Calculation_on_Item = ViewState["VAT_Calculation_on_Item"].ToString();
+            VAT_Calculation_on_Item = Session["VAT_Calculation_on_Item"].ToString();
         }
 
-        if (ViewState["SubTotal"] != null)
+        if (Session["SubTotal"] != null)
         {
 
-            SubTotal = ViewState["SubTotal"].ToString();
+            SubTotal = Session["SubTotal"].ToString();
         }
+
+
+
+        if (Label11.Text != "") {
+            Session["TotalQty"] = Label11.Text;
+        }
+
+
+        if (TextBox16.Text != "") {
+            Session["Paid"] = TextBox16.Text;
+
+        }
+
+        if (Label9.Text != "")
+        {
+            Session["Due"] = Label9.Text;
+        }
+
+
+
+
+
 
         Total_after_adding_vat = (Convert.ToDouble(SubTotal) + Convert.ToDouble(VAT_Calculation_on_Item)).ToString();
         Paid = TextBox16.Text;
@@ -834,6 +882,7 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
                     CompanyWebsite = rd4["WebAddress"].ToString();
                     CompanyMobileNumber = rd4["Phone"].ToString();
                     CompanyFooterMassage = rd4["Footermsg"].ToString();
+                    Currency = rd4["Currency"].ToString();
                 }
                 cn.Close();
             }
@@ -887,8 +936,8 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
                 new ReportParameter("Paid",Paid),
                 new ReportParameter("Due",Due),
                 new ReportParameter("TotalQty",TotalQty),
-                new ReportParameter("Total_after_adding_vat",Total_after_adding_vat)
-
+                new ReportParameter("Total_after_adding_vat",Total_after_adding_vat),
+                new ReportParameter("Currency",Currency)
             };
 
 

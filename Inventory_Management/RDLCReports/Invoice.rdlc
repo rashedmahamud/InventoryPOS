@@ -1201,7 +1201,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!SubTotal.Value</Value>
+                <Value>=Parameters!SubTotal.Value+" "+Parameters!Currency.Value</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1261,7 +1261,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!VAT_Calculation_on_Item.Value</Value>
+                <Value>=Parameters!VAT_Calculation_on_Item.Value+" "+Parameters!Currency.Value</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1321,7 +1321,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!Total_after_adding_vat.Value</Value>
+                <Value>=Parameters!Total_after_adding_vat.Value+" "+Parameters!Currency.Value</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1381,7 +1381,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!Paid.Value</Value>
+                <Value>=Parameters!Paid.Value+" "+Parameters!Currency.Value</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1441,7 +1441,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!Due.Value</Value>
+                <Value>=Parameters!Due.Value+" "+Parameters!Currency.Value</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1865,6 +1865,11 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="TotalQty">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Currency">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>

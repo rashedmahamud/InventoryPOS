@@ -82,7 +82,7 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
                                     Receiveable
                             </div>
                            <div class="col-md-4  pull-right"   style="text-align:left;top: 0px; width: 166px; height: 31px;" >
-                                <asp:Button ID="Button3" runat="server" Text="Print Sales Report" class="btn btn-danger btn-xs" OnClick="Button3_Click"/>
+                                <asp:Button ID="Button3" runat="server" Text="Print Sales Report" class="btn btn-danger btn-xs"  PostBackUrl="~/Accounts/Sales/PrintDueInvoice.aspx" />
                            </div>
                         </div>
                          <br />
@@ -91,8 +91,6 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
          </div>
 
          <div class="panel-body">
-                        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="277px" Width="1050px">
-                        </rsweb:ReportViewer>
                         <asp:GridView ID="grdItemList" runat="server"
                         class="table table-striped table-hover" Font-Size="12px"
                         ShowHeaderWhenEmpty="True" onrowdatabound="grdItemList_RowDataBound"></asp:GridView>

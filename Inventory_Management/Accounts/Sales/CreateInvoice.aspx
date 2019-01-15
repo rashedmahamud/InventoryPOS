@@ -143,6 +143,7 @@
                                                         <div>
                                                             <asp:Button ID="btnAdd" runat="server" class="btn btn-info" OnClick="btnAdd_Click" Text="Add Line" />
                                                             <asp:LinkButton ID="LinkButton1" runat="server" class="btn btn-info" OnClick="LinkButton1_Click ">Create Invoice</asp:LinkButton>
+                                                              <asp:Button ID="Button1"   CssClass="btn btn-success btn-xs" ToolTip="Print List of Supplier"  runat="server" Text="Print Create Invoice"   PostBackUrl="~/Accounts/Sales/PrintCreateInvoice.aspx" />
                                                         </div>
                                                         </td>
                                                 </tr>

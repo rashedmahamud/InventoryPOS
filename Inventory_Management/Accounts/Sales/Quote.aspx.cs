@@ -756,6 +756,7 @@ public partial class Accounts_Quote : System.Web.UI.Page
         string Paid = null;
         string Due = null;
         string TotalQty = null;
+        string Currency = null;
 
         if (ViewState["VAT_Percent"] != null)
         {
@@ -862,6 +863,7 @@ public partial class Accounts_Quote : System.Web.UI.Page
                     CompanyWebsite = rd4["WebAddress"].ToString();
                     CompanyMobileNumber = rd4["Phone"].ToString();
                     CompanyFooterMassage = rd4["Footermsg"].ToString();
+                    Currency = rd4["Currency"].ToString();
                 }
                 cn.Close();
             }
@@ -914,7 +916,8 @@ public partial class Accounts_Quote : System.Web.UI.Page
                 new ReportParameter("Paid",Paid),
                 new ReportParameter("Due",Due),
                 new ReportParameter("TotalQty",TotalQty),
-                new ReportParameter("Total_after_adding_vat",Total_after_adding_vat)
+                new ReportParameter("Total_after_adding_vat",Total_after_adding_vat),
+                new ReportParameter("Currency",Currency)
 
             };
 

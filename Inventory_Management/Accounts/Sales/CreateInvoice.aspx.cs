@@ -38,11 +38,11 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             Session["SubTotal"] = 0;
             Session["VAT_Percent"] = 0;
             Session["VAT_Calculation_on_Item"] = 0;
-            Session["BankAccountNumber"] = 0;
-            Session["CustomerPhone"]=0;
-            Session["Paid"] = 0;
-            Session["Due"] = 0;
-            Session["TotalQty"] = 0;
+            Session["BankAccountNumber"] = "";
+            Session["CustomerPhone"]= "";
+            Session["Paid"] = "";
+            Session["Due"] = "";
+            Session["TotalQty"] = "";
 
 
 
@@ -60,6 +60,7 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
 
             //Session["InvoiceNo"] = Session["InvoiceNoOutPut"].ToString();
         }
+
     }
 
 
@@ -684,6 +685,8 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
 
         }
     }
+
+    // Create Invoice Button
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
         string ss = (string)Session["ShopID"];
@@ -724,28 +727,12 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             Label2.Visible = false;
             Label3.Visible = false;
 
-            //string myScriptValue = "function callMe() {alert('You pressed Me!'); }";
-            //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "myScriptName", myScriptValue, true);
-
-            //LinkButton1.Attributes.Add("onclick", "return javascript: printDiv('wrapper')");
-          //  ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "Script1", "javascript: printDiv('wrapper');", true);
 
         }
         catch{}
 
         // print rdlc Report
-        string bankName = null;
-        string accountName = null;
-        string accountNumber = null;
-        string CompanyName = null;
-        string ComapanyAddress = null;
-        string customerMobileNumber = null;
-        string CompanyWebsite = null;
-        string CompanyFooterMassage = null;
-        string CustomerID = null;
-        string CustomerName = null;
-        string CompanyMobileNumber = null;
-        string BillTO = null;
+
         string SubTotal = null;
         string VAT_Percent = null;
         string VAT_Calculation_on_Item = null;
@@ -791,106 +778,18 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         }
 
 
-
-
-
-
         Total_after_adding_vat = (Convert.ToDouble(SubTotal) + Convert.ToDouble(VAT_Calculation_on_Item)).ToString();
         Paid = TextBox16.Text;
         Due = Label9.Text;
         TotalQty = Label11.Text;
 
 
-        // Get bank Information
-        try
-        {
-            SqlConnection cn = new SqlConnection(ConnectionString);
-            SqlCommand cmd1 = new SqlCommand();
-            cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = " select *from Bank where Account_Number='" + BankAccountNumber + "' AND Branch_ID = '"+ss+"' ";
-            cmd1.Connection = cn;
-            cn.Open();
-            SqlDataReader rd4 = cmd1.ExecuteReader();
-
-            if (rd4.HasRows)
-            {
-                while (rd4.Read())
-                {
-                    bankName = (rd4["Bank_Name"].ToString());
-                    accountName = (rd4["Account_Name"].ToString());
-                    accountNumber = (rd4["Account_Number"].ToString());
-                }
-            }
-            else
-            {
-                //Button9.Text = "Guest";
-            }
-        }
-        catch
-        {
-
-        }
 
 
-        // Get Customer Information
-
-        try
-        {
-            SqlConnection cn = new SqlConnection(ConnectionString);
-            SqlCommand cmd1 = new SqlCommand();
-            cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = " select *from tbl_Customer where CustPhone='" + TextBox3.Text.Trim() + "' ";
-            cmd1.Connection = cn;
-            cn.Open();
-            SqlDataReader rd4 = cmd1.ExecuteReader();
-
-            if (rd4.HasRows)
-            {
-                while (rd4.Read())
-                {
-                    CustomerID = (rd4["CustID"].ToString());
-                    CustomerName = (rd4["CustName"].ToString());
-                    customerMobileNumber = (rd4["CustPhone"].ToString());
-                    BillTO = (rd4["CustAddress"].ToString());
-                }
-            }
-            else
-            {
-                //Button9.Text = "Guest";
-            }
-        }
-        catch { }
-
-        // Company Info
-
-        try
-        {
-            SqlConnection cn = new SqlConnection(ConnectionString);
-            SqlCommand cmd = new SqlCommand();
-
-            cn.Open();
-            cmd.CommandText = "Select * from tbl_settings where Location='" + ss + "'";
-            cmd.Connection = cn;
-            SqlDataReader rd4 = cmd.ExecuteReader();
-
-            if (rd4.HasRows)
-            {
-                while (rd4.Read())
-                {
-                    CompanyName = (rd4["CompanyName"].ToString());
-                    ComapanyAddress = rd4["CompanyAddress"].ToString();
-                    CompanyWebsite = rd4["WebAddress"].ToString();
-                    CompanyMobileNumber = rd4["Phone"].ToString();
-                    CompanyFooterMassage = rd4["Footermsg"].ToString();
-                    Currency = rd4["Currency"].ToString();
-                }
-                cn.Close();
-            }
-        }
-        catch { }
 
         // Get  All the list of Product
         List<CreateInvoiceItemList> InvoiceItemList = new List<CreateInvoiceItemList>();
+        List<string> CodeList = new List<string>();
 
         for (int i = 0; i < gvDetails.Rows.Count; i++)
         {
@@ -902,7 +801,7 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             TextBox Dis = (TextBox)gvDetails.Rows[i].Cells[5].FindControl("Dis");
             TextBox Total = (TextBox)gvDetails.Rows[i].Cells[6].FindControl("Total");
 
-            createInvoice.ItemCode = Code.Text;
+            CodeList.Add (Code.Text);
             createInvoice.Name = ItemName.Text;
             createInvoice.Quantity = Qty.Text;
             createInvoice.Price = txtprice.Text;
@@ -912,49 +811,80 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
 
         }
 
+        Session["CreateInvoiceItemList"] = InvoiceItemList;
 
-
-        var reportParameters = new ReportParameterCollection
-            {
-                new ReportParameter("CompanyName",CompanyName),
-                new ReportParameter("ComapanyAddress",ComapanyAddress),
-                new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
-                new ReportParameter("CompanyWebsite",CompanyWebsite),
-                new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
-
-                new ReportParameter("CustomerID",CustomerID),
-                new ReportParameter("CustomerName",CustomerName),
-                new ReportParameter("CustomerMobileNumber",customerMobileNumber),
-                new ReportParameter("BillTO",BillTO),
-
-                new ReportParameter("BankName",bankName),
-                new ReportParameter("AccountName",accountName),
-                new ReportParameter("AccountNumber",accountNumber),
-                new ReportParameter("SubTotal",SubTotal),
-                new ReportParameter ("VAT_Calculation_on_Item", VAT_Calculation_on_Item),
-                new ReportParameter("VAT_Percent", VAT_Percent),
-                new ReportParameter("Paid",Paid),
-                new ReportParameter("Due",Due),
-                new ReportParameter("TotalQty",TotalQty),
-                new ReportParameter("Total_after_adding_vat",Total_after_adding_vat),
-                new ReportParameter("Currency",Currency)
-            };
-
-
-        ReportViewer1.ProcessingMode = ProcessingMode.Local;
-        ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RDLCReports/Invoice.rdlc");
-
-        ReportDataSource datasource = new ReportDataSource("CreateInvoice", InvoiceItemList);
-        ReportViewer1.LocalReport.DataSources.Clear();
-
-        ReportViewer1.LocalReport.EnableExternalImages = true;
-        ReportViewer1.ExportContentDisposition = ContentDisposition.AlwaysInline;
-
-        ReportViewer1.LocalReport.DataSources.Add(datasource);
-        ReportViewer1.LocalReport.SetParameters(reportParameters);
+        Response.Redirect("~/Accounts/Sales/PrintCreateInvoice.aspx");
 
     }
 
+    //public void initila()
+    //{
+
+    //    //string BankAccountNumber = null;
+
+    //    //if (ddlBankAccountNumber.SelectedItem.Value == "-1")
+    //    //{
+    //    //    Response.Write("Please, select account number");
+    //    //}
+    //    //else
+    //    //{
+    //    //    BankAccountNumber = ddlBankAccountNumber.SelectedItem.Text;
+    //    //}
+
+
+    //    if (TextBox3.Text != "")
+    //    {
+    //        Session["CustomerPhone"] = TextBox3.Text;
+
+    //    }
+
+    //    if (Label11.Text != "")
+    //    {
+    //        Session["TotalQty"] = Label11.Text;
+    //    }
+
+
+    //    if (TextBox16.Text != "")
+    //    {
+    //        Session["Paid"] = TextBox16.Text;
+
+    //    }
+
+    //    if (Label9.Text != "")
+    //    {
+    //        Session["Due"] = Label9.Text;
+    //    }
+
+
+
+    //    // Get  All the list of Product
+    //    List<CreateInvoiceItemList> InvoiceItemList = new List<CreateInvoiceItemList>();
+
+    //    for (int i = 0; i < gvDetails.Rows.Count; i++)
+    //    {
+    //        CreateInvoiceItemList createInvoice = new CreateInvoiceItemList();
+    //        TextBox Code = (TextBox)gvDetails.Rows[i].Cells[1].FindControl("ItemCode");
+    //        TextBox ItemName = (TextBox)gvDetails.Rows[i].Cells[2].FindControl("txtName");
+    //        TextBox txtprice = (TextBox)gvDetails.Rows[i].Cells[3].FindControl("txtPrice");
+    //        TextBox Qty = (TextBox)gvDetails.Rows[i].Cells[4].FindControl("Qty");
+    //        TextBox Dis = (TextBox)gvDetails.Rows[i].Cells[5].FindControl("Dis");
+    //        TextBox Total = (TextBox)gvDetails.Rows[i].Cells[6].FindControl("Total");
+
+    //        createInvoice.ItemCode = Code.Text;
+    //        createInvoice.Name = ItemName.Text;
+    //        createInvoice.Quantity = Qty.Text;
+    //        createInvoice.Price = txtprice.Text;
+    //        createInvoice.Discount = Dis.Text;
+    //        createInvoice.Total = Total.Text;
+    //        InvoiceItemList.Add(createInvoice);
+
+    //    }
+
+    //    Session["CreateInvoiceItemList"] = InvoiceItemList;
+
+
+
+    //}
     protected void SaveSaleItem()
     {
         try
@@ -1095,206 +1025,6 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         }
     }
 
-    // Print Invoice
-    //protected void Button1_Click(object sender, EventArgs e)
-    //{
 
-    //   // string BankAccountNumber = ddlBankAccountNumber.SelectedItem.Text;
-    //    string bankName = null;
-    //    string accountName = null;
-    //    string accountNumber = null;
-    //    string CompanyName = null;
-    //    string ComapanyAddress = null;
-    //    string customerMobileNumber = null;
-    //    string CompanyWebsite = null;
-    //    string CompanyFooterMassage = null;
-    //    string CustomerID = null;
-    //    string CustomerName = null;
-    //    string CompanyMobileNumber = null;
-    //    string BillTO = null;
-    //    string SubTotal = null;
-    //    string VAT_Percent = null;
-    //    string VAT_Calculation_on_Item = null;
-    //    string Total_after_adding_vat = null;
-    //    string Paid = null;
-    //    string Due = null;
-    //    string TotalQty = null;
-
-    //    if (ViewState["VAT_Percent"] != null)
-    //    {
-
-    //        VAT_Percent = ViewState["VAT_Percent"].ToString();
-    //    }
-
-    //    if (ViewState["VAT_Calculation_on_Item"] != null)
-    //    {
-
-    //        VAT_Calculation_on_Item = ViewState["VAT_Calculation_on_Item"].ToString();
-    //    }
-
-    //    if (ViewState["SubTotal"] != null)
-    //    {
-
-    //        SubTotal = ViewState["SubTotal"].ToString();
-    //    }
-
-    //    Total_after_adding_vat = (Convert.ToDouble(SubTotal) + Convert.ToDouble(VAT_Calculation_on_Item)).ToString();
-    //    Paid = TextBox16.Text;
-    //    Due = Label9.Text;
-    //    TotalQty = Label11.Text;
-
-
-    //    // Get bank Information
-    //    try
-    //    {
-    //        SqlConnection cn = new SqlConnection(ConnectionString);
-    //        SqlCommand cmd1 = new SqlCommand();
-    //        cmd1.CommandType = CommandType.Text;
-    //        cmd1.CommandText = " select *from Bank where Account_Number='" + BankAccountNumber + "' ";
-    //        cmd1.Connection = cn;
-    //        cn.Open();
-    //        SqlDataReader rd4 = cmd1.ExecuteReader();
-
-    //        if (rd4.HasRows)
-    //        {
-    //            while (rd4.Read())
-    //            {
-    //                bankName = (rd4["Bank_Name"].ToString());
-    //                accountName = (rd4["Account_Name"].ToString());
-    //                accountNumber = (rd4["Account_Number"].ToString());
-    //            }
-    //        }
-    //        else
-    //        {
-    //            //Button9.Text = "Guest";
-    //        }
-    //    }
-    //    catch
-    //    {
-
-    //    }
-
-
-    //    // Get Customer Information
-
-    //    try
-    //    {
-    //        SqlConnection cn = new SqlConnection(ConnectionString);
-    //        SqlCommand cmd1 = new SqlCommand();
-    //        cmd1.CommandType = CommandType.Text;
-    //        cmd1.CommandText = " select *from tbl_Customer where CustPhone='" + TextBox3.Text.Trim() + "' ";
-    //        cmd1.Connection = cn;
-    //        cn.Open();
-    //        SqlDataReader rd4 = cmd1.ExecuteReader();
-
-    //        if (rd4.HasRows)
-    //        {
-    //            while (rd4.Read())
-    //            {
-    //                CustomerID = (rd4["CustID"].ToString());
-    //                CustomerName = (rd4["CustName"].ToString());
-    //                customerMobileNumber = (rd4["CustPhone"].ToString());
-    //                BillTO = (rd4["CustAddress"].ToString());
-    //            }
-    //        }
-    //        else
-    //        {
-    //            //Button9.Text = "Guest";
-    //        }
-    //    }
-    //    catch { }
-
-    //    // Company Info
-
-    //    try
-    //    {
-    //        SqlConnection cn = new SqlConnection(ConnectionString);
-    //        SqlCommand cmd = new SqlCommand();
-
-    //        cn.Open();
-    //        cmd.CommandText = "Select * from tbl_settings where Location='" + ShopId.ToString() + "'";
-    //        cmd.Connection = cn;
-    //        SqlDataReader rd4 = cmd.ExecuteReader();
-
-    //        if (rd4.HasRows)
-    //        {
-    //            while (rd4.Read())
-    //            {
-    //                CompanyName = (rd4["CompanyName"].ToString());
-    //                ComapanyAddress = rd4["CompanyAddress"].ToString();
-    //                CompanyWebsite = rd4["WebAddress"].ToString();
-    //                CompanyMobileNumber = rd4["Phone"].ToString();
-    //                CompanyFooterMassage = rd4["Footermsg"].ToString();
-    //            }
-    //            cn.Close();
-    //        }
-    //    }
-    //    catch { }
-
-    //        // Get  All the list of Product
-    //        List<CreateInvoiceItemList> InvoiceItemList = new List<CreateInvoiceItemList>();
-
-
-    //        for (int i = 0; i < gvDetails.Rows.Count; i++)
-    //        {
-    //            CreateInvoiceItemList createInvoice = new CreateInvoiceItemList();
-    //            TextBox Code = (TextBox)gvDetails.Rows[i].Cells[1].FindControl("ItemCode");
-    //            TextBox ItemName = (TextBox)gvDetails.Rows[i].Cells[2].FindControl("txtName");
-    //            TextBox txtprice = (TextBox)gvDetails.Rows[i].Cells[3].FindControl("txtPrice");
-    //            TextBox Qty = (TextBox)gvDetails.Rows[i].Cells[4].FindControl("Qty");
-    //            TextBox Dis = (TextBox)gvDetails.Rows[i].Cells[5].FindControl("Dis");
-    //            TextBox Total = (TextBox)gvDetails.Rows[i].Cells[6].FindControl("Total");
-
-    //            createInvoice.ItemCode = Code.Text;
-    //            createInvoice.Name = ItemName.Text;
-    //            createInvoice.Quantity = Qty.Text;
-    //            createInvoice.Price = txtprice.Text;
-    //            createInvoice.Discount = Dis.Text;
-    //            createInvoice.Total = Total.Text;
-    //            InvoiceItemList.Add(createInvoice);
-
-    //        }
-
-
-
-    //        var reportParameters = new ReportParameterCollection
-    //        {
-    //            new ReportParameter("CompanyName",CompanyName),
-    //            new ReportParameter("ComapanyAddress",ComapanyAddress),
-    //            new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
-    //            new ReportParameter("CompanyWebsite",CompanyWebsite),
-    //            new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
-
-    //            new ReportParameter("CustomerID",CustomerID),
-    //            new ReportParameter("CustomerName",CustomerName),
-    //            new ReportParameter("CustomerMobileNumber",customerMobileNumber),
-    //            new ReportParameter("BillTO",BillTO),
-
-    //            new ReportParameter("BankName",bankName),
-    //            new ReportParameter("AccountName",accountName),
-    //            new ReportParameter("AccountNumber",accountNumber),
-    //            new ReportParameter("SubTotal",SubTotal),
-    //            new ReportParameter ("VAT_Calculation_on_Item", VAT_Calculation_on_Item),
-    //            new ReportParameter("VAT_Percent", VAT_Percent),
-    //            new ReportParameter("Paid",Paid),
-    //            new ReportParameter("Due",Due),
-    //            new ReportParameter("TotalQty",TotalQty),
-    //            new ReportParameter("Total_after_adding_vat",Total_after_adding_vat)
-
-    //        };
-
-
-    //        ReportViewer1.ProcessingMode = ProcessingMode.Local;
-    //        ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RDLCReports/Invoice.rdlc");
-
-    //        ReportDataSource datasource = new ReportDataSource("CreateInvoice", InvoiceItemList);
-    //        ReportViewer1.LocalReport.DataSources.Clear();
-
-    //        ReportViewer1.LocalReport.EnableExternalImages = true;
-    //        ReportViewer1.ExportContentDisposition = ContentDisposition.AlwaysInline;
-
-    //        ReportViewer1.LocalReport.DataSources.Add(datasource);
-    //        ReportViewer1.LocalReport.SetParameters(reportParameters);
-    //    }
 
 }

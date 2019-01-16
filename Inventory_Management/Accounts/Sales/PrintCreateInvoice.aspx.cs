@@ -24,7 +24,7 @@ public partial class Accounts_Sales_PrintCreateInvoice : System.Web.UI.Page
     {
 
         string ss = (string)Session["ShopID"];
-        string BankAccountNumber = Convert.ToString( (int)Session["BankAccountNumber"]);
+        string BankAccountNumber = (string)Session["BankAccountNumber"];
 
 
 
@@ -68,14 +68,39 @@ public partial class Accounts_Sales_PrintCreateInvoice : System.Web.UI.Page
 
             SubTotal = Session["SubTotal"].ToString();
         }
-        if (Session["CustomerPhone"] != null) {
+        if (Session["CustomerPhone"] != "") {
 
-            customerPhone = Convert.ToString( (int)Session["CustomerPhone"]);
+            customerPhone = (string)Session["CustomerPhone"];
         }
+
+
+        if (Session["Paid"] != "")
+        {
+
+            Paid = (string)Session["Paid"];
+        }
+
+        if (Session["Due"] != "")
+        {
+
+            Due = (string)Session["Due"];
+        }
+
+        if (Session["TotalQty"] != "")
+        {
+
+            TotalQty = (string)Session["TotalQty"];
+        }
+
+
         Total_after_adding_vat = (Convert.ToDouble(SubTotal) + Convert.ToDouble(VAT_Calculation_on_Item)).ToString();
-        Paid =  Convert.ToString( (int)Session["Paid"]);
-        Due = Convert.ToString( (int)Session["Due"]);
-        TotalQty = Convert.ToString( (int)Session["TotalQty"]);
+
+
+
+        // get Invocie Item List form session
+
+        List<CreateInvoiceItemList> ItemList = new List<CreateInvoiceItemList>();
+        ItemList = (List<CreateInvoiceItemList>)Session["CreateInvoiceItemList"];
 
 
         // Get bank Information
@@ -166,28 +191,6 @@ public partial class Accounts_Sales_PrintCreateInvoice : System.Web.UI.Page
         }
         catch { }
 
-        // Get  All the list of Product
-        List<CreateInvoiceItemList> InvoiceItemList = new List<CreateInvoiceItemList>();
-
-        //for (int i = 0; i < gvDetails.Rows.Count; i++)
-        //{
-        //    CreateInvoiceItemList createInvoice = new CreateInvoiceItemList();
-        //    TextBox Code = (TextBox)gvDetails.Rows[i].Cells[1].FindControl("ItemCode");
-        //    TextBox ItemName = (TextBox)gvDetails.Rows[i].Cells[2].FindControl("txtName");
-        //    TextBox txtprice = (TextBox)gvDetails.Rows[i].Cells[3].FindControl("txtPrice");
-        //    TextBox Qty = (TextBox)gvDetails.Rows[i].Cells[4].FindControl("Qty");
-        //    TextBox Dis = (TextBox)gvDetails.Rows[i].Cells[5].FindControl("Dis");
-        //    TextBox Total = (TextBox)gvDetails.Rows[i].Cells[6].FindControl("Total");
-
-        //    createInvoice.ItemCode = Code.Text;
-        //    createInvoice.Name = ItemName.Text;
-        //    createInvoice.Quantity = Qty.Text;
-        //    createInvoice.Price = txtprice.Text;
-        //    createInvoice.Discount = Dis.Text;
-        //    createInvoice.Total = Total.Text;
-        //    InvoiceItemList.Add(createInvoice);
-
-        //}
 
 
 
@@ -221,7 +224,7 @@ public partial class Accounts_Sales_PrintCreateInvoice : System.Web.UI.Page
         ReportViewer1.ProcessingMode = ProcessingMode.Local;
         ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RDLCReports/Invoice.rdlc");
 
-        ReportDataSource datasource = new ReportDataSource("CreateInvoice", InvoiceItemList);
+        ReportDataSource datasource = new ReportDataSource("CreateInvoice", ItemList);
         ReportViewer1.LocalReport.DataSources.Clear();
 
         ReportViewer1.LocalReport.EnableExternalImages = true;

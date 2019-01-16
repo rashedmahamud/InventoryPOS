@@ -47,6 +47,10 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ForeColor="Red" ValidationGroup="vlpg43"  ControlToValidate="txtvatRegiNo" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
                 <asp:TextBox ID="txtvatRegiNo" class="form-control" ValidationGroup="vlpg43"  runat="server"></asp:TextBox>
 
+                 <asp:Label ID="Label12" runat="server" Font-Size="12px"  Text="Currency"></asp:Label>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" ForeColor="Red" ValidationGroup="vlpg43"  ControlToValidate="txtCurrency" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="txtCurrency" class="form-control" ValidationGroup="vlpg43"  runat="server"></asp:TextBox>
+
                 <asp:Label ID="Label6" runat="server" Font-Size="12px"  Text="Footer Message"></asp:Label>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ForeColor="Red" ValidationGroup="vlpg43"  ControlToValidate="txtFooterMessage" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
                 <asp:TextBox ID="txtFooterMessage"  BackColor="#D7FDF9"  TextMode="MultiLine" Font-Size="11px" ToolTip="Please Enter Receipt Footer message" class="form-control" ValidationGroup="vlpg43" runat="server"></asp:TextBox>

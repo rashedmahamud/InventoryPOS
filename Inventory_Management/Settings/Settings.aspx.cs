@@ -17,7 +17,7 @@ public partial class Settings : System.Web.UI.Page
         {
             UpdateBindUpdate();
            // txtFname.Focus();
-            
+
         }
     }
 
@@ -28,21 +28,27 @@ public partial class Settings : System.Web.UI.Page
             SqlConnection cn = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand("SP_POS_DataBind_SettingsUpdate", cn);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Location", Session["ShopID"].ToString());
             cn.Open();
 
             SqlDataReader sdr = cmd.ExecuteReader();
-            DataTable dt = new DataTable();
+            var dt = new DataTable();
             dt.Load(sdr);
-            TextBox2.Text = dt.Rows[0].ItemArray[0].ToString();
-            txtCompanyName.Text = dt.Rows[0].ItemArray[1].ToString();
-            txtCompanyAddress.Text = dt.Rows[0].ItemArray[2].ToString();
-            TextBox1.Text = dt.Rows[0].ItemArray[3].ToString();
-            txtPhone.Text = dt.Rows[0].ItemArray[4].ToString();
-            txtEmailAddress.Text = dt.Rows[0].ItemArray[5].ToString();            
-            txtWebAddress.Text   = dt.Rows[0].ItemArray[6].ToString();
-            txtVatRate.Text = dt.Rows[0].ItemArray[7].ToString();
-            txtvatRegiNo.Text   = dt.Rows[0].ItemArray[8].ToString();
-            txtFooterMessage.Text = dt.Rows[0].ItemArray[9].ToString();
+            List<DataRow> dr = dt.AsEnumerable().ToList();
+
+
+
+            TextBox2.Text = dr[0].ItemArray[0].ToString();
+            txtCompanyName.Text = dr[0].ItemArray[2].ToString();
+            txtCompanyAddress.Text = dr[0].ItemArray[3].ToString();
+            TextBox1.Text = dr[0].ItemArray[4].ToString();
+            txtPhone.Text = dr[0].ItemArray[5].ToString();
+            txtEmailAddress.Text = dr[0].ItemArray[6].ToString();
+            txtWebAddress.Text   = dr[0].ItemArray[7].ToString();
+            txtVatRate.Text = dr[0].ItemArray[8].ToString();
+            txtvatRegiNo.Text   = dr[0].ItemArray[9].ToString();
+            txtFooterMessage.Text = dr[0].ItemArray[10].ToString();
+            txtCurrency.Text = dr[0].ItemArray[15].ToString();
             cn.Close();
         }
         catch
@@ -64,10 +70,10 @@ public partial class Settings : System.Web.UI.Page
                 SqlConnection cn = new SqlConnection(ConnectionString);
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "Update dbo.[tbl_settings] set CompanyAddress = @CompanyAddress, CompanyName = @CompanyName,Location=@Location,  Phone =	@Phone,	[EmailAddress] = @EmailAddress , [WebAddress] = @WebAddress ,[VatRate] = @VatRate , [VATRegistration] = @VATRegistration,	[Footermsg] =  @Footermsg , LastUpdate =  GETDATE() , LastUpdateBy =	@LastUpdateBy	where ID =' " + TextBox2.Text + "' ";
+                cmd.CommandText = "Update dbo.[tbl_settings] set CompanyAddress = @CompanyAddress, CompanyName = @CompanyName,Location=@Location,  Phone =	@Phone,	[EmailAddress] = @EmailAddress , [WebAddress] = @WebAddress ,[VatRate] = @VatRate , [VATRegistration] = @VATRegistration,	[Footermsg] =  @Footermsg , LastUpdate =  GETDATE() , LastUpdateBy =	@LastUpdateBy, [Currency] = @Currency	where ID =' " + TextBox2.Text + "' ";
                 cmd.Connection = cn;
                 cn.Open();
-                
+
 
                 cmd.Parameters.AddWithValue("@CompanyName",     txtCompanyName.Text);
                 cmd.Parameters.AddWithValue("@CompanyAddress",  txtCompanyAddress.Text);
@@ -77,6 +83,7 @@ public partial class Settings : System.Web.UI.Page
                 cmd.Parameters.AddWithValue("@WebAddress",      txtWebAddress.Text);
                 cmd.Parameters.AddWithValue("@VatRate",         txtVatRate.Text);
                 cmd.Parameters.AddWithValue("@VATRegistration", txtvatRegiNo.Text);
+                cmd.Parameters.AddWithValue("@Currency",        txtCurrency.Text);
                 cmd.Parameters.AddWithValue("@Footermsg",       txtFooterMessage.Text);
                 cmd.Parameters.AddWithValue("@LastUpdateBy",    Request.Cookies["InventMgtCookies"]["UserID"].ToString());
                 cmd.ExecuteNonQuery();
@@ -84,7 +91,7 @@ public partial class Settings : System.Web.UI.Page
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Updated')", true);
 
                 UpdateBindUpdate();
-            }            
+            }
         }
 
         catch

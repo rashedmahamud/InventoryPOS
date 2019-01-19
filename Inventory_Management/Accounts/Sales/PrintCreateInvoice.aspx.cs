@@ -26,9 +26,6 @@ public partial class Accounts_Sales_PrintCreateInvoice : System.Web.UI.Page
         string ss = (string)Session["ShopID"];
         string BankAccountNumber = (string)Session["BankAccountNumber"];
 
-
-
-
         // print rdlc Report
         string bankName = null;
         string accountName = null;
@@ -53,19 +50,16 @@ public partial class Accounts_Sales_PrintCreateInvoice : System.Web.UI.Page
         string customerPhone = null;
         if (Session["VAT_Percent"] != null)
         {
-
             VAT_Percent = Session["VAT_Percent"].ToString();
         }
 
         if (Session["VAT_Calculation_on_Item"] != null)
         {
-
             VAT_Calculation_on_Item = Session["VAT_Calculation_on_Item"].ToString();
         }
 
         if (Session["SubTotal"] != null)
         {
-
             SubTotal = Session["SubTotal"].ToString();
         }
         if (Session["CustomerPhone"] != "") {
@@ -73,22 +67,18 @@ public partial class Accounts_Sales_PrintCreateInvoice : System.Web.UI.Page
             customerPhone = (string)Session["CustomerPhone"];
         }
 
-
         if (Session["Paid"] != "")
         {
-
             Paid = (string)Session["Paid"];
         }
 
         if (Session["Due"] != "")
         {
-
             Due = (string)Session["Due"];
         }
 
         if (Session["TotalQty"] != "")
         {
-
             TotalQty = (string)Session["TotalQty"];
         }
 

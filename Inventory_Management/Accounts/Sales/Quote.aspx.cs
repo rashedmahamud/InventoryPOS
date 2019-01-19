@@ -33,9 +33,7 @@ public partial class Accounts_Quote : System.Web.UI.Page
            // Bank();
 
             GetddlBankName();
-            ViewState["SubTotal"] = 0;
-            ViewState["VAT_Percent"] = 0;
-            ViewState["VAT_Calculation_on_Item"] = 0;
+
 
             //ddlBankName.DataSource = GetData();
             ListItem liBankName = new ListItem("Select Bank Name..", "-1");
@@ -375,7 +373,7 @@ public partial class Accounts_Quote : System.Web.UI.Page
             String TotalString = columnTotal.ToString();
             Label4.Text = TotalString;
             Label11.Text = Qty1.ToString();
-            ViewState["SubTotal"] = TotalString;
+            Session["SubTotal"] = TotalString;
 
             double tex = ((Convert.ToDouble(Label4.Text) * Convert.ToDouble(Label1.Text)) / 100);
             //// lbldisc.Text = pricetotal -
@@ -659,14 +657,14 @@ public partial class Accounts_Quote : System.Web.UI.Page
             }
             String TotalString = columnTotal.ToString();
             Label4.Text = TotalString;
-            ViewState["SubTotal"] = TotalString;
-            ViewState["VAT_Percent"] = Label1.Text;
+            Session["SubTotal"] = TotalString;
+            Session["VAT_Percent"] = Label1.Text;
             Label11.Text = Qty1.ToString();
 
             double tex = ((Convert.ToDouble(Label4.Text) * Convert.ToDouble(Label1.Text)) / 100);
             //// lbldisc.Text = pricetotal -
             Label5.Text = Math.Round(tex, 2).ToString();
-            ViewState["VAT_Calculation_on_Item"] = Math.Round(tex, 2).ToString();
+            Session["VAT_Calculation_on_Item"] = Math.Round(tex, 2).ToString();
             Label7.Text = (Convert.ToDouble(Label4.Text) + Convert.ToDouble(Label5.Text)).ToString();
 
             Label3.Text = Label7.Text;
@@ -714,6 +712,21 @@ public partial class Accounts_Quote : System.Web.UI.Page
         }
 
 
+        if (TextBox3.Text != "")
+        {
+            Session["CustomerPhone"] = TextBox3.Text;
+
+        }
+
+        if (ddlBankAccountNumber.SelectedItem.Value == "-1")
+        {
+            Response.Write("Please, select account number");
+        }
+        else
+        {
+            Session["BankAccountNumber"] = ddlBankAccountNumber.SelectedItem.Text;
+        }
+
         try
         {
             btnAdd.Visible = false;
@@ -724,12 +737,6 @@ public partial class Accounts_Quote : System.Web.UI.Page
             Label2.Visible = false;
             Label3.Visible = false;
 
-            //string myScriptValue = "function callMe() {alert('You pressed Me!'); }";
-            //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "myScriptName", myScriptValue, true);
-
-            //LinkButton1.Attributes.Add("onclick", "return javascript: printDiv('wrapper')");
-          //  ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "Script1", "javascript: printDiv('wrapper');", true);
-
         }
         catch
         {
@@ -737,138 +744,47 @@ public partial class Accounts_Quote : System.Web.UI.Page
         }
 
         // print rdlc Report
-        string bankName = null;
-        string accountName = null;
-        string accountNumber = null;
-        string CompanyName = null;
-        string ComapanyAddress = null;
-        string customerMobileNumber = null;
-        string CompanyWebsite = null;
-        string CompanyFooterMassage = null;
-        string CustomerID = null;
-        string CustomerName = null;
-        string CompanyMobileNumber = null;
-        string BillTO = null;
+
         string SubTotal = null;
         string VAT_Percent = null;
         string VAT_Calculation_on_Item = null;
-        string Total_after_adding_vat = null;
-        string Paid = null;
-        string Due = null;
-        string TotalQty = null;
-        string Currency = null;
 
-        if (ViewState["VAT_Percent"] != null)
+        if (Session["VAT_Percent"] != null)
         {
 
-            VAT_Percent = ViewState["VAT_Percent"].ToString();
+            VAT_Percent = Session["VAT_Percent"].ToString();
         }
 
-        if (ViewState["VAT_Calculation_on_Item"] != null)
+        if (Session["VAT_Calculation_on_Item"] != null)
         {
 
-            VAT_Calculation_on_Item = ViewState["VAT_Calculation_on_Item"].ToString();
+            VAT_Calculation_on_Item = Session["VAT_Calculation_on_Item"].ToString();
         }
 
-        if (ViewState["SubTotal"] != null)
+        if (Session["SubTotal"] != null)
         {
 
-            SubTotal = ViewState["SubTotal"].ToString();
+            SubTotal = Session["SubTotal"].ToString();
         }
 
-        Total_after_adding_vat = (Convert.ToDouble(SubTotal) + Convert.ToDouble(VAT_Calculation_on_Item)).ToString();
-        Paid = TextBox16.Text;
-        Due = Label9.Text;
-        TotalQty = Label11.Text;
-
-
-        // Get bank Information
-        try
+        if (Label11.Text != "")
         {
-            SqlConnection cn = new SqlConnection(ConnectionString);
-            SqlCommand cmd1 = new SqlCommand();
-            cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = " select *from Bank where Account_Number='" + BankAccountNumber + "' AND Branch_ID = '" + ss + "' ";
-            cmd1.Connection = cn;
-            cn.Open();
-            SqlDataReader rd4 = cmd1.ExecuteReader();
-
-            if (rd4.HasRows)
-            {
-                while (rd4.Read())
-                {
-                    bankName = (rd4["Bank_Name"].ToString());
-                    accountName = (rd4["Account_Name"].ToString());
-                    accountNumber = (rd4["Account_Number"].ToString());
-                }
-            }
-            else
-            {
-                //Button9.Text = "Guest";
-            }
-        }
-        catch
-        {
-
+            Session["TotalQty"] = Label11.Text;
         }
 
 
-        // Get Customer Information
-
-        try
+        if (TextBox16.Text != "")
         {
-            SqlConnection cn = new SqlConnection(ConnectionString);
-            SqlCommand cmd1 = new SqlCommand();
-            cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = " select *from tbl_Customer where CustPhone='" + TextBox3.Text.Trim() + "' ";
-            cmd1.Connection = cn;
-            cn.Open();
-            SqlDataReader rd4 = cmd1.ExecuteReader();
+            Session["Paid"] = TextBox16.Text;
 
-            if (rd4.HasRows)
-            {
-                while (rd4.Read())
-                {
-                    CustomerID = (rd4["CustID"].ToString());
-                    CustomerName = (rd4["CustName"].ToString());
-                    customerMobileNumber = (rd4["CustPhone"].ToString());
-                    BillTO = (rd4["CustAddress"].ToString());
-                }
-            }
-            else
-            {
-                //Button9.Text = "Guest";
-            }
         }
-        catch { }
 
-        // Company Info
-
-        try
+        if (Label9.Text != "")
         {
-            SqlConnection cn = new SqlConnection(ConnectionString);
-            SqlCommand cmd = new SqlCommand();
-
-            cn.Open();
-            cmd.CommandText = "Select * from tbl_settings where Location='" + ss + "'";
-            cmd.Connection = cn;
-            SqlDataReader rd4 = cmd.ExecuteReader();
-
-            if (rd4.HasRows)
-            {
-                while (rd4.Read())
-                {
-                    CompanyName = (rd4["CompanyName"].ToString());
-                    ComapanyAddress = rd4["CompanyAddress"].ToString();
-                    CompanyWebsite = rd4["WebAddress"].ToString();
-                    CompanyMobileNumber = rd4["Phone"].ToString();
-                    CompanyFooterMassage = rd4["Footermsg"].ToString();
-                    Currency = rd4["Currency"].ToString();
-                }
-                cn.Close();
-            }
+            Session["Due"] = Label9.Text;
         }
-        catch { }
+
+
         // Get  All the list of Product
         List<CreateInvoiceItemList> QuotationItemList = new List<CreateInvoiceItemList>();
 
@@ -892,47 +808,9 @@ public partial class Accounts_Quote : System.Web.UI.Page
 
         }
 
+        Session["CreateQuotationItemList"] = QuotationItemList;
 
-
-        var reportParameters = new ReportParameterCollection
-            {
-                new ReportParameter("CompanyName",CompanyName),
-                new ReportParameter("ComapanyAddress",ComapanyAddress),
-                new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
-                new ReportParameter("CompanyWebsite",CompanyWebsite),
-                new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
-
-                new ReportParameter("CustomerID",CustomerID),
-                new ReportParameter("CustomerName",CustomerName),
-                new ReportParameter("CustomerMobileNumber",customerMobileNumber),
-                new ReportParameter("BillTO",BillTO),
-
-                new ReportParameter("BankName",bankName),
-                new ReportParameter("AccountName",accountName),
-                new ReportParameter("AccountNumber",accountNumber),
-                new ReportParameter("SubTotal",SubTotal),
-                new ReportParameter ("VAT_Calculation_on_Item", VAT_Calculation_on_Item),
-                new ReportParameter("VAT_Percent", VAT_Percent),
-                new ReportParameter("Paid",Paid),
-                new ReportParameter("Due",Due),
-                new ReportParameter("TotalQty",TotalQty),
-                new ReportParameter("Total_after_adding_vat",Total_after_adding_vat),
-                new ReportParameter("Currency",Currency)
-
-            };
-
-
-        ReportViewer1.ProcessingMode = ProcessingMode.Local;
-        ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RDLCReports/Quotation.rdlc");
-
-        ReportDataSource datasource = new ReportDataSource("CreateInvoice", QuotationItemList);
-        ReportViewer1.LocalReport.DataSources.Clear();
-
-        ReportViewer1.LocalReport.EnableExternalImages = true;
-        ReportViewer1.ExportContentDisposition = ContentDisposition.AlwaysInline;
-
-        ReportViewer1.LocalReport.DataSources.Add(datasource);
-        ReportViewer1.LocalReport.SetParameters(reportParameters);
+        Response.Redirect("~/Accounts/Sales/PrintQuotation.aspx");
     }
 
     protected void SaveSaleItem()

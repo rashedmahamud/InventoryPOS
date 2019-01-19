@@ -89,7 +89,7 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
                            <asp:Button ID="Button3" runat="server" Text="Print Due Invoice" class="btn btn-danger btn-xs" OnClick="Button3_Click"/>
                     </div>
                 <br />
-                <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="294px" Width="936px"></rsweb:ReportViewer>
+
 
 
                    <atk:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtsearch"

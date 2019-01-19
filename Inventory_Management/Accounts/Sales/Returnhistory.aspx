@@ -68,35 +68,44 @@
 </div>
     <div >
             <div  >
-                <br />
-                 <div style="margin-left:30%" > Store or Invoice Number  :
+                 <div style="margin-left:30%; height: 90px; width: 645px;" > Store or Invoice Number  :
 
                        <asp:TextBox ID="txtsearch"   Width="320px"
                                 ToolTip="Search by : Invoice No Or Store Number"   Placeholder="Search" runat="server" AutoPostBack="True"
                                 ontextchanged="txtsearch_TextChanged"></asp:TextBox>
                      <br /><br />
-                                    Start Date:    <atk:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDateFrom" />
-        <asp:TextBox ID="txtDateFrom" runat="server" ToolTip="Your Starting Date"
-        placeholder="Starting Date" AutoPostBack="True"
-        ontextchanged="txtDateFrom_TextChanged"></asp:TextBox>
+                                    Start Date:
+                                                    <asp:TextBox ID="txtDateFrom" runat="server" ToolTip="Your Starting Date"
+                                                    placeholder="Starting Date" AutoPostBack="True"
+                                                    ontextchanged="txtDateFrom_TextChanged"></asp:TextBox>
 
-    End Date:    <atk:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDateTo" />
+                     <atk:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDateFrom" />
+
+    End Date:
         <asp:TextBox ID="txtDateTo" runat="server"  ToolTip="End Date"  AutoPostBack="True"
         placeholder="End Date"></asp:TextBox>
 
 
-                         </div><br />
+                     <atk:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDateTo" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <asp:Button ID="printButton" class="pull-right btn btn-primary" runat="server" Text="Print" OnClick="printButton_Click"  />
+
+
+                         </div>
+                <br />
+                 <br />
                    <atk:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtsearch"
                     MinimumPrefixLength="1" EnableCaching="true"      CompletionSetCount="1" CompletionInterval="100"
                     ServiceMethod="GetMDN" FirstRowSelected="True">
                     </atk:AutoCompleteExtender>
-
             </div>
 
         <div >
 
-                          <asp:Button ID="printButton" runat="server" Text="Print" OnClick="printButton_Click"  />
-               <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="220px" Width="975px"></rsweb:ReportViewer>
+
+
+
+
                 <div id="wrapper" >
 
 

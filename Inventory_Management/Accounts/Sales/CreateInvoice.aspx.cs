@@ -45,9 +45,6 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             Session["TotalQty"] = "";
 
 
-
-
-
             //ddlBankName.DataSource = GetData();
             ListItem liBankName = new ListItem("Select Bank Name..", "-1");
             ddlBankName.Items.Insert(0, liBankName);
@@ -736,11 +733,6 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         string SubTotal = null;
         string VAT_Percent = null;
         string VAT_Calculation_on_Item = null;
-        string Total_after_adding_vat = null;
-        string Paid = null;
-        string Due = null;
-        string TotalQty = null;
-        string Currency = null;
 
         if (Session["VAT_Percent"] != null)
         {
@@ -760,8 +752,6 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             SubTotal = Session["SubTotal"].ToString();
         }
 
-
-
         if (Label11.Text != "") {
             Session["TotalQty"] = Label11.Text;
         }
@@ -776,14 +766,6 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
         {
             Session["Due"] = Label9.Text;
         }
-
-
-        Total_after_adding_vat = (Convert.ToDouble(SubTotal) + Convert.ToDouble(VAT_Calculation_on_Item)).ToString();
-        Paid = TextBox16.Text;
-        Due = Label9.Text;
-        TotalQty = Label11.Text;
-
-
 
 
 
@@ -801,7 +783,8 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             TextBox Dis = (TextBox)gvDetails.Rows[i].Cells[5].FindControl("Dis");
             TextBox Total = (TextBox)gvDetails.Rows[i].Cells[6].FindControl("Total");
 
-            CodeList.Add (Code.Text);
+            //CodeList.Add (Code.Text);
+            createInvoice.ItemCode = Code.Text;
             createInvoice.Name = ItemName.Text;
             createInvoice.Quantity = Qty.Text;
             createInvoice.Price = txtprice.Text;
@@ -817,74 +800,6 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
 
     }
 
-    //public void initila()
-    //{
-
-    //    //string BankAccountNumber = null;
-
-    //    //if (ddlBankAccountNumber.SelectedItem.Value == "-1")
-    //    //{
-    //    //    Response.Write("Please, select account number");
-    //    //}
-    //    //else
-    //    //{
-    //    //    BankAccountNumber = ddlBankAccountNumber.SelectedItem.Text;
-    //    //}
-
-
-    //    if (TextBox3.Text != "")
-    //    {
-    //        Session["CustomerPhone"] = TextBox3.Text;
-
-    //    }
-
-    //    if (Label11.Text != "")
-    //    {
-    //        Session["TotalQty"] = Label11.Text;
-    //    }
-
-
-    //    if (TextBox16.Text != "")
-    //    {
-    //        Session["Paid"] = TextBox16.Text;
-
-    //    }
-
-    //    if (Label9.Text != "")
-    //    {
-    //        Session["Due"] = Label9.Text;
-    //    }
-
-
-
-    //    // Get  All the list of Product
-    //    List<CreateInvoiceItemList> InvoiceItemList = new List<CreateInvoiceItemList>();
-
-    //    for (int i = 0; i < gvDetails.Rows.Count; i++)
-    //    {
-    //        CreateInvoiceItemList createInvoice = new CreateInvoiceItemList();
-    //        TextBox Code = (TextBox)gvDetails.Rows[i].Cells[1].FindControl("ItemCode");
-    //        TextBox ItemName = (TextBox)gvDetails.Rows[i].Cells[2].FindControl("txtName");
-    //        TextBox txtprice = (TextBox)gvDetails.Rows[i].Cells[3].FindControl("txtPrice");
-    //        TextBox Qty = (TextBox)gvDetails.Rows[i].Cells[4].FindControl("Qty");
-    //        TextBox Dis = (TextBox)gvDetails.Rows[i].Cells[5].FindControl("Dis");
-    //        TextBox Total = (TextBox)gvDetails.Rows[i].Cells[6].FindControl("Total");
-
-    //        createInvoice.ItemCode = Code.Text;
-    //        createInvoice.Name = ItemName.Text;
-    //        createInvoice.Quantity = Qty.Text;
-    //        createInvoice.Price = txtprice.Text;
-    //        createInvoice.Discount = Dis.Text;
-    //        createInvoice.Total = Total.Text;
-    //        InvoiceItemList.Add(createInvoice);
-
-    //    }
-
-    //    Session["CreateInvoiceItemList"] = InvoiceItemList;
-
-
-
-    //}
     protected void SaveSaleItem()
     {
         try
@@ -1024,7 +939,5 @@ public partial class Accounts_CreateInvoice : System.Web.UI.Page
             Label9.Text = Math.Round(s, 2).ToString();
         }
     }
-
-
 
 }

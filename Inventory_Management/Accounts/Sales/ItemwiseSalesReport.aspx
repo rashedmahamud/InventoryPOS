@@ -184,7 +184,7 @@ background-color:ButtonShadow;
 
                 </tr>
             </table>
-                      <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="294px" Width="936px"></rsweb:ReportViewer>
+
                 </div><br />
                    <atk:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtsearch"
                     MinimumPrefixLength="1" EnableCaching="true"      CompletionSetCount="1" CompletionInterval="100"

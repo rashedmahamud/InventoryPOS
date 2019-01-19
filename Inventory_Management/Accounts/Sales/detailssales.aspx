@@ -181,7 +181,7 @@ background-color:ButtonShadow;
                     </atk:AutoCompleteExtender>
 
             </div>
-           <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="220px" Width="975px"></rsweb:ReportViewer>
+
         <div >
 
                 <div >

@@ -163,7 +163,7 @@ color:black;border-right-color:#abb079; font-size: 12px;  border-bottom-color:#a
                                     </tr>
     	                          </table>
                                   <hr style="border:solid;height:1px" ></hr>
-                                  <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="50px" Width="100%" DocumentMapWidth="50%" SizeToReportContent="True" ZoomMode="PageWidth"></rsweb:ReportViewer>
+
 
                                  <div  style="width:100%">
                                      <div style="margin-left:40%">

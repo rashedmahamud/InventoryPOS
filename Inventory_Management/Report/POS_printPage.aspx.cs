@@ -28,20 +28,20 @@ public partial class POS_printPage : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (Session["vat"] != null)  
+            if (Session["vat"] != null)
             {
-                this.Title = "POS_Invoice#" + Session["InvoiceNo"].ToString(); 
+                this.Title = "POS_Invoice#" + Session["InvoiceNo"].ToString();
                 SystemInfo();
                 DataTable table = Session["Stable"] as DataTable;
 
                 grdItemList.EmptyDataText = "No Records Found";
                 grdItemList.DataSource = table;
                 grdItemList.DataBind();
-                
+
 
                 lblDatetime.Text = DateTime.Now.ToString("MMM dd, yyyy.  hh:mm:ss tt");
                 lblvat.Text             = Session["vat"].ToString();
-                lblvatRate.Text         =  "GST"+ Session["vatRate"].ToString() + "%"; 
+                lblvatRate.Text         =  "GST"+ Session["vatRate"].ToString() + "%";
                 lbltotalpay.Text        = Session["totalPayable"].ToString();
                 lblpaidby.Text          = Session["PaidBy"].ToString();
                 lblPaidAmt.Text         = Session["PaidAmt"].ToString();
@@ -69,7 +69,7 @@ public partial class POS_printPage : System.Web.UI.Page
                 {
                     //------Do nothing--------
                 }
-               
+
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "Print", "printDiv('wrapper')", true);
                 Response.Redirect("/Sales.aspx",false);
@@ -88,7 +88,7 @@ public partial class POS_printPage : System.Web.UI.Page
             else
             {
                 Response.Redirect("~/Sales.aspx");
-            }        
+            }
 
         }
         //Response.Redirect("~/Sales.aspx");
@@ -96,7 +96,7 @@ public partial class POS_printPage : System.Web.UI.Page
     }
 
     //header part  System information
-    public void SystemInfo()    
+    public void SystemInfo()
     {
         try
         {
@@ -115,7 +115,7 @@ public partial class POS_printPage : System.Web.UI.Page
                 while (rd4.Read())
                 {
 
-                    Label18.Text= (rd4["CompanyName"].ToString());            
+                    Label18.Text= (rd4["CompanyName"].ToString());
                      Label19.Text = rd4["CompanyAddress"].ToString();
                      Label20.Text = rd4["WebAddress"].ToString();
                      Label21.Text = rd4["Phone"].ToString();
@@ -148,12 +148,12 @@ public partial class POS_printPage : System.Web.UI.Page
     //        grdItemList.DataSource = cmd.ExecuteReader();
     //        grdItemList.EmptyDataText = "No Records Found";
     //        grdItemList.DataBind();
-            
+
 
     //    }
     //    catch
     //    {
-             
+
     //    }
     //}
 
@@ -176,8 +176,8 @@ public partial class POS_printPage : System.Web.UI.Page
            lblsubTotal.Text = total.ToString();
         }
     }
-  
 
 
-   
+
+
 }

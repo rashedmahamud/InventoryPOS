@@ -42,15 +42,17 @@
                       <div id="wrapper">
                         <asp:GridView ID="grdItemList" runat="server"
                               class="table table-striped table-hover" Font-Size="11px" AllowPaging="True"
-                              onpageindexchanging="grdItemList_PageIndexChanging"   >
+                              onpageindexchanging="grdItemList_PageIndexChanging" OnSelectedIndexChanged="grdItemList_SelectedIndexChanged"   >
                           <Columns>
                               <asp:TemplateField HeaderText="Action" HeaderStyle-Width="280px">
                                     <ItemTemplate>
                                       <asp:LinkButton    ID="linkViewInvoice" runat="server"  Text=" View Invoice"   ToolTip="View purchase Invoice" class="btn btn-primary btn-xs"  OnClick="linkViewInvoice_Click" />
+                                      <asp:LinkButton    ID="Print" runat="server"  Text=" Print Invoice"   ToolTip="Print purchase Invoice" class="btn btn-success btn-xs" OnClick="Print_Purchase_Invoice" />
                                    </ItemTemplate>
+
                                     <HeaderStyle Width="150px" />
                               </asp:TemplateField>
-                              </Columns>
+                          </Columns>
 
                             <PagerSettings      FirstPageText="First" LastPageText="Last"
                                 Mode="NumericFirstLast" NextPageText="Next" PageButtonCount="10" PreviousPageText="Previous" />

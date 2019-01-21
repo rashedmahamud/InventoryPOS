@@ -16,7 +16,7 @@ public partial class Purchase_module_Purchase_history : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            this.Title = "Purchase_Report_" + DateTime.Now.ToString("MMM_dd_yyyy_HHmmss"); 
+            this.Title = "Purchase_Report_" + DateTime.Now.ToString("MMM_dd_yyyy_HHmmss");
             ItemsListDataBind();
             txtsearch.Focus();
             // lblmsg.Visible = false;
@@ -62,14 +62,14 @@ public partial class Purchase_module_Purchase_history : System.Web.UI.Page
     }
 
 
-      // //////// Search item by ID , Code , 
+      // //////// Search item by ID , Code ,
     protected void txtsearch_TextChanged(object sender, EventArgs e)
     {
         try
         {
            // SqlConnection cn = new SqlConnection(ConnectionString);
             //SqlCommand cmd = new SqlCommand("SP_INV_DataBind_PurchaseItem_search", cn);
-		
+
 	    //grdItemList.PageSize = Convert.ToInt32(ddlpagesize.SelectedValue);
             SqlConnection con = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand("SP_INV_DataBind_PurchaseItem_search", con);
@@ -137,7 +137,7 @@ public partial class Purchase_module_Purchase_history : System.Web.UI.Page
         //lblItemID.Text = gvrow.Cells[1].Text;
         //lblitemName.Text = gvrow.Cells[3].Text;
         ////lblBarCode.Text = gvrow.Cells[2].Text;
- 
+
 
         //CategoryDDLDataBind();
         //LoadDetailsData(gvrow.Cells[1].Text);
@@ -146,9 +146,9 @@ public partial class Purchase_module_Purchase_history : System.Web.UI.Page
         Session["purchaseCode"] = gvrow.Cells[2].Text;
         Session["puchase_date"] = gvrow.Cells[4].Text;
         Session["Supplier"] = gvrow.Cells[3].Text;
-        Response.Redirect("~/Purchase_module/Purchase_Invoice.aspx"); 
+        Response.Redirect("~/Purchase_module/Purchase_Invoice.aspx");
     }
-    
+
     //AutoComplete  AutoCompleteExtender  ////////////////////////////////////////////   AutoCompleteExtender
     [System.Web.Script.Services.ScriptMethod()]
     [System.Web.Services.WebMethod]
@@ -178,12 +178,31 @@ public partial class Purchase_module_Purchase_history : System.Web.UI.Page
     protected void grdItemList_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         grdItemList.PageIndex = e.NewPageIndex;
-       
+
         ItemsListDataBind();
     }
     protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
     {
         txtsearch.Text = string.Empty;
         ItemsListDataBind();
+    }
+
+    // Print the Invoice
+    protected void grdItemList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void Print_Purchase_Invoice(object sender, EventArgs e) {
+
+        LinkButton Linkdetails = sender as LinkButton;
+        GridViewRow gvrow = (GridViewRow)Linkdetails.NamingContainer;
+
+
+        Session["purchaseCode"] = gvrow.Cells[2].Text;
+        Session["puchase_date"] = gvrow.Cells[4].Text;
+        Session["Supplier"] = gvrow.Cells[3].Text;
+        Response.Redirect("~/Purchase_module/PrintPurchase_Invoice.aspx");
+
     }
 }

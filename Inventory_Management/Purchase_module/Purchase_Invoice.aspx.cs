@@ -55,12 +55,10 @@ public partial class Purchase_module_Purchase_Invoice : System.Web.UI.Page
             //lblVATRegiNo.Text = dt.Rows[0].ItemArray[7].ToString();
             cn.Close();
             lblInvoiceNo.Text   = "Invoice # " + Session["purchaseCode"].ToString();
-            lblSupplier.Text    = "Supplier # " + Session["Supplier"].ToString(); 
+            lblSupplier.Text    = "Supplier # " + Session["Supplier"].ToString();
             lbldate.Text        = "Date   # " + Session["puchase_date"].ToString();
         }
-        catch
-        {
-        }
+        catch{}
     }
 
 
@@ -97,7 +95,7 @@ public partial class Purchase_module_Purchase_Invoice : System.Web.UI.Page
             SqlCommand cmd = new SqlCommand("SP_INV_DataBind_PurchaseInvoice", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cn.Open();
-            cmd.Parameters.AddWithValue("@InvoiceNo", Session["purchaseCode"].ToString()); 
+            cmd.Parameters.AddWithValue("@InvoiceNo", Session["purchaseCode"].ToString());
 
             SqlDataReader rd = cmd.ExecuteReader();
             if (rd.HasRows)
@@ -118,14 +116,14 @@ public partial class Purchase_module_Purchase_Invoice : System.Web.UI.Page
             //lbtotalRow.Text = "No Records Found";
         }
     }
- 
+
     decimal total = 0;
     protected void grdItemList_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            total = total + Convert.ToDecimal(e.Row.Cells[4].Text); 
-            e.Row.Cells[3].HorizontalAlign = HorizontalAlign.Right;            
+            total = total + Convert.ToDecimal(e.Row.Cells[4].Text);
+            e.Row.Cells[3].HorizontalAlign = HorizontalAlign.Right;
             e.Row.Cells[4].HorizontalAlign = HorizontalAlign.Right;
             e.Row.Cells[2].Width = 10;
         }

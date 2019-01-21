@@ -47,10 +47,8 @@ public partial class Accounts_Sales_DamageReport : System.Web.UI.Page
 
             if (rd4.HasRows)
             {
-
                 while (rd4.Read())
                 {
-
                     lblshopTitle.Text = (rd4["CompanyName"].ToString());
                     lblshopAddress.Text = rd4["CompanyAddress"].ToString();
                     lblwebAddress.Text = rd4["WebAddress"].ToString();
@@ -108,7 +106,7 @@ public partial class Accounts_Sales_DamageReport : System.Web.UI.Page
         SqlConnection con = new SqlConnection(strcon);
         SqlCommand cmd = new SqlCommand("SP_Damge", con);
         cmd.CommandType = CommandType.StoredProcedure;
-   
+
         cmd.Parameters.AddWithValue("@Logdate", Logdate);
         cmd.Parameters.AddWithValue("@ShopID", ShopID);
         con.Open();
@@ -130,5 +128,11 @@ public partial class Accounts_Sales_DamageReport : System.Web.UI.Page
     protected void txtsearch_TextChanged(object sender, EventArgs e)
     {
         ItemsListDataBind();
+    }
+    protected void printButton_Click(object sender, EventArgs e)
+    {
+
+        Session["DateFrom_DamageReport"] = txtDateFrom.Text;
+        Response.Redirect("~/Accounts/Sales/PrintDamageReport.aspx");
     }
 }

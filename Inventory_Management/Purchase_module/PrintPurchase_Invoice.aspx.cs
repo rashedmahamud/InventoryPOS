@@ -146,7 +146,8 @@ public partial class Purchase_module_PrintPurchase_Invoice : System.Web.UI.Page
                new ReportParameter("SupplierCompanyName",SupplierCompanyName),
                new ReportParameter("SupplierAddress",SupplierAddress),
                new ReportParameter("SuulierPhoneNumber",SuulierPhoneNumber),
-               new ReportParameter("SupplierEmailAddress",SupplierEmailAddress)
+               new ReportParameter("SupplierEmailAddress",SupplierEmailAddress),
+               new ReportParameter("PurchaseInvoiceNo", Session["purchaseCode"].ToString())
 
            };
 

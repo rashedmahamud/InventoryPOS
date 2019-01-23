@@ -12,7 +12,7 @@
         }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
     <div class="col-lg-8 col-lg-offset-2">
             <div class="well well-sm" >
              <asp:button id="btnBack" runat="server"  class="btn btn-warning btn-xs"   Text="Back"

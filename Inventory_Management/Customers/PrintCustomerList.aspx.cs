@@ -33,6 +33,7 @@ public partial class Customers_PrintCustomerList : System.Web.UI.Page
         string CompanyMobileNumber = null;
         string CompanyWebsite = null;
         string CompanyFooterMassage = null;
+        string CompanyLogo = null;
 
         List<CustomerList> CustomerList = new List<CustomerList>();
         try
@@ -94,19 +95,23 @@ public partial class Customers_PrintCustomerList : System.Web.UI.Page
                     CompanyWebsite = rd4["WebAddress"].ToString();
                     CompanyMobileNumber = rd4["Phone"].ToString();
                     CompanyFooterMassage = rd4["Footermsg"].ToString();
+                    CompanyLogo = rd4["CompanyLogo"].ToString();
                 }
                 cn.Close();
             }
         }
         catch { }
 
+
+        string imagePath = new Uri(Server.MapPath(CompanyLogo)).AbsoluteUri;
         var reportParameters = new ReportParameterCollection
            {
                new ReportParameter("CompanyName",CompanyName),
                new ReportParameter("ComapanyAddress",ComapanyAddress),
                new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
                new ReportParameter("CompanyWebsite",CompanyWebsite),
-               new ReportParameter("CompanyFooterMassage",CompanyFooterMassage)
+               new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
+               new ReportParameter("CompanyLogo",imagePath)
            };
 
 

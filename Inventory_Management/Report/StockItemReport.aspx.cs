@@ -30,7 +30,7 @@ public partial class Report_StockItemReport : System.Web.UI.Page
         string CompanyMobileNumber = null;
         string CompanyWebsite = null;
         string CompanyFooterMassage = null;
-        string InvocieNo = null;
+        string CompanyLogo = null;
 
 
         List<StockitemList> StockitemLists = new List<StockitemList>();
@@ -101,11 +101,14 @@ public partial class Report_StockItemReport : System.Web.UI.Page
                     CompanyWebsite = rd4["WebAddress"].ToString();
                     CompanyMobileNumber = rd4["Phone"].ToString();
                     CompanyFooterMassage = rd4["Footermsg"].ToString();
+                    CompanyLogo = rd4["CompanyLogo"].ToString();
                 }
                 cn.Close();
             }
         }
         catch { }
+
+        string imagePath = new Uri(Server.MapPath(CompanyLogo)).AbsoluteUri;
 
         var reportParameters = new ReportParameterCollection
            {
@@ -114,6 +117,7 @@ public partial class Report_StockItemReport : System.Web.UI.Page
                new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
                new ReportParameter("CompanyWebsite",CompanyWebsite),
                new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
+               new ReportParameter("CompanyLogo",imagePath),
            };
 
 

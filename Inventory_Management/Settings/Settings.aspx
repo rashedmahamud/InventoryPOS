@@ -9,6 +9,8 @@
           <div class="panel-body">
            <asp:Label ID="Label8" class="label label-warning" Font-Size="12px" runat="server" Text="System Settings"></asp:Label>
            <asp:Label ID="Label7" runat="server" Font-Size="11px" Text="Please Update the information below"></asp:Label>
+                 <asp:Label ID="lblUID" runat="server" Text="0"></asp:Label>
+                 <asp:Label ID="lblmsg" class="label label-danger" Font-Size="11px" runat="server" Text=""></asp:Label>
               <p></p>
                 <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                 <br />
@@ -55,6 +57,10 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ForeColor="Red" ValidationGroup="vlpg43"  ControlToValidate="txtFooterMessage" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
                 <asp:TextBox ID="txtFooterMessage"  BackColor="#D7FDF9"  TextMode="MultiLine" Font-Size="11px" ToolTip="Please Enter Receipt Footer message" class="form-control" ValidationGroup="vlpg43" runat="server"></asp:TextBox>
               <br />
+                 <asp:Image ID="imgUser" class="img-thumbnail" Width="120" Height="120" runat="server" />
+
+                 <asp:FileUpload  ID="FUpimg"   class="btn btn-warning btn-xs"  runat="server"   />
+
               <asp:Button ID="btnUpdateSettings"    runat="server"  ValidationGroup="vlpg43"
                   class="btn btn-primary btn-sm" Text="Update Settings"     onclick="btnUpdateSettings_Click" />
             </div>

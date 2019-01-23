@@ -48,6 +48,7 @@ public partial class Accounts_Sales_PrintCreateInvoice : System.Web.UI.Page
         string TotalQty = null;
         string Currency = null;
         string customerPhone = null;
+        string CompanyLogo = null;
         if (Session["VAT_Percent"] != null)
         {
             VAT_Percent = Session["VAT_Percent"].ToString();
@@ -175,13 +176,14 @@ public partial class Accounts_Sales_PrintCreateInvoice : System.Web.UI.Page
                     CompanyMobileNumber = rd4["Phone"].ToString();
                     CompanyFooterMassage = rd4["Footermsg"].ToString();
                     Currency = rd4["Currency"].ToString();
+                    CompanyLogo = rd4["CompanyLogo"].ToString();
                 }
                 cn.Close();
             }
         }
         catch { }
 
-
+          string imagePath = new Uri(Server.MapPath(CompanyLogo)).AbsoluteUri;
 
 
         var reportParameters = new ReportParameterCollection
@@ -207,7 +209,9 @@ public partial class Accounts_Sales_PrintCreateInvoice : System.Web.UI.Page
                 new ReportParameter("Due",Due),
                 new ReportParameter("TotalQty",TotalQty),
                 new ReportParameter("Total_after_adding_vat",Total_after_adding_vat),
-                new ReportParameter("Currency",Currency)
+                new ReportParameter("Currency",Currency),
+                new ReportParameter("CompanyLogo",imagePath)
+
             };
 
 

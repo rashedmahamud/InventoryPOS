@@ -29,7 +29,7 @@ public partial class Purchase_module_PrintPurchase_Invoice : System.Web.UI.Page
         string CompanyMobileNumber = null;
         string CompanyWebsite = null;
         string CompanyFooterMassage = null;
-
+        string CompanyLogo = null;
 
 
         List<PurchaseInvoiceItemList> PurchaseInvoiceItemList = new List<PurchaseInvoiceItemList>();
@@ -92,6 +92,7 @@ public partial class Purchase_module_PrintPurchase_Invoice : System.Web.UI.Page
                     CompanyWebsite = rd4["WebAddress"].ToString();
                     CompanyMobileNumber = rd4["Phone"].ToString();
                     CompanyFooterMassage = rd4["Footermsg"].ToString();
+                    CompanyLogo = rd4["CompanyLogo"].ToString();
                 }
                 cn.Close();
             }
@@ -132,7 +133,7 @@ public partial class Purchase_module_PrintPurchase_Invoice : System.Web.UI.Page
             //lbtotalRow.Text = "No Records Found";
         }
 
-
+        string imagePath = new Uri(Server.MapPath(CompanyLogo)).AbsoluteUri;
         var reportParameters = new ReportParameterCollection
            {
                new ReportParameter("CompanyName",CompanyName),
@@ -140,14 +141,15 @@ public partial class Purchase_module_PrintPurchase_Invoice : System.Web.UI.Page
                new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
                new ReportParameter("CompanyWebsite",CompanyWebsite),
                new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
-
-                new ReportParameter("SupplierName",SupplierName),
+               new ReportParameter("CompanyLogo",imagePath),
+               new ReportParameter("SupplierName",SupplierName),
                new ReportParameter("SupplierComment",SupplierComment),
                new ReportParameter("SupplierCompanyName",SupplierCompanyName),
                new ReportParameter("SupplierAddress",SupplierAddress),
                new ReportParameter("SuulierPhoneNumber",SuulierPhoneNumber),
                new ReportParameter("SupplierEmailAddress",SupplierEmailAddress),
                new ReportParameter("PurchaseInvoiceNo", Session["purchaseCode"].ToString())
+
 
            };
 

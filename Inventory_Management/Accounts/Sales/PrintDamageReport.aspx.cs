@@ -31,6 +31,7 @@ public partial class Accounts_Sales_PrintDamageRepoert : System.Web.UI.Page
         string CompanyMobileNumber = null;
         string CompanyWebsite = null;
         string CompanyFooterMassage = null;
+        string CompanyLogo = null;
         string Date = Session["DateFrom_DamageReport"].ToString();
 
 
@@ -93,12 +94,14 @@ public partial class Accounts_Sales_PrintDamageRepoert : System.Web.UI.Page
                     CompanyWebsite = rd4["WebAddress"].ToString();
                     CompanyMobileNumber = rd4["Phone"].ToString();
                     CompanyFooterMassage = rd4["Footermsg"].ToString();
+                    CompanyLogo = rd4["CompanyLogo"].ToString();
                 }
                 cn.Close();
             }
         }
         catch { }
 
+        string imagePath = new Uri(Server.MapPath(CompanyLogo)).AbsoluteUri;
         var reportParameters = new ReportParameterCollection
            {
                new ReportParameter("CompanyName",CompanyName),
@@ -106,6 +109,7 @@ public partial class Accounts_Sales_PrintDamageRepoert : System.Web.UI.Page
                new ReportParameter("CompanyMobileNumber",CompanyMobileNumber),
                new ReportParameter("CompanyWebsite",CompanyWebsite),
                new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
+               new ReportParameter("CompanyLogo",imagePath),
            };
 
 

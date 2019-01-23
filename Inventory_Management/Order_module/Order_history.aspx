@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
    <script src="../assets/scripts/PrintPosCopy.js" type="text/javascript"></script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
     <div class="col-lg-12">
             <div class="well well-sm" >
                 <div class="col-lg-3" style="text-align:left" >

@@ -39,7 +39,7 @@ public partial class Accounts_Sales_PrintItemWiseSalesReport : System.Web.UI.Pag
         string CompanyMobileNumber = null;
         string CompanyWebsite = null;
         string CompanyFooterMassage = null;
-
+        string CompanyLogo = null;
 
         List<ItemWiseSalesReport> ItemWiseSales = new List<ItemWiseSalesReport>();
 
@@ -106,6 +106,7 @@ public partial class Accounts_Sales_PrintItemWiseSalesReport : System.Web.UI.Pag
                     CompanyWebsite = rd4["WebAddress"].ToString();
                     CompanyMobileNumber = rd4["Phone"].ToString();
                     CompanyFooterMassage = rd4["Footermsg"].ToString();
+                    CompanyLogo = rd4["CompanyLogo"].ToString();
                 }
                 cn.Close();
             }
@@ -115,7 +116,7 @@ public partial class Accounts_Sales_PrintItemWiseSalesReport : System.Web.UI.Pag
 
 
 
-
+          string imagePath = new Uri(Server.MapPath(CompanyLogo)).AbsoluteUri;
         var reportParameters = new ReportParameterCollection
            {
                new ReportParameter("CompanyName",CompanyName),
@@ -126,7 +127,8 @@ public partial class Accounts_Sales_PrintItemWiseSalesReport : System.Web.UI.Pag
                new ReportParameter("DateFrom",dateFrom),
                new ReportParameter("DateTo", dateTo),
                new ReportParameter("ShopId",ShopID),
-               new ReportParameter("ItemCode",ItemCode)
+               new ReportParameter("ItemCode",ItemCode),
+               new ReportParameter("CompanyLogo",imagePath)
 
            };
 

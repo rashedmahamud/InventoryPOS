@@ -1435,11 +1435,31 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Image Name="Image1">
+          <Source>External</Source>
+          <Value>=Parameters!CompanyLogo.Value</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.1265in</Top>
+          <Left>2.06125in</Left>
+          <Height>0.78892in</Height>
+          <Width>0.89583in</Width>
+          <ZIndex>5</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
       </ReportItems>
       <Style>
         <Border>
           <Style>None</Style>
         </Border>
+        <BottomBorder>
+          <Color>Black</Color>
+          <Style>Solid</Style>
+          <Width>1pt</Width>
+        </BottomBorder>
       </Style>
     </PageHeader>
     <PageFooter>
@@ -1630,6 +1650,12 @@
     <ReportParameter Name="CompanyFooterMassage">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyLogo">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>

@@ -35,7 +35,7 @@ public partial class Accounts_Sales_PrintReturnhistory : System.Web.UI.Page
         string CompanyMobileNumber = null;
         string CompanyWebsite = null;
         string CompanyFooterMassage = null;
-
+        string CompanyLogo = null;
 
         List<ReturnReport> ReturnReports = new List<ReturnReport>();
 
@@ -102,6 +102,7 @@ public partial class Accounts_Sales_PrintReturnhistory : System.Web.UI.Page
                     CompanyWebsite = rd4["WebAddress"].ToString();
                     CompanyMobileNumber = rd4["Phone"].ToString();
                     CompanyFooterMassage = rd4["Footermsg"].ToString();
+                    CompanyLogo = rd4["CompanyLogo"].ToString();
                 }
                 cn.Close();
             }
@@ -110,7 +111,7 @@ public partial class Accounts_Sales_PrintReturnhistory : System.Web.UI.Page
 
 
 
-
+        string imagePath = new Uri(Server.MapPath(CompanyLogo)).AbsoluteUri;
         var reportParameters = new ReportParameterCollection
            {
                new ReportParameter("CompanyName",CompanyName),
@@ -119,7 +120,8 @@ public partial class Accounts_Sales_PrintReturnhistory : System.Web.UI.Page
                new ReportParameter("CompanyWebsite",CompanyWebsite),
                new ReportParameter("CompanyFooterMassage",CompanyFooterMassage),
                new ReportParameter("DateFrom",dateFrom),
-               new ReportParameter("DateTo", dateTo )
+               new ReportParameter("DateTo", dateTo ),
+                new ReportParameter("CompanyLogo", imagePath )
            };
 
 

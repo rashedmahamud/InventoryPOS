@@ -23,7 +23,7 @@ public partial class ProfilePage : System.Web.UI.Page
             {
                 LoadDetailsData(Request.Cookies["InventMgtCookies"]["UserID"].ToString());
                 txtFname.Focus();
-                 
+
             }
             else
             {
@@ -39,19 +39,19 @@ public partial class ProfilePage : System.Web.UI.Page
         SqlCommand cmd = new SqlCommand("SP_POS_DataBind_UsersProfileDetails", cn);
         cmd.CommandType = CommandType.StoredProcedure;
         cn.Open();
-        cmd.Parameters.AddWithValue("@UserID", UserID);      
+        cmd.Parameters.AddWithValue("@UserID", UserID);
 
         SqlDataReader rd = cmd.ExecuteReader();
         if (rd.HasRows)
         {
             rd.Read();
-         
+
             imgUser.ImageUrl    = rd["User_Photo"].ToString();
             lblUID.Text         = rd["ID"].ToString();
             txtFname.Text       = rd["Fname"].ToString();
-            txtLName.Text       = rd["LName"].ToString();           
-            txtPhone.Text       = rd["UserPhone"].ToString();         
-            txtEmailaddr.Text   = rd["Email"].ToString();             
+            txtLName.Text       = rd["LName"].ToString();
+            txtPhone.Text       = rd["UserPhone"].ToString();
+            txtEmailaddr.Text   = rd["Email"].ToString();
             txtSupervisor.Text = rd["Supervisor"].ToString();
         }
         cn.Close();
@@ -70,8 +70,8 @@ public partial class ProfilePage : System.Web.UI.Page
             string Result;
             SqlConnection cn = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand("SP_POS_Update_UserProfile", cn);
-            cn.Open();           
-              
+            cn.Open();
+
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@UserID", UserID);
             cmd.Parameters.AddWithValue("@Fname", txtFname.Text);
@@ -111,9 +111,9 @@ public partial class ProfilePage : System.Web.UI.Page
                 cmd.Parameters.AddWithValue("@User_Photo", imgUser.ImageUrl);
             }
             cmd.Parameters.Add("@ResultOutPut", SqlDbType.Int).Direction = ParameterDirection.Output;
-                    
+
             cmd.ExecuteNonQuery();
-            cn.Close();                
+            cn.Close();
 
 
             Result = cmd.Parameters["@ResultOutPut"].Value.ToString();
@@ -127,13 +127,13 @@ public partial class ProfilePage : System.Web.UI.Page
                 lblmsg.Visible = true;
                 lblmsg.Text = "Successfully Updated";
                 LoadDetailsData(UserID);
-            }                  
+            }
 
         }
         catch (Exception ex)
         {
             lblmsg.Visible = true;
-            lblmsg.Text = ex.Message;           
+            lblmsg.Text = ex.Message;
         }
 
     }
@@ -151,5 +151,5 @@ public partial class ProfilePage : System.Web.UI.Page
         }
         return newImage;
     }
-   
+
 }

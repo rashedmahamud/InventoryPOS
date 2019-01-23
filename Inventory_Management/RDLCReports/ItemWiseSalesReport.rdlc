@@ -1204,7 +1204,7 @@
         <Top>0.25in</Top>
         <Left>0.17187in</Left>
         <Height>0.88195in</Height>
-        <Width>7.93229in</Width>
+        <Width>7.93228in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1250,7 +1250,7 @@
   <Width>8.26562in</Width>
   <Page>
     <PageHeader>
-      <Height>1.33208in</Height>
+      <Height>1.29041in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1483,11 +1483,31 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Image Name="Image1">
+          <Source>External</Source>
+          <Value>=Parameters!CompanyLogo.Value</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.12028in</Top>
+          <Left>1.39351in</Left>
+          <Height>0.82292in</Height>
+          <Width>0.96276in</Width>
+          <ZIndex>7</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
       </ReportItems>
       <Style>
         <Border>
           <Style>None</Style>
         </Border>
+        <BottomBorder>
+          <Color>Black</Color>
+          <Style>Solid</Style>
+          <Width>1pt</Width>
+        </BottomBorder>
       </Style>
     </PageHeader>
     <PageFooter>
@@ -1678,6 +1698,12 @@
     <ReportParameter Name="ItemCode">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CompanyLogo">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
